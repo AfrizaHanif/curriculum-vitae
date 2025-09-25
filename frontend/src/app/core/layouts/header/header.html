@@ -11,7 +11,7 @@
         <!-- Desktop Navigation -->
         <div class="d-none d-lg-flex">
           <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
-            @for (link of navLinks; track link.path) {
+            @for (link of navLinks(); track link.path) {
               <li>
                 <!-- Tooltip Wrapper for disabled links -->
                 @if (link.disabled && link.tooltip) {
@@ -80,7 +80,7 @@
     </div>
     <div class="offcanvas-body">
       <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-        @for (link of navLinks; track link.path) {
+        @for (link of navLinks(); track link.path) {
           <li class="nav-item">
             @if (link.disabled && link.tooltip) {
               <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-placement="bottom" [title]="link.tooltip">

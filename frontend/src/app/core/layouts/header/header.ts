@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { DropdownComponent } from "../../../shared/components/dropdown/dropdown";
 import { CommonModule } from '@angular/common';
 import { ThemeService } from '../../services/theme';
+import { NavigationService } from '../../services/navigation.service';
 import { Tooltip } from 'bootstrap';
 
 @Component({
@@ -16,21 +17,13 @@ export class HeaderComponent implements AfterViewInit, OnDestroy {
   // Inject services
   protected themeService = inject(ThemeService);
   private elementRef = inject(ElementRef);
+  private navigationService = inject(NavigationService);
 
   // To hold tooltip instances for proper cleanup
   private tooltipInstances: Tooltip[] = [];
 
   // Navigation links for the header
-  navLinks = [
-    { path: '/', icon: 'house-fill', label: 'Home', exact: true },
-    { path: '/profile', icon: 'person-vcard', label: 'Profil' },
-    { path: '/resume', icon: 'file-earmark-text', label: 'Resume' },
-    { path: '/expertise', label: 'Keahlian', icon: 'person-workspace', exact: true },
-    { path: '/portfolio', icon: 'briefcase', label: 'Portfolio' },
-    { path: '/blog', icon: 'journal-text', label: 'Blog' },
-    { path: '/testimonials', icon: 'chat-square-quote', label: 'Testimoni', disabled: true, tooltip: 'Tidak ada testimoni saat ini' },
-    { path: '/contact', icon: 'envelope', label: 'Kontak' },
-  ];
+  navLinks = this.navigationService.navLinks;
 
   ngAfterViewInit(): void {
     // Find all elements with the tooltip toggle and initialize them

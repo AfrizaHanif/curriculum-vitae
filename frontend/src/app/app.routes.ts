@@ -5,12 +5,15 @@ import { coreDataResolver } from './core/resolvers/core-data-resolver';
 import { portfolioCaseStudyTitleResolver } from './core/resolvers/portfolio-case-study-title-resolver';
 import { portfolioBreadcrumbResolver } from './core/resolvers/portfolio-breadcrumb-resolver';
 import { blogPostTitleResolver } from './core/resolvers/blog-post-title-resolver';
+import { navigationGuard } from './core/guards/navigation.guard';
 
 export const routes: Routes = [
   {
     path: '',
     component: PublicLayoutComponent,
     // Apply the resolver here to load all core data for the main application layout.
+    // Apply the guard here to protect all child routes.
+    canActivate: [navigationGuard],
     resolve: { coreData: coreDataResolver },
     children: [
       {
