@@ -96,7 +96,9 @@ export class ContactComponent {
           this.toastService.success(
             'Pesan Terkirim! Terima kasih telah menghubungi saya.'
           );
-          this.contactFormComponent().resetForm();
+          // Safely call resetForm only if the component is available
+          const formComponent = this.contactFormComponent();
+          formComponent?.resetForm();
         },
         error: (error) => {
           console.error('Formspree submission error:', error);
