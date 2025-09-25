@@ -1,0 +1,6 @@
+@if (title()) {
+<h2 class="pb-2 border-bottom">{{ title() }}</h2>
+}
+<div class="row row-cols-1 g-4 pt-3" [ngClass]="cardClasses()">
+  <ng-content />
+</div>

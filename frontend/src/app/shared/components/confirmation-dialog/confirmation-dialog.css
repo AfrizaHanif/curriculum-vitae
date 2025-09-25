@@ -1,0 +1,8 @@
+/*
+ * Set the final opacity for the modal backdrop.
+ * This works with the Angular animation that fades the element in.
+ * The value `--bs-backdrop-opacity` is a standard Bootstrap variable (defaults to 0.5).
+ */
+.modal-backdrop {
+  opacity: var(--bs-backdrop-opacity);
+}

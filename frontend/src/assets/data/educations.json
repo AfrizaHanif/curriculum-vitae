@@ -1,0 +1,15 @@
+[
+  {
+    "id_education": "EDU-001-001",
+    "school_education": "Universitas Dinamika",
+    "degree_education": "Sarjana 1",
+    "status_education": "Finished",
+    "s_period_education": "2021-08-01",
+    "f_period_education": "2025-03-01",
+    "latitude_education": "-7.311713",
+    "longitude_education": "112.782191",
+    "major_education": "Sistem Informasi",
+    "gpa_education": 3.2,
+    "desc_education": "Fokus pada pengembangan perangkat lunak dan analisis sistem, dengan proyek akhir membangun sistem pendukung keputusan untuk evaluasi kinerja karyawan."
+  }
+]

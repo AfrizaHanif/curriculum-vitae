@@ -1,0 +1,48 @@
+/* Image Gallery */
+/*
+ * A reusable utility class for images that require a consistent,
+ * widescreen crop (16:9 aspect ratio).
+ */
+.img-widescreen-crop {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: top;
+}
+
+/* Logo Auto Change */
+/*
+ * Reusable logo container styles for automatic theme switching.
+ */
+/* By default (in light mode), show the dark logo and hide the light one. */
+.logo-container .logo-light {
+  display: none;
+}
+.logo-container .logo-dark {
+  display: inline-block;
+}
+
+/* When dark theme is active, show the light logo and hide the dark one. */
+[data-bs-theme="dark"] .logo-container .logo-light {
+  display: inline-block;
+}
+[data-bs-theme="dark"] .logo-container .logo-dark {
+  display: none;
+}
+
+/* Carousel */
+/*
+ * Custom styles for the thumbnail carousel controls to improve visibility
+ * and provide a consistent look.
+ */
+.thumbnail-carousel-control {
+  width: 5%; /* Narrower controls for a less intrusive look */
+}
+
+.thumbnail-carousel-control .carousel-control-prev-icon,
+.thumbnail-carousel-control .carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0); /* Semi-transparent dark background */
+  border-radius: 50%; /* Circular background */
+  padding: 1.2rem; /* Padding to make the circle larger than the icon */
+  width: 1.5rem; /* Making icons smaller for the thumbnail view */
+  height: 1.5rem;
+}

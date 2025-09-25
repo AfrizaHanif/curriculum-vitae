@@ -1,0 +1,23 @@
+[
+  {
+    "id_blog": "BLG-001-001",
+    "title_blog": "Selamat Datang di Web Portfolio",
+    "author_blog": "Afriza Hanif",
+    "pub_date_blog": "2025-09-24",
+    "tags_blog": ["Announcement"],
+    "summary_blog": "Ini adalah postingan pertama dari saya.",
+    "image_blog": "assets/images/placeholder/placeholder-image.png",
+    "content_blog": "<h2>Selamat Datang di Web Portfolio!</h2><p>Ini adalah postingan pertama yang saya buat untuk mendemonstrasi apakah kontent blog sudah berfungsi atau tidak. Selamat datang di web portfolio saya!</p>",
+    "is_featured": true
+  },
+  {
+    "id_blog": "BLG-001-002",
+    "title_blog": "Hasil Proyek Kerja Praktik dan Tugas Akhir",
+    "author_blog": "Afriza Hanif",
+    "pub_date_blog": "2025-09-25",
+    "tags_blog": ["Announcement"],
+    "summary_blog": "Proyek-proyek selama saya berkuliah telah dapat anda lihat di halaman Portfolio.",
+    "image_blog": "assets/images/placeholder/placeholder-image.png",
+    "content_blog": "<p>Sekarang anda dapat melihat proyek-proyek yang telah saya kerjakan selaman perkuliahan berlangsung. Anda dapat melihat proyey-proyek tersebut di kategori proyek akademik.</p>"
+  }
+]

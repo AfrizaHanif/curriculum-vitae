@@ -1,0 +1,9 @@
+:host {
+  display: block;
+  height: 85vh; /* Default height for the viewer component */
+}
+
+.pdf-viewer-container {
+  width: 100%;
+  height: 100%;
+}

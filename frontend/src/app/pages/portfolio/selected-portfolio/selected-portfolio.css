@@ -1,0 +1,66 @@
+/*
+ * Styles for the full-screen carousel modal.
+ */
+.carousel-image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-image-container .spinner-border {
+  position: absolute;
+}
+
+.carousel-image-container img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* Ensures the image is scaled correctly */
+}
+
+/*
+ * Styles for external modal carousel controls.
+ * These are positioned outside the image area for a cleaner look.
+ */
+.modal-carousel-control-external {
+  position: static;
+  width: auto; /* Let the button size to its content */
+  opacity: 0.8;
+  background: none;
+  border: none;
+  flex-shrink: 0; /* Prevent controls from shrinking */
+}
+
+.modal-carousel-control-external:hover {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+}
+
+/*
+ * Override the carousel-dark filter to make the modal controls grayscale.
+ */
+.modal-carousel-control-external .carousel-control-prev-icon,
+.modal-carousel-control-external .carousel-control-next-icon {
+  filter: invert(1) grayscale(1);
+  opacity: 0.5;
+}
+
+/*
+ * The main portfolio image is wrapped in a figure.
+ * Adding overflow: hidden ensures that when the child img is cropped,
+ * it respects the parent's rounded corners.
+ */
+.main-portfolio-figure {
+  overflow: hidden;
+}
+
+/*
+ * When the main portfolio figure is clickable (to open the modal),
+ * ensure it has a pointer cursor to indicate interactivity.
+ */
+.main-portfolio-figure-clickable {
+  cursor: pointer;
+}

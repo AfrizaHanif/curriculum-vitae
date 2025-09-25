@@ -1,0 +1,89 @@
+<app-jumbotron [imageUrl]="'assets/images/jumbotron/portfolio.jpg'" [imageAlt]="'A collection of design and development project mockups'">
+  <div jumbotron-main>
+    <h1 class="display-4 fw-bold">Portfolio</h1>
+    <p class="fs-5 fs-md-4">{{ jumbotronSubtitle() }}</p>
+  </div>
+</app-jumbotron>
+
+<div class="container">
+  <!-- Search and Sort Controls -->
+  <div class="row mb-4 g-3 align-items-center">
+    <div class="col-md-8 col-lg-9">
+      <input type="search"
+             class="form-control"
+             placeholder="Cari portfolio berdasarkan judul, subkategori, atau tag..."
+             [value]="searchTerm()"
+             (input)="onSearch($event)">
+    </div>
+    <div class="col-md-4 col-lg-3">
+      <select class="form-select" aria-label="Sort by" (change)="onSortChange($event)">
+        @for (option of sortOptions; track option.value) {
+          <option [value]="option.value" [selected]="option.value === sortOption()">
+            {{ option.label }}
+          </option>
+        }
+      </select>
+    </div>
+  </div>
+
+  <!-- Category Tabs Navigation -->
+  <ul class="nav nav-tabs mb-4" id="portfolioTab" role="tablist">
+    @for (category of categories(); track category) {
+      <li class="nav-item" role="presentation">
+        <a href="#"
+           class="nav-link"
+           [class.active]="activeCategory() === category"
+           (click)="setActiveCategory(category, $event)"
+           role="tab">
+          {{ category }}
+        </a>
+      </li>
+    }
+  </ul>
+
+  <!-- Tab Content -->
+  <div class="tab-content">
+    <div class="tab-pane fade show active" role="tabpanel">
+      @if (totalItems() > 0) {
+        <app-card [cardPerRow]="3">
+          @for (item of filteredPortfolios(); track item.id_portfolio) {
+            <app-portfolio-card [item]="item" />
+          }
+        </app-card>
+
+        <!-- Pagination Section -->
+        <div class="d-flex flex-column flex-md-row justify-content-md-between align-items-md-center mt-4">
+          <!-- Item Count -->
+          <div>
+            <small class="text-muted">
+              <span>Menampilkan {{ startItemIndex() }} – {{ endItemIndex() }} dari {{ totalItems() }} portfolio</span>
+            </small>
+          </div>
+
+          <!-- Pagination Controls -->
+          <div class="d-flex align-items-center mt-3 mt-md-0">
+            <div class="me-3">
+              <select class="form-select form-select-sm" (change)="onItemsPerPageChange($event)" aria-label="Items per page">
+                @for (size of itemsPerPageOptions; track size) {
+                  <option [value]="size" [selected]="size === itemsPerPage()">{{ size }} per halaman</option>
+                }
+              </select>
+            </div>
+
+            <app-pagination [paginationData]="paginationData()" (pageChange)="onPageChange($event)" />
+          </div>
+        </div>
+      } @else {
+        <div class="text-center py-5 my-5">
+          @if (searchTerm()) {
+            <h3 class="text-body-secondary">Hasil Tidak Ditemukan</h3>
+            <p class="col-lg-6 col-md-8 mx-auto">Pencarian Anda untuk "{{ searchTerm() }}" tidak cocok dengan item portofolio apa pun. Silakan coba kata kunci pencarian yang berbeda.</p>
+          } @else {
+            <h3 class="text-body-secondary">Tidak Ada Item Portfolio</h3>
+            <p class="col-lg-6 col-md-8 mx-auto">Saat ini tidak ada item portofolio dalam kategori "{{ activeCategory() }}". Silakan periksa kembali nanti atau pilih kategori yang berbeda.</p>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</div>

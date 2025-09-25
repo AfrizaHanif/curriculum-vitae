@@ -1,0 +1,10 @@
+[
+  {
+    "id_testimonial": "TST-001",
+    "author_testimonial": "Jane Doe",
+    "role_testimonial": "Project Manager",
+    "company_testimonial": "Tech Solutions Inc.",
+    "avatar_testimonial": "assets/images/placeholder-avatar-1.jpg",
+    "quote_testimonial": "Working with them was a fantastic experience. Their attention to detail and dedication to the project's success were outstanding."
+  }
+]

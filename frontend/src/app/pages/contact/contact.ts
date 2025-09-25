@@ -1,0 +1,142 @@
+import { Component, inject, signal, computed, viewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { JumbotronComponent } from '../../shared/components/jumbotron/jumbotron';
+import { AccordionComponent } from '../../shared/components/accordion/accordion';
+import { ContactFormComponent } from './components/contact-form/contact-form';
+import { DescriptionService } from '../../core/services/description';
+import { ProfileService } from '../../core/services/profile';
+import { SocialService } from '../../core/services/social';
+import { ToastService } from '../../core/services/toast';
+import { ContactData } from '../../core/models/contact';
+import { ConfirmationService } from '../../core/services/confirmation';
+import { environment } from '../../../environments/environment';
+import { finalize } from 'rxjs';
+
+@Component({
+  selector: 'app-contact',
+  standalone: true,
+  imports: [
+    CommonModule,
+    JumbotronComponent,
+    AccordionComponent,
+    ContactFormComponent,
+    HttpClientModule, // Add HttpClientModule for making HTTP requests
+  ],
+  templateUrl: './contact.html',
+  styleUrls: ['./contact.css'],
+})
+export class ContactComponent {
+  // Inject Services
+  private descriptionService = inject(DescriptionService);
+  private profileService = inject(ProfileService);
+  private socialService = inject(SocialService);
+  private toastService = inject(ToastService);
+  private confirmationService = inject(ConfirmationService);
+  private http = inject(HttpClient);
+  private contactFormComponent = viewChild.required(ContactFormComponent);
+
+  // The Formspree endpoint is now configured in the environment files.
+  private formspreeEndpoint = environment.formspreeEndpoint;
+
+  // Get the jumbotron subtitle from the description service
+  jumbotronSubtitle = this.descriptionService.contactJumbotronSubtitle;
+
+  isSubmitting = signal(false); // Track form submission state
+
+  // Prepare the contact items for the accordion
+  contactItems = computed(() => {
+    const profile = this.profileService.profileData();
+    const socials = this.socialService.socials();
+    return [
+      {
+        id: 'contactPerson',
+        title: 'Contact Person',
+        name: profile.fullname_profile,
+        phone: profile.phone_profile,
+        email: profile.email_profile,
+        isOpen: true,
+      },
+      {
+        id: 'socialPerson',
+        title: 'Social Media',
+        socials: socials,
+        isOpen: false,
+      },
+    ];
+  });
+
+  /**
+   * Handles the form submission event.
+   * @param formData The data from the contact form.
+   * @returns A promise that resolves to true on success, and false on failure.
+   */
+  handleFormSubmit(formData: ContactData): void {
+    this.isSubmitting.set(true);
+
+    // To rename the 'recaptcha' field to 'g-recaptcha-response' for Formspree,
+    // we use object destructuring. This separates 'recaptcha' from the other
+    // form fields and allows us to build a new object with the correct field name.
+    const { recaptcha, ...otherFields } = formData;
+    const submissionData = {
+      ...otherFields,
+      'g-recaptcha-response': recaptcha,
+    };
+
+    this.http
+      .post(this.formspreeEndpoint, submissionData, {
+        headers: { Accept: 'application/json' },
+      })
+      .pipe(finalize(() => this.isSubmitting.set(false)))
+      .subscribe({
+        next: () => {
+          this.toastService.success(
+            'Pesan Terkirim! Terima kasih telah menghubungi saya.'
+          );
+          this.contactFormComponent().resetForm();
+        },
+        error: (err) => {
+          console.error('Formspree submission error:', err);
+          this.toastService.error('Gagal mengirim pesan. Silakan coba lagi nanti.');
+        },
+      });
+  }
+
+  /**
+   * Asks for confirmation before leaving the page if the form is dirty.
+   * This method is used by the `canDeactivateFormGuard`.
+   */
+  async canDeactivate(): Promise<boolean> {
+    // If the form is not dirty, allow navigation.
+    if (!this.contactFormComponent().isDirty()) {
+      return true;
+    }
+
+    // Show a confirmation dialog if the form is dirty.
+    const result = await this.confirmationService.confirm({
+      title: 'Batalkan kontak',
+      message: 'Anda memiliki form yang masih terisi. Apakah anda ingin keluar dari halaman ini?',
+      confirmText: 'Ya',
+      cancelText: 'Tidak',
+      actionType: 'danger',
+      onConfirm: () => {
+        // This is an example of an async action for the "Leave Page" button.
+        // You could use this to auto-save a draft or log an event.
+        if (!environment.production) {
+          console.log('Performing a final action before leaving...');
+        }
+        return new Promise(resolve => {
+          setTimeout(() => {
+            if (!environment.production) {
+              console.log('Final action complete.');
+            }
+            resolve(true); // Returning true allows navigation to proceed.
+          }, 1500);
+        });
+      },
+    });
+
+    // Allow navigation only if the user clicks the 'confirm' button.
+    return result === 'confirm';
+  }
+}

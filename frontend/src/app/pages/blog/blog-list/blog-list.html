@@ -1,0 +1,77 @@
+<app-jumbotron [imageUrl]="'assets/images/jumbotron/blog.jpg'" [imageAlt]="'A person writing in a notebook'">
+  <div jumbotron-main>
+    <h1 class="display-4 fw-bold">Blog</h1>
+    <p class="fs-5 fs-md-4">{{ jumbotronSubtitle() }}</p>
+  </div>
+</app-jumbotron>
+
+<div class="py-3">
+  <!-- Featured Post Section -->
+  @if (featuredPost(); as post) {
+    <article class="featured-post p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary" style="position: relative">
+      <div class="col-lg-8 px-0">
+        <h1 class="display-4 fst-italic">{{ post.title_blog }}</h1>
+        <p class="lead my-3">{{ post.summary_blog }}</p>
+        <p class="lead mb-0">
+          <a [routerLink]="['/blog', post.id_blog]" class="text-body-emphasis fw-bold stretched-link">Baca lebih lanjut...</a>
+        </p>
+      </div>
+    </article>
+  }
+
+  <!-- Section Header for the main list -->
+  <div class="pb-2 mb-4 border-bottom">
+    <h2>
+      @if (featuredPost()) { Semua Artikel } @else { Artikel Terbaru }
+    </h2>
+  </div>
+
+  <!-- Filter and Search Bar -->
+  <div class="row mb-4">
+    <div class="col-md-8">
+      <input
+        type="search"
+        class="form-control"
+        placeholder="Cari artikel..."
+        [value]="blogService.searchTerm()"
+        (input)="onSearchChange($event)"
+      />
+    </div>
+    <div class="col-md-4 mt-2 mt-md-0">
+      <div class="input-group">
+        <select class="form-select" [value]="blogService.selectedTag()" (change)="onTagChange($event)" aria-label="Filter by tag">
+          <option value="">All Tags</option>
+          @for (tag of allTags(); track tag) {
+            <option [value]="tag" [selected]="tag === blogService.selectedTag()">
+              {{ tag }}
+            </option>
+          }
+        </select>
+        @if (blogService.searchTerm() || blogService.selectedTag()) {
+          <button class="btn btn-outline-danger" type="button" (click)="resetFilters()" title="Reset Filters">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="text-muted mb-3">
+    Menampilkan {{ posts().length }} of {{ pagination().total }} artikel.
+  </div>
+
+  @if (posts().length > 0) {
+  <app-card [cardPerRow]="3">
+    @for (post of posts(); track post.id_blog) {
+      <app-blog-list-card [item]="post" />
+    }
+  </app-card>
+  } @else {
+    <div class="text-center py-5">
+      <p class="lead text-body-secondary">Tidak ada artikel yang sesuai dengan kriteria. Anda dapat mengubah kata-kata dari kriteria atau pilih tag yang tersedia.</p>
+    </div>
+  }
+
+  <!-- Pagination Controls -->
+  <app-pagination [paginationData]="pagination()" (pageChange)="onPageChange($event)" />
+</div>

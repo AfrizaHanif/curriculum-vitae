@@ -1,0 +1,25 @@
+.text-bg-dark .nav-link.text-secondary {
+  color: var(--bs-secondary) !important;
+}
+
+/*
+* Custom style to override the default disabled color for navigation links
+* in the dark header. This provides better visibility and a more integrated look.
+*/
+.text-bg-dark .nav-link.disabled {
+  color: var(--bs-danger) !important; // Uses Bootstrap's 50% transparent white
+  -webkit-text-fill-color: var(--bs-danger) !important; // For Safari
+}
+
+/*
+* Custom style for the hamburger menu toggler to ensure it's visible
+* on different sub-header backgrounds.
+*/
+.navbar-toggler {
+  color: var(--bs-white);
+  border-color: rgba(255, 255, 255, 0.1);
+
+  &:not(:last-child) {
+    margin-right: 0.5rem;
+  }
+}

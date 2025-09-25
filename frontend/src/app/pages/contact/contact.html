@@ -1,0 +1,45 @@
+<!-- Jumbotron -->
+<app-jumbotron [imageUrl]="'assets/images/jumbotron/contact.jpg'" [imageAlt]="'An old-fashioned rotary telephone on a wooden desk'">
+  <div jumbotron-main>
+    <h1 class="display-4 fw-bold">Hubungi Saya</h1>
+    <p class="fs-5 fs-md-4">{{ jumbotronSubtitle() }}</p>
+  </div>
+</app-jumbotron>
+
+<div class="row align-items-md-stretch pb-4">
+  <div class="col-md-4">
+    <div class="position-sticky" style="top: calc(var(--header-height, 120px) + 2rem);">
+      <!-- Contact and Social Media Link (Accordion) -->
+      <app-accordion [id_parent]="'contactAccordion'" [items]="contactItems()">
+        <ng-template #itemBody let-item>
+          @if (item.id === 'contactPerson') {
+            <p>Anda dapat menghubungi saya melalui nomor telepon atau e-mail:</p>
+            <ul>
+              <li><strong>{{ item.name }}</strong></li>
+              <li><strong>No. Telp: </strong> <a [href]="'tel:' + item.phone">{{ item.phone }}</a></li>
+              <li><strong>E-mail: </strong> <a [href]="'mailto:' + item.email">{{ item.email }}</a></li>
+            </ul>
+          }
+          @if (item.id === 'socialPerson') {
+            <p>Kunjungi media sosial saya:</p>
+            <div class="list-group">
+              @for (social of item.socials; track social.name_social) {
+                <a [href]="social.url_social" class="list-group-item list-group-item-action d-flex align-items-center" target="_blank" rel="noopener noreferrer">
+                  <svg class="bi me-3" width="24" height="24" aria-hidden="true"><use [attr.href]="'#' + social.icon_social"></use></svg>
+                  {{ social.name_social }}
+                </a>
+              }
+            </div>
+          }
+        </ng-template>
+      </app-accordion>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <!-- Message Form -->
+    <app-contact-form
+      [isSubmitting]="isSubmitting()"
+      (formSubmit)="handleFormSubmit($event)"
+    ></app-contact-form>
+  </div>
+</div>

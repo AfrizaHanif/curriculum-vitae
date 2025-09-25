@@ -1,0 +1,14 @@
+[
+  {
+    "id_social": "SOC-001-001",
+    "name_social": "Linkedin",
+    "icon_social": "linkedin",
+    "url_social": "https://linkedin.com/in/afrizahanif"
+  },
+  {
+    "id_social": "SOC-001-002",
+    "name_social": "GitHub",
+    "icon_social": "github",
+    "url_social": "https://github.com/AfrizaHanif"
+  }
+]

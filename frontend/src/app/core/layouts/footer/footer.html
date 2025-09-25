@@ -1,0 +1,30 @@
+<footer class="d-flex flex-column flex-md-row justify-content-center justify-content-md-between align-items-center py-3 my-4 border-top">
+  <div class="col-md-4 d-flex justify-content-center justify-content-md-start align-items-center">
+    <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1 logo-container" aria-label="Logo">
+      <img src="assets/images/logo/logo-only-black.png" alt="Logo" style="height: 24px;" class="logo-light">
+      <img src="assets/images/logo/logo-only-white.png" alt="Logo" style="height: 24px;" class="logo-dark">
+    </a>
+    <span class="mb-3 mb-md-0 text-body-secondary">&copy; {{ currentYear }} {{ profile().fullname_profile }}</span>
+  </div>
+  <ul class="nav col-md-4 justify-content-center justify-content-md-end list-unstyled d-flex mt-3 mt-md-0">
+    @for (social of socials(); track social.id_social) {
+      <li class="ms-3 me-3 me-md-0">
+        <!-- <a class="text-body-secondary"
+          [href]="social.url_social"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-bs-toggle="tooltip"
+          data-bs-placement="top"
+          [attr.data-bs-title]="social.name_social">
+          <svg class="bi" width="24" height="24" [attr.aria-label]="social.name_social"><use [attr.href]="'#' + social.icon_social"></use></svg>
+        </a> -->
+        <a class="text-body-secondary" [href]="social.url_social"
+          target="_blank" rel="noopener noreferrer"
+          [appTooltip]="social.name_social"
+          placement="top">
+          <svg class="bi" width="24" height="24" [attr.aria-label]="social.name_social"><use [attr.href]="'#' + social.icon_social"></use></svg>
+        </a>
+      </li>
+    }
+  </ul>
+</footer>

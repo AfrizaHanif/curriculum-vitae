@@ -1,0 +1,50 @@
+@if (paginationData().last_page > 1) {
+  <nav aria-label="Page navigation">
+    <ul class="pagination mb-0">
+      <!-- First Page Link -->
+      <li class="page-item" [class.disabled]="paginationData().current_page === 1">
+        <a class="page-link" href="#" (click)="onPageChange(1); $event.preventDefault()"
+           aria-label="Ke halaman pertama"
+           [attr.aria-disabled]="paginationData().current_page === 1"
+           [attr.tabindex]="paginationData().current_page === 1 ? -1 : null">
+          <span aria-hidden="true">&laquo;</span>
+          <span class="visually-hidden">Pertama</span>
+        </a>
+      </li>
+      <!-- Previous Page Link -->
+      <li class="page-item" [class.disabled]="paginationData().current_page === 1">
+        <a class="page-link" href="#" (click)="onPageChange(paginationData().current_page - 1); $event.preventDefault()"
+           aria-label="Ke halaman sebelumnya"
+           [attr.aria-disabled]="paginationData().current_page === 1"
+           [attr.tabindex]="paginationData().current_page === 1 ? -1 : null">Sebelumnya</a>
+      </li>
+      <!-- Page Number Links -->
+      @for (page of pages(); track $index) {
+        <li class="page-item" [class.active]="page === paginationData().current_page" [class.disabled]="page === '...'" aria-current="page">
+          @if (page !== '...') {
+            <a class="page-link" href="#" (click)="onPageChange(+page); $event.preventDefault()" [attr.aria-label]="'Ke halaman ' + page">{{ page }}</a>
+          } @else {
+            <span class="page-link" aria-hidden="true">...</span>
+          }
+        </li>
+      }
+      <!-- Next Page Link -->
+      <li class="page-item" [class.disabled]="paginationData().current_page === paginationData().last_page">
+        <a class="page-link" href="#" (click)="onPageChange(paginationData().current_page + 1); $event.preventDefault()"
+           aria-label="Ke halaman selanjutnya"
+           [attr.aria-disabled]="paginationData().current_page === paginationData().last_page"
+           [attr.tabindex]="paginationData().current_page === paginationData().last_page ? -1 : null">Selanjutnya</a>
+      </li>
+      <!-- Last Page Link -->
+      <li class="page-item" [class.disabled]="paginationData().current_page === paginationData().last_page">
+        <a class="page-link" href="#" (click)="onPageChange(paginationData().last_page); $event.preventDefault()"
+           aria-label="Ke halaman terakhir"
+           [attr.aria-disabled]="paginationData().current_page === paginationData().last_page"
+           [attr.tabindex]="paginationData().current_page === paginationData().last_page ? -1 : null">
+          <span aria-hidden="true">&raquo;</span>
+          <span class="visually-hidden">Terakhir</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+}

@@ -1,0 +1,17 @@
+@if (item()) {
+  <div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img [src]="imageUrl()" class="rounded-start related-post-card-image" [alt]="item().title_blog" appImageFallback>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ item().title_blog }}</h5>
+          <!-- <p class="card-text">{{ item().summary }}</p> -->
+          <p class="card-text"><small class="text-body-secondary">{{ item().pub_date_blog | date:'mediumDate' }}</small></p>
+          <a [routerLink]="['/blog', item().id_blog]" class="stretched-link" [title]="'Read more about ' + item().title_blog"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+}

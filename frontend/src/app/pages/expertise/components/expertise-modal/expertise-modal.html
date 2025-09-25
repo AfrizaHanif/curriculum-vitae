@@ -1,0 +1,28 @@
+<app-modal [id]="id()" [title]="title()" [size]="size()" [centered]="centered()" [scrollable]="scrollable()">
+  <div modal-body>
+    <p class="lead">Keahlian ini telah dibuktikan pada proyek sebagai berikut:</p>
+
+    <!-- Display the related projects as links -->
+    @if (expertise().relatedProjectDetails.length > 0) {
+      <div class="related-projects mt-0">
+        <ul class="list-group list-group-flush">
+          @for (project of expertise().relatedProjectDetails; track project.id_portfolio) {
+            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+              <div class="row justify-content-center align-items-center g-2">
+                <div class="col-9">
+                  {{ project.title_portfolio }}
+                </div>
+                <div class="col-3">
+                  <a [routerLink]="['/portfolio', project.id_portfolio]" class="btn btn-sm btn-primary w-100" data-bs-dismiss="modal">Lihat Proyek</a>
+                </div>
+              </div>
+            </li>
+          }
+        </ul>
+      </div>
+    }
+  </div>
+  <div modal-footer class="d-flex gap-2">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+  </div>
+</app-modal>

@@ -1,0 +1,10 @@
+  <div class="col">
+    <div class="card h-100">
+      <div class="card-body">
+        <h2 class="card-title text-center">{{ skillName() }}</h2>
+      </div>
+      <div class="progress" role="progressbar" [attr.aria-label]="'Persentase Skill ' + skillName()" [attr.aria-valuenow]="skillPercentage()" aria-valuemin="0" aria-valuemax="100" style="border-radius: 0px 0px 5px 5px; height: 20px">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" [style.width.%]="skillPercentage()">{{ skillPercentage() }}%</div>
+      </div>
+    </div>
+  </div>

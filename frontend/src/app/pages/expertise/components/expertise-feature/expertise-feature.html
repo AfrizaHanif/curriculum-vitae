@@ -1,0 +1,36 @@
+<!-- <div class="col d-flex align-items-start">
+  <div class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+    <svg class="bi" width="1em" height="1em"><use [attr.xlink:href]="'#' + expertise().icon"></use></svg>
+  </div>
+  <div>
+    <h3 class="fs-2 text-body-emphasis">{{ expertise().title }}</h3>
+    <div class="mb-2">
+      @for (tag of expertise().tags; track tag) {
+        <span class="badge rounded-pill text-bg-secondary me-1 mb-1">{{ tag }}</span>
+      }
+    </div>
+
+    <button type="button" class="btn btn-primary mt-2" data-bs-toggle="modal" [attr.data-bs-target]="'#expertiseModal-' + expertise().id">
+      Lihat Detail
+    </button>
+  </div>
+</div> -->
+
+<div class="feature col">
+  <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+    <svg class="bi" width="1em" height="1em" aria-hidden="true"><use [attr.xlink:href]="'#' + expertise().icon_expertise"></use></svg>
+  </div>
+  <h3 class="fs-2 text-body-emphasis">{{ expertise().title_expertise }}</h3>
+  <p>{{ expertise().desc_expertise }}</p>
+  <div class="mb-2">
+    @for (tag of expertise().tags_expertise; track tag) {
+      <span class="badge rounded-pill text-bg-secondary me-1 mb-1">{{ tag }}</span>
+    }
+  </div>
+  <a href="#" class="icon-link" data-bs-toggle="modal" [attr.data-bs-target]="'#expertiseModal-' + expertise().id_expertise">
+    Dibuktikan dalam {{ expertise().related_projects.length }} proyek
+    <svg class="bi" aria-hidden="true"><use xlink:href="#chevron-right"></use></svg>
+  </a>
+</div>
+
+<app-expertise-modal [expertise]="expertise()" />

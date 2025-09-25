@@ -1,0 +1,192 @@
+<!-- Apply the directive to the root element of the component -->
+<div class="row" appBootstrap>
+  <div class="col-4">
+    <nav id="navbar-example3" class="h-100 flex-column align-items-stretch pe-4 border-end">
+      <nav class="nav nav-pills flex-column">
+        <a class="nav-link" href="#item-1">Item 1</a>
+        <nav class="nav nav-pills flex-column">
+          <a class="nav-link ms-3 my-1" href="#item-1-1">Item 1-1</a>
+          <a class="nav-link ms-3 my-1" href="#item-1-2">Item 1-2</a>
+        </nav>
+        <a class="nav-link" href="#item-2">Item 2</a>
+        <a class="nav-link" href="#item-3">Item 3</a>
+        <nav class="nav nav-pills flex-column">
+          <a class="nav-link ms-3 my-1" href="#item-3-1">Item 3-1</a>
+          <a class="nav-link ms-3 my-1" href="#item-3-2">Item 3-2</a>
+        </nav>
+      </nav>
+    </nav>
+  </div>
+
+  <div class="col-8">
+    <!-- Restore the data-bs-* attributes. The directive will find and initialize this. -->
+    <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-smooth-scroll="true" class="scrollspy-example-2" tabindex="0" style="height: 300px; overflow-y: scroll;">
+      <div id="item-1">
+        <h4>Item 1</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fringilla risus a felis facilisis tincidunt. Mauris sit amet leo nibh. Phasellus elit diam, rutrum eleifend placerat non, venenatis vel erat. Donec pretium quam et quam iaculis porta. Proin tincidunt urna quis lorem lacinia dignissim. Aliquam suscipit turpis viverra ex blandit egestas ut vitae mi. Nunc augue neque, condimentum eget hendrerit sed, luctus a lacus. Aliquam est risus, hendrerit non volutpat dignissim, dignissim laoreet neque. Sed eu ullamcorper est, quis pellentesque tellus. Curabitur nisl magna, feugiat eget hendrerit porta, tempus at dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas accumsan odio velit, sit amet aliquet elit euismod eget. Morbi lacinia semper lacus.</p>
+      </div>
+      <div id="item-1-1">
+        <h5>Item 1-1</h5>
+        <p>...</p>
+      </div>
+      <div id="item-1-2">
+        <h5>Item 1-2</h5>
+        <p>...</p>
+      </div>
+      <div id="item-2">
+        <h4>Item 2</h4>
+        <p>...</p>
+      </div>
+      <div id="item-3">
+        <h4>Item 3</h4>
+        <p>...</p>
+      </div>
+      <div id="item-3-1">
+        <h5>Item 3-1</h5>
+        <p>...</p>
+      </div>
+      <div id="item-3-2">
+        <h5>Item 3-2</h5>
+        <p>...</p>
+      </div>
+    </div>
+
+    <hr class="my-4">
+    <h4>Programmatic Tooltip Example</h4>
+    <p>This button uses the new <code>appTooltip</code> directive to create a tooltip with options passed from the component.</p>
+    <button type="button" class="btn btn-success"
+            [appTooltip]="'This title is set programmatically!'"
+            [tooltipOptions]="myTooltipOptions">
+      Hover for programmatic tooltip
+    </button>
+
+    <hr class="my-4">
+    <h4><code>ngZone.run()</code> Example</h4>
+    <p>This progress bar is updated by a <code>setInterval</code> running outside the Angular zone. We use <code>ngZone.run()</code> to re-enter the zone and update the UI.</p>
+    <div class="progress" role="progressbar" aria-label="Progress bar example" [attr.aria-valuenow]="progress" aria-valuemin="0" aria-valuemax="100">
+      <div class="progress-bar" [style.width.%]="progress">{{ progress }}%</div>
+    </div>
+    <button type="button" class="btn btn-secondary mt-3" (click)="startProgress()">
+      Start Progress
+    </button>
+
+    <hr class="my-4">
+    <h4>Toast Example</h4>
+    <p>This toast is initialized by the <code>appBootstrap</code> directive. We get a reference to it in the component to show it.</p>
+
+    <!-- Button to trigger the toast -->
+    <button type="button" class="btn btn-primary" (click)="showToast()">Show live toast</button>
+
+    <!-- Toast container for positioning -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+
+      <!-- The Toast element -->
+      <div #liveToast class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <i class="bi bi-bell-fill rounded me-2"></i>
+          <strong class="me-auto">Bootstrap</strong>
+          <small>Just now</small>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+          Hello, world! This is a toast message.
+        </div>
+      </div>
+
+    </div>
+
+    <hr class="my-4">
+    <h4>Accordion (Collapse) Example</h4>
+    <p>This accordion is initialized by the <code>appBootstrap</code> directive finding the <code>data-bs-toggle="collapse"</code> attributes.</p>
+    <div class="accordion" id="accordionExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Accordion Item #1
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <strong>This is the first item's accordion body.</strong> It is shown by default. The <code>appBootstrap</code> directive ensures that clicking the header will correctly collapse this section.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Accordion Item #2
+          </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <strong>This is the second item's accordion body.</strong> It is hidden by default, but becomes interactive thanks to our directive.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-4">
+    <h4>Modal & Offcanvas Examples</h4>
+    <p>These components are also initialized by the <code>appBootstrap</code> directive.</p>
+
+    <!-- Modal Trigger -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Launch demo modal
+    </button>
+
+    <!-- Offcanvas Trigger -->
+    <button class="btn btn-info" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+      Launch offcanvas
+    </button>
+
+    <!-- Modal Markup -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal Title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            This modal was made interactive by our generic <code>appBootstrap</code> directive!
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Offcanvas Markup -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas Menu</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div>
+          This offcanvas menu was also initialized by the <code>appBootstrap</code> directive.
+        </div>
+        <div class="mt-3">
+          Any Bootstrap components inside here, like this dropdown, are also automatically initialized.
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-4">
+    <h4>Declarative Dropdown Example</h4>
+    <p>This simple dropdown is initialized by the <code>appBootstrap</code> directive finding the <code>data-bs-toggle="dropdown"</code> attribute.</p>
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Declarative Dropdown
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>

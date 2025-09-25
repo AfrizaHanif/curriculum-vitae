@@ -1,0 +1,14 @@
+<app-jumbotron [imageUrl]="'assets/images/jumbotron/expertise.jpg'" [imageAlt]="'A programmer working on a laptop with code on the screen'">
+  <div jumbotron-main>
+    <h1 class="display-4 fw-bold">Keahlian Saya</h1>
+    <p class="fs-5 fs-md-4">{{ jumbotronSubtitle() }}</p>
+  </div>
+</app-jumbotron>
+
+<app-feature [itemPerRow]="2">
+  @for (expertise of expertiseWithProjects(); track expertise.id_expertise) {
+    <app-expertise-feature [expertise]="expertise" />
+  } @empty {
+    <p class="text-center col-12">No expertise data available.</p>
+  }
+</app-feature>

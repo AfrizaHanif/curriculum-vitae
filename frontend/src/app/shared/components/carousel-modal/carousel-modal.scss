@@ -1,0 +1,74 @@
+/* Styles for the fullscreen carousel modal */
+.modal-carousel-control-external {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10; // Above the carousel but below the modal header
+  width: 5%;
+  height: 100px;
+
+  &.carousel-control-prev {
+    left: 1rem;
+  }
+
+  &.carousel-control-next {
+    right: 1rem;
+  }
+
+  /*
+   * Override the carousel-dark filter to make the modal controls grayscale.
+   * This style is taken from the original selected-portfolio.css for reliability.
+   */
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    filter: invert(1) grayscale(1);
+    opacity: 0.5;
+  }
+}
+
+.carousel-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  position: relative;
+
+  .spinner-border {
+    position: absolute;
+  }
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+}
+
+/* Styles to manage the loading state of carousel images */
+.carousel-item {
+  // By default, the image is invisible and the spinner is visible.
+  .carousel-image-container img {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  // When the 'loaded' class is added to the .carousel-item...
+  &.loaded {
+    // ...hide the spinner.
+    .carousel-image-container .spinner-border {
+      display: none;
+    }
+    // ...and make the image visible.
+    .carousel-image-container img {
+      opacity: 1;
+    }
+  }
+}
+
+/*
+ * Override Bootstrap's carousel control colors to a neutral grayscale
+ * for better visibility in both light and dark modes.
+*/
+.carousel .carousel-indicators [data-bs-target] {
+  background-color: #888; // A mid-gray color for indicators
+}

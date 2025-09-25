@@ -1,0 +1,21 @@
+/* .card {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--bs-box-shadow-lg);
+} */
+
+.blockquote-footer {
+  color: var(--bs-secondary-color);
+}
+
+.blockquote-footer .fw-bold {
+  color: var(--bs-body-color);
+}
+
+.blockquote-footer cite {
+  display: block;
+  font-size: 0.9em;
+}

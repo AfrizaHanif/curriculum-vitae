@@ -1,0 +1,55 @@
+<div appBootstrap>
+  <app-jumbotron [imageUrl]="'assets/images/jumbotron/resume.jpg'" [imageAlt]="'A professional resume document on a desk'">
+    <div jumbotron-main>
+      <h1 class="display-4 fw-bold">Resume</h1>
+      <p class="fs-5 fs-md-4">{{ jumbotronSubtitle() }}</p>
+    </div>
+  </app-jumbotron>
+
+  <div appScrollSpy data-bs-target="#scrollspy-nav-2" data-bs-root-margin="0px 0px -40%"  data-bs-smooth-scroll="true">
+    <div id="overview" class="p-5 mb-4 bg-body-tertiary rounded-3">
+        <div class="container-fluid py-2">
+            <h2 class="pb-2 border-bottom">Overview</h2>
+            <p class="lead">{{ profileData().desc_profile }}</p>
+        </div>
+    </div>
+
+    <div id="education">
+      <app-feature title="Pendidikan">
+      @for (edu of educationHistory(); track edu.id_education) {
+        <app-education-feature
+          [id]="edu.id_education"
+          [school]="edu.school_education"
+          [degree]="edu.degree_education"
+          [major]="edu.major_education"
+          [status]="edu.status_education"
+          [s_period]="edu.s_period_education"
+          [f_period]="edu.f_period_education!"
+          [gpa]="edu.gpa_education!"
+          [description]="edu.desc_education!"
+          [latitude]="edu.latitude_education"
+          [longitude]="edu.longitude_education"
+        />
+      }
+      </app-feature>
+    </div>
+
+    <div id="experience">
+    <app-feature title="Pengalaman">
+    @for (exp of experienceHistory(); track exp.id_experience) {
+      <app-experience-feature
+        [id]="exp.id_experience"
+        [title]="exp.title_experience"
+        [company]="exp.company_experience"
+        [status]="exp.status_experience"
+        [s_period]="exp.s_period_experience"
+        [f_period]="exp.f_period_experience!"
+        [description]="exp.desc_experience!"
+        [latitude]="exp.latitude_experience"
+        [longitude]="exp.longitude_experience"
+      />
+    }
+    </app-feature>
+    </div>
+  </div>
+</div>

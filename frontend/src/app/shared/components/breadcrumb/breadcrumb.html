@@ -1,0 +1,25 @@
+@if (breadcrumbs$ | async; as breadcrumbs) {
+  @if (breadcrumbs.length > 0) {
+    <div class="container my-3">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-chevron p-3 bg-body-tertiary rounded-3 flex-nowrap overflow-x-auto">
+          <li class="breadcrumb-item">
+            <a class="link-body-emphasis" routerLink="/">
+              <svg class="bi" width="16" height="16" aria-hidden="true"><use xlink:href="#house-fill"></use></svg>
+              <span class="visually-hidden">Home</span>
+            </a>
+          </li>
+          @for (breadcrumb of breadcrumbs; track breadcrumb.url; let last = $last) {
+            <li class="breadcrumb-item" [class.active]="last" [attr.aria-current]="last ? 'page' : null">
+              @if (!last) {
+                <a class="link-body-emphasis fw-semibold text-decoration-none" [routerLink]="breadcrumb.url">{{ breadcrumb.label }}</a>
+              } @else {
+                <span>{{ breadcrumb.label }}</span>
+              }
+            </li>
+          }
+        </ol>
+      </nav>
+    </div>
+  }
+}

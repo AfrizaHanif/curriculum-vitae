@@ -1,0 +1,81 @@
+<div appBootstrap>
+  <app-jumbotron [imageUrl]="'assets/images/jumbotron/home.jpg'" [imageAlt]="'A modern and clean workspace with a laptop and a cup of coffee'">
+    <div jumbotron-main>
+      <h1 class="display-4 fw-bold">Profil</h1>
+      <p class="fs-5 fs-md-4">{{ jumbotronSubtitle() }}</p>
+    </div>
+  </app-jumbotron>
+
+  <div appScrollSpy data-bs-target="#scrollspy-nav-1" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true">
+    <section id="about" class="row align-items-md-stretch pb-4">
+        <div class="col-md-4">
+          <div class="h-100 p-0 bg-body-secondary rounded-3">
+            <div class="w-100 h-100 rounded-3"
+                [appBackgroundImageFallback]="profileData().photo_profile"
+                [fallbackUrl]="'assets/images/placeholder/placeholder-portrait.png'"
+                style="background-size: cover; background-position: center center;"
+                role="img"
+                [attr.aria-label]="'Foto Profil ' + profileData().fullname_profile">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+            <div class="h-100 p-5 bg-body text-body border rounded-3">
+                <h2 class="pb-2 border-bottom">Tentang Saya</h2>
+                <table class="table table-borderless pt-3 fs-5">
+                  <tbody>
+                    <tr>
+                        <th scope="row">Ulang Tahun</th>
+                        <td>{{ profileData().birthday_profile | date:'d MMMM yyyy' }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Nomor Telepon</th>
+                        <td><a [href]="'tel:' + profileData().phone_profile">{{ profileData().phone_profile | phoneFormat }}</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Kota</th>
+                        <td>{{ profileData().current_city_profile }}, {{ profileData().current_prov_profile }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Umur</th>
+                        <td>{{ profileData().age }} Tahun</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Gelar Terakhir</th>
+                        <td>{{ latestDegree() }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Email</th>
+                        <td><a [href]="'mailto:' + profileData().email_profile">{{ profileData().email_profile }}</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <app-dropdown buttonClass="btn-primary" dropdownId="cvDropdown" class="mt-3">
+                  <span button-content>
+                    <i class="bi bi-download"></i>
+                    Unduh CV
+                  </span>
+                  <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modal-cv-view">
+                    <i class="bi bi-filetype-pdf"></i>
+                    Lihat PDF
+                  </a></li>
+                  <li><a class="dropdown-item" href="assets/documents/cv-afriza-hanif.pdf" target="_blank" download>
+                    <i class="bi bi-file-earmark-arrow-down"></i>
+                    Unduh sebagai PDF
+                  </a></li>
+                </app-dropdown>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+      <app-card [title]="'Keterampilan / Skill'" [cardPerRow]="4">
+        @for (skill of skills(); track skill.id_skill) {
+          <app-skill-card [skillName]="skill.name_skill" [skillPercentage]="skill.percent_skill"></app-skill-card>
+        }
+      </app-card>
+    </section>
+  </div>
+
+  <app-cv-viewer-modal size="lg" scrollable />
+</div>

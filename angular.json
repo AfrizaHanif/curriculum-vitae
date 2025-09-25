@@ -6,34 +6,44 @@
     "curriculum-vitae-single": {
       "projectType": "application",
       "schematics": {},
-      "root": "",
-      "sourceRoot": "src",
+      "root": "frontend",
+      "sourceRoot": "frontend/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular/build:application",
           "options": {
-            "browser": "src/main.ts",
+            "browser": "frontend/src/main.ts",
             "polyfills": [
               "zone.js"
             ],
-            "tsConfig": "tsconfig.app.json",
+            "tsConfig": "frontend/tsconfig.app.json",
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
-              }
+                "input": "frontend/src/public"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/leaflet/dist/images/",
+                "output": "assets/"
+              },
+              "frontend/src/assets"
             ],
             "styles": [
-              "src/styles.css"
-            ]
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/leaflet/dist/leaflet.css",
+              "frontend/src/styles.css",
+              "frontend/src/app/styles/bootstrap-overrides.css"
+            ],
+            "allowedCommonJsDependencies": ["leaflet"]
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
+                  "maximumWarning": "800kB",
                   "maximumError": "1MB"
                 },
                 {
@@ -74,15 +84,24 @@
               "zone.js",
               "zone.js/testing"
             ],
-            "tsConfig": "tsconfig.spec.json",
+            "tsConfig": "frontend/tsconfig.spec.json",
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
-              }
+                "input": "frontend/public"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/leaflet/dist/images/",
+                "output": "assets/"
+              },
+              "frontend/src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/leaflet/dist/leaflet.css",
+              "frontend/src/styles.css",
+              "frontend/src/styles/bootstrap-overrides.css"
             ]
           }
         }

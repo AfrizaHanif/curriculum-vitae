@@ -1,0 +1,63 @@
+@if (portfolioItem(); as item) {
+  <div class="container">
+    <div class="d-flex justify-content-start mb-4">
+      <a [routerLink]="['/portfolio', item.id_portfolio]" class="btn btn-outline-secondary d-inline-flex align-items-center">
+        <svg class="bi me-2" width="16" height="16" aria-hidden="true"><use xlink:href="#arrow-left"></use></svg>
+        Back to Project Details
+      </a>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <!-- Case Study Article -->
+        <article class="case-study">
+
+          <div appScrollSpy data-bs-target="#scrollspy-nav-3" data-bs-root-margin="0px 0px -40%"  data-bs-smooth-scroll="true">
+          <!-- Case Study Sections -->
+          @if (item.overview_case_study) {
+            <section id="overview" class="mb-5">
+              <h2 class="fw-bolder mb-3">Ringkasan</h2>
+              <div class="fs-5" [innerHTML]="item.overview_case_study"></div>
+            </section>
+          }
+
+          @if (item.goal_case_study) {
+            <section id="goal" class="mb-5">
+              <h2 class="fw-bolder mb-3">Tujuan</h2>
+              <div class="fs-5" [innerHTML]="item.goal_case_study"></div>
+            </section>
+          }
+
+          @if (item.problem_case_study) {
+            <section id="problem" class="mb-5">
+              <h2 class="fw-bolder mb-3">Masalah yang Ada</h2>
+              <div class="fs-5" [innerHTML]="item.problem_case_study"></div>
+            </section>
+          }
+
+          @if (item.solution_case_study) {
+            <section id="solution" class="mb-5">
+              <h2 class="fw-bolder mb-3">Solusi</h2>
+              <div class="fs-5" [innerHTML]="item.solution_case_study"></div>
+            </section>
+          }
+
+          @if (item.result_case_study) {
+            <section id="result" class="mb-5">
+              <h2 class="fw-bolder mb-3">Hasil Akhir</h2>
+              <div class="fs-5" [innerHTML]="item.result_case_study"></div>
+            </section>
+          }
+          </div>
+
+        </article>
+      </div>
+    </div>
+  </div>
+} @else {
+  <div class="container text-center py-5">
+    <h2 class="text-body-secondary">Studi Kasus Tidak Ditemukan</h2>
+    <p>The requested case study could not be found.</p>
+    <a routerLink="/portfolio" class="btn btn-primary">Kembali ke Portfolio</a>
+  </div>
+}

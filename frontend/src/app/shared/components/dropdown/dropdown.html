@@ -1,0 +1,9 @@
+<div class="dropdown">
+  <!-- <button class="btn dropdown-toggle d-flex align-items-center {{ buttonClass() }}" type="button" [id]="dropdownId()" data-bs-toggle="dropdown" aria-expanded="false"> -->
+  <button class="btn dropdown-toggle d-flex align-items-center {{ buttonClass() }}" type="button" [id]="dropdownId()" appDropdown [autoClose]="autoClose()" aria-expanded="false">
+    <ng-content select="[button-content]"></ng-content>
+  </button>
+  <ul class="dropdown-menu" [class.dropdown-menu-end]="menuAlign() === 'end'" [attr.aria-labelledby]="dropdownId()">
+    <ng-content></ng-content>
+  </ul>
+</div>

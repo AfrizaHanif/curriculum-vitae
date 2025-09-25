@@ -1,0 +1,9 @@
+<div class="container px-4 py-1" id="hanging-icons">
+    @if (title()) {
+    <h2 class="pb-2 border-bottom">{{ title() }}</h2>
+    }
+    <div class="row g-4 py-3 row-cols-1" [ngClass]="featureClasses()">
+      <!-- This is where for loop goes -->
+      <ng-content />
+    </div>
+</div>

@@ -1,0 +1,133 @@
+<header class="sticky-top bg-body-tertiary shadow-sm">
+  <!-- Main Header -->
+  <div class="px-3 py-2 text-bg-dark border-bottom">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a routerLink="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none logo-container">
+          <img src="assets/images/logo/logo-only-black.png" alt="Logo" style="height: 40px;" class="me-2 logo-light">
+          <img src="assets/images/logo/logo-only-white.png" alt="Logo" style="height: 40px;" class="me-2 logo-dark">
+          <span class="fs-4 d-none d-lg-inline">Muhammad Afriza Hanif</span>
+        </a>
+        <!-- Desktop Navigation -->
+        <div class="d-none d-lg-flex">
+          <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+            @for (link of navLinks; track link.path) {
+              <li>
+                <!-- Tooltip Wrapper for disabled links -->
+                @if (link.disabled && link.tooltip) {
+                  <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-placement="bottom" [title]="link.tooltip">
+                    <a class="nav-link dynamic-link disabled" style="pointer-events: none;">
+                      <svg class="bi d-block mx-auto mb-1" width="24" height="24" aria-hidden="true"><use [attr.xlink:href]="'#' + link.icon"></use></svg>
+                      {{ link.label }}
+                    </a>
+                  </span>
+                } @else {
+                  <a [routerLink]="link.path" routerLinkActive="text-secondary" [routerLinkActiveOptions]="{exact: link.exact ?? false}" #rla="routerLinkActive" [class.text-white]="!rla.isActive" class="nav-link dynamic-link">
+                    <svg class="bi d-block mx-auto mb-1" width="24" height="24" aria-hidden="true"><use [attr.xlink:href]="'#' + link.icon"></use></svg>
+                    {{ link.label }}
+                  </a>
+                }
+              </li>
+            }
+          </ul>
+        </div>
+        <!-- Mobile Toggles -->
+        <div class="d-lg-none ms-auto">
+          <!-- Subheader Toggle -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#subheaderCollapse" aria-expanded="false" aria-controls="subheaderCollapse" aria-label="Toggle subheader">
+            <i class="bi bi-three-dots-vertical"></i>
+          </button>
+          <!-- Main Menu (Hamburger) Toggle -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <i class="bi bi-list"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Sub Header -->
+  <div class="collapse d-lg-block px-3 py-2 border-bottom mb-3" id="subheaderCollapse">
+    <div class="container d-flex flex-wrap justify-content-center align-items-center">
+      <div class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto d-none d-lg-block">
+        <app-dropdown buttonClass="btn-outline-secondary" dropdownId="colorModeDropdown" autoClose="outside">
+          <span button-content>
+            <i class="bi me-2" [class]="themeService.themeIcon()"></i>
+            <!-- <span class="d-none d-lg-inline">Toggle theme</span> -->
+          </span>
+          <li><a href="#" class="dropdown-item d-flex align-items-center" (click)="setTheme('light', $event)" [class.active]="themeService.currentTheme() === 'light'">
+            <i class="bi bi-sun-fill me-2"></i>
+            Light
+          </a></li>
+          <li><a href="#" class="dropdown-item d-flex align-items-center" (click)="setTheme('dark', $event)" [class.active]="themeService.currentTheme() === 'dark'">
+            <i class="bi bi-moon-stars-fill me-2"></i>
+            Dark
+          </a></li>
+          <li><a href="#" class="dropdown-item d-flex align-items-center" (click)="setTheme('auto', $event)" [class.active]="themeService.currentTheme() === 'auto'">
+            <i class="bi bi-circle-half me-2"></i>
+            Auto
+          </a></li>
+        </app-dropdown>
+      </div>
+      <router-outlet name="subheader"></router-outlet>
+    </div>
+  </div>
+
+  <!-- Offcanvas Mobile Menu -->
+  <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+        @for (link of navLinks; track link.path) {
+          <li class="nav-item">
+            @if (link.disabled && link.tooltip) {
+              <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-placement="bottom" [title]="link.tooltip">
+                <a class="nav-link disabled" style="pointer-events: none;">
+                  <svg class="bi me-2" width="16" height="16" aria-hidden="true"><use [attr.xlink:href]="'#' + link.icon"></use></svg>
+                  {{ link.label }}
+                </a>
+              </span>
+            } @else {
+              <a
+                class="nav-link"
+                [routerLink]="link.path"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: link.exact ?? false}"
+                data-bs-dismiss="offcanvas"
+              >
+                <svg class="bi me-2" width="16" height="16" aria-hidden="true"><use [attr.xlink:href]="'#' + link.icon"></use></svg>
+                {{ link.label }}
+              </a>
+            }
+          </li>
+        }
+      </ul>
+      <hr>
+      <div class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi me-2" [class]="themeService.themeIcon()"></i>
+          Toggle theme
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark">
+          <li>
+            <a href="#" class="dropdown-item d-flex align-items-center" (click)="setTheme('light', $event)" [class.active]="themeService.currentTheme() === 'light'">
+              <i class="bi bi-sun-fill me-2"></i> Light
+            </a>
+          </li>
+          <li>
+            <a href="#" class="dropdown-item d-flex align-items-center" (click)="setTheme('dark', $event)" [class.active]="themeService.currentTheme() === 'dark'">
+              <i class="bi bi-moon-stars-fill me-2"></i> Dark
+            </a>
+          </li>
+          <li>
+            <a href="#" class="dropdown-item d-flex align-items-center" (click)="setTheme('auto', $event)" [class.active]="themeService.currentTheme() === 'auto'">
+              <i class="bi bi-circle-half me-2"></i> Auto
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>

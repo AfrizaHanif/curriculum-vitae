@@ -1,0 +1,15 @@
+<app-header />
+<app-toast-container />
+<!-- This wrapper uses flexbox to manage the main content and footer -->
+<div class="d-flex flex-column scroll-container" style="position: relative; min-height: calc(100vh - var(--header-height, 160px));">
+  <!-- The main content area is set to grow and fill available space -->
+  <main class="flex-grow-1">
+    <app-breadcrumb />
+    <div class="container py-3">
+      <router-outlet />
+    </div>
+  </main>
+  <div class="container">
+    <app-footer />
+  </div>
+</div>

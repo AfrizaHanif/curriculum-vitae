@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-start mb-4">
+  <a routerLink="/blog" class="btn btn-outline-secondary d-inline-flex align-items-center">
+    <svg class="bi me-2" width="16" height="16" aria-hidden="true"><use xlink:href="#arrow-left"></use></svg>
+    Kembali ke Blog
+  </a>
+</div>
+
+@if (post(); as p) {
+  <div class="row g-5">
+    <!-- Main Content Column -->
+    <div class="col-lg-8">
+      <article class="blog-post">
+        <!-- Post header-->
+        <header class="mb-4">
+          <h1 class="fw-bolder mb-1">{{ p.title_blog }}</h1>
+          <div class="text-muted fst-italic mb-2">Dipublish pada tanggal {{ p.pub_date_blog | date:'longDate' }} oleh {{ p.author_blog }}</div>
+          @if (p.tags_blog && p.tags_blog.length > 0) {
+            <div>
+              @for (tag of p.tags_blog; track tag) {
+                <span class="badge bg-secondary text-decoration-none me-1">{{ tag }}</span>
+              }
+            </div>
+          }
+        </header>
+        <!-- Preview image figure-->
+        <figure class="mb-4"><img class="img-fluid rounded" [src]="'/' + p.image_blog" [alt]="p.title_blog" appImageFallback /></figure>
+        <!-- Post content-->
+        <section class="mb-5 blog-content" [innerHTML]="p.content_blog"></section>
+      </article>
+    </div>
+    <!-- Sidebar Column -->
+    <div class="col-lg-4">
+      <div class="position-sticky" style="top: calc(var(--header-height, 120px) + 2rem);">
+        @if (relatedPosts().length > 0) {
+          <h2 class="pb-2 border-bottom mb-4">Artikel Terkait</h2>
+          @for (relatedPost of relatedPosts(); track relatedPost.id_blog) {
+            <app-related-post-card [item]="relatedPost" />
+          }
+        }
+      </div>
+    </div>
+  </div>
+} @else {
+  <div class="text-center">
+    <h2 class="text-body-secondary">Artikel Tidak Ditemukan</h2>
+    <p>Artikel yang anda cari / kunjungi tidak ditemukan.</p>
+  </div>
+}

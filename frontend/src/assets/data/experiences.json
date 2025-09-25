@@ -1,0 +1,13 @@
+[
+  {
+    "id_experience": "EXP-001-001",
+    "title_experience": "Intern Web Developer",
+    "company_experience": "BPS Jawa Timur",
+    "status_experience": "Finished",
+    "s_period_experience": "2023-01-01",
+    "f_period_experience": "2023-03-01",
+    "latitude_experience": "-7.328969",
+    "longitude_experience": "112.745766",
+    "desc_experience": "Bertanggung jawab dalam merancang dan membangun aplikasi pelayanan perpustakaan untuk meningkatkan efisiensi layanan. Terlibat dalam seluruh siklus pengembangan, mulai dari pengumpulan kebutuhan hingga implementasi."
+  }
+]

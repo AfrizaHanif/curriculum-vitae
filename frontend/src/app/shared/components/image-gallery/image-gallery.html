@@ -1,0 +1,41 @@
+@if (images().length > 0) {
+  <section>
+    @if (images().length > 4) {
+      <div [id]="modalId + '-thumbnail-carousel'" class="carousel slide carousel-dark mb-4">
+        <div class="carousel-inner">
+          @for (chunk of chunkedImages(); track $index; let i = $index) {
+            <div class="carousel-item" [class.active]="i === 0">
+              <div class="row row-cols-2 row-cols-lg-4 g-3">
+                @for (image of chunk; track image; let j = $index) {
+                  <div class="col">
+                    <button type="button" class="card h-100 text-decoration-none overflow-hidden border-0 p-0" (click)="openModal(i * 4 + j)" [attr.aria-label]="'View image ' + (i * 4 + j + 1) + ' of ' + images().length + ' for ' + title()">
+                      <img [src]="image" class="card-img-top img-widescreen-crop" [alt]="title() + ' - image ' + (i * 4 + j + 1)" appImageFallback>
+                    </button>
+                  </div>
+                }
+              </div>
+            </div>
+          }
+        </div>
+        <button class="carousel-control-prev thumbnail-carousel-control" type="button" (click)="prevThumbnail()">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next thumbnail-carousel-control" type="button" (click)="nextThumbnail()">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    } @else {
+      <div class="row row-cols-2 row-cols-lg-4 g-3 mb-4">
+        @for (image of images(); track image; let i = $index) {
+          <div class="col">
+            <button type="button" class="card h-100 text-decoration-none overflow-hidden border-0 p-0" (click)="openModal(i)" [attr.aria-label]="'View image ' + (i + 1) + ' of ' + images().length + ' for ' + title()">
+              <img [src]="image" class="card-img-top img-widescreen-crop" [alt]="title() + ' - image ' + (i + 1)" appImageFallback>
+            </button>
+          </div>
+        }
+      </div>
+    }
+  </section>
+}

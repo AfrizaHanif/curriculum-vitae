@@ -1,0 +1,49 @@
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+  <div class="mb-3">
+    <label for="name" class="form-label">Nama</label>
+    <input type="text" id="name" class="form-control" formControlName="name" [class.is-invalid]="isInvalid('name')">
+    <app-validation [control]="contactForm.controls.name" controlName="Nama"></app-validation>
+  </div>
+
+  <div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input type="email" id="email" class="form-control" formControlName="email" [class.is-invalid]="isInvalid('email')">
+    <app-validation [control]="contactForm.controls.email" controlName="Email"></app-validation>
+  </div>
+
+  <div class="mb-3">
+    <label for="subject" class="form-label">Subjek</label>
+    <input type="text" id="subject" class="form-control" formControlName="subject" [class.is-invalid]="isInvalid('subject')">
+    <app-validation [control]="contactForm.controls.subject" controlName="Subjek"></app-validation>
+  </div>
+
+  <div class="mb-3">
+    <label for="content" class="form-label">Pesan</label>
+    <textarea id="content" class="form-control" rows="5" formControlName="content" [class.is-invalid]="isInvalid('content')"></textarea>
+    <app-validation [control]="contactForm.controls.content" controlName="Pesan"></app-validation>
+  </div>
+
+  <!-- Google reCAPTCHA v2 "I'm not a robot" Checkbox -->
+  <div class="mb-3">
+    <ngx-recaptcha2
+      #captchaElem
+      [siteKey]="siteKey"
+      [theme]="captchaTheme()"
+      [size]="captchaSize"
+      [lang]="captchaLang"
+      formControlName="recaptcha"
+    ></ngx-recaptcha2>
+    @if (isInvalid('recaptcha')) {
+      <div class="invalid-feedback d-block">Please verify that you are not a robot.</div>
+    }
+  </div>
+
+  <button type="submit" class="btn btn-primary d-flex align-items-center" [disabled]="contactForm.invalid || isSubmitting()">
+    @if (isSubmitting()) {
+      <span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>
+      <span role="status">Mengirim...</span>
+    } @else {
+      <span>Kirim Pesan</span>
+    }
+  </button>
+</form>

@@ -1,0 +1,27 @@
+<div class="modal fade"
+  [style.z-index]="zIndex() ? (zIndex()! + 5) : null"
+  [id]="id()"
+  tabindex="-1"
+  [attr.aria-labelledby]="id() + 'Label'"
+>
+  <div class="modal-dialog" [ngClass]="dialogClasses()">
+    <div class="modal-content">
+      <div class="modal-header">
+        <ng-content select="[modal-header]"></ng-content>
+        @if (!hasProjectedTitle()) {
+          <div>
+            <h2 class="modal-title fs-5" [id]="id() + 'Label'">{{ title() }}</h2>
+            <h6 class="text-body-secondary fw-normal mb-0">{{ subtitle() }}</h6>
+          </div>
+        }
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <ng-content select="[modal-body]"></ng-content>
+      </div>
+      <div class="modal-footer">
+        <ng-content select="[modal-footer]"></ng-content>
+      </div>
+    </div>
+  </div>
+</div>

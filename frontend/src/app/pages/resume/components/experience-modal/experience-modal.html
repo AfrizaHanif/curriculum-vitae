@@ -1,0 +1,58 @@
+<app-modal [id]="id()" [title]="title()" [subtitle]="company()" [size]="size()" [centered]="centered()" [scrollable]="scrollable()">
+  <div modal-body>
+    @if (description()) {
+      <p>{{ description() }}</p>
+    } @else {
+      <p>No description available.</p>
+    }
+
+    @if (latitude() && longitude()) {
+      <div class="location-section mt-4">
+        <h3 class="fs-6 fw-semibold border-bottom pb-2 mb-3">Location</h3>
+        <div class="map-container">
+          <!-- The map will be rendered here -->
+        </div>
+        <a [href]="'https://www.google.com/maps?q=' + latitude() + ',' + longitude()" target="_blank" rel="noopener noreferrer" class="d-block mt-2">
+          View on Google Maps <span class="visually-hidden">(opens in a new tab)</span>
+        </a>
+      </div>
+    }
+  </div>
+  <div modal-footer class="d-flex gap-2">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+  </div>
+</app-modal>
+
+<!-- <div class="modal fade" [id]="id()" tabindex="-1" [attr.aria-labelledby]="id() + 'Label'" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <h2 class="modal-title fs-5" [id]="id() + 'Label'">{{ title() }}</h2>
+          <h2 class="h6 text-body-secondary fw-normal mb-0">{{ company() }}</h2>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        @if (description()) {
+          <p>{{ description() }}</p>
+        } @else {
+          <p>No description available.</p>
+        }
+
+        @if (latitude() && longitude()) {
+          <div class="location-section mt-4">
+            <h3 class="fs-6 fw-semibold border-bottom pb-2 mb-3">Location</h3>
+            <div class="map-container"></div>
+            <a [href]="'https://www.google.com/maps?q=' + latitude() + ',' + longitude()" target="_blank" rel="noopener noreferrer" class="d-block mt-2">
+              View on Google Maps <span class="visually-hidden">(opens in a new tab)</span>
+            </a>
+          </div>
+        }
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+      </div>
+    </div>
+  </div>
+</div> -->

@@ -1,0 +1,33 @@
+<!-- Jumbotron -->
+<app-jumbotron [imageUrl]="'assets/images/jumbotron/home.jpg'" [imageAlt]="'A modern and clean workspace with a laptop and a cup of coffee'">
+  <div jumbotron-main>
+    <h1 class="display-4 fw-bold">{{ profileData().fullname_profile }}</h1>
+    <p class="fs-5 fs-md-4">{{ jumbotronSubtitle() }}</p>
+    <a routerLink="/profile" class="btn btn-primary btn-lg" type="button">Learn More</a>
+  </div>
+  <div jumbotron-image>
+    <img [src]="profileData().photo_profile"
+         class="img-fluid rounded-circle shadow-lg"
+         [alt]="profileData().fullname_profile"
+         width="250" height="250" style="aspect-ratio: 1 / 1; object-fit: cover; object-position: center top;"
+         [appImageFallback]="'assets/images/placeholder/placeholder-avatar.png'">
+  </div>
+</app-jumbotron>
+
+<!-- Mini Jumbotron -->
+<div class="row align-items-md-stretch">
+  <div class="col-md-6">
+    <div class="h-100 p-5 bg-body-tertiary rounded-3">
+      <h2>My Portfolio</h2>
+      <p>Jelajahi kumpulan proyek terbaru saya yang menampilkan keahlian saya dalam pengembangan dan desain web. Lihat bagaimana saya mengubah ide menjadi kenyataan.</p>
+      <a routerLink="/portfolio" class="btn btn-outline-secondary d-inline-flex align-items-center" type="button"><i class="bi bi-briefcase-fill me-2"></i>View Portfolio</a>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="h-100 p-5 bg-body-tertiary rounded-3">
+      <h2>Let's Connect</h2>
+      <p>Punya proyek dalam pikiran, pertanyaan, atau sekadar ingin menyapa? Saya senang mendengarnya. Mari kita ciptakan sesuatu yang hebat bersama-sama.</p>
+      <a routerLink="/contact" class="btn btn-outline-secondary d-inline-flex align-items-center" type="button"><i class="bi bi-envelope-fill me-2"></i>Contact Me</a>
+    </div>
+  </div>
+</div>

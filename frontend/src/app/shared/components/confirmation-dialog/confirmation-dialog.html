@@ -1,0 +1,44 @@
+<!-- Listens to the service and displays the modal when state is available -->
+@if (state$ | async; as state) {
+  <!-- Backdrop -->
+  <div class="modal-backdrop" [@fadeBackdrop]></div>
+  <!-- Modal Dialog -->
+  <div class="modal d-block" tabindex="-1" role="dialog" [@fadeDialog]>
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        @if (state.title) {
+          <div class="modal-header">
+            <h5 class="modal-title">{{ state.title }}</h5>
+            <button type="button" class="btn-close" (click)="resolveAndClose('cancel', state)" aria-label="Close" [disabled]="loadingAction()"></button>
+          </div>
+        }
+        <div class="modal-body">
+          <p class="fs-5">{{ state.message }}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="resolveAndClose('cancel', state)" [disabled]="loadingAction()">
+            {{ state.cancelText || 'Cancel' }}
+          </button>
+          @if (state.onSaveAndLeave) {
+            <button type="button" class="btn btn-success d-flex align-items-center" (click)="handleAsyncAction(state, state.onSaveAndLeave, 'save')" [disabled]="loadingAction()">
+              @if (loadingAction() === 'save') {
+                <span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>
+                <span role="status">Saving...</span>
+              } @else {
+                <span>{{ state.saveAndLeaveText || 'Save and Leave' }}</span>
+              }
+            </button>
+          }
+          <button type="button" [class]="'btn btn-' + (state.actionType || 'danger')" (click)="handleAsyncAction(state, state.onConfirm, 'confirm')" [disabled]="loadingAction()">
+            @if (loadingAction() === 'confirm') {
+              <span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>
+              <span role="status">Loading...</span>
+            } @else {
+              <span>{{ state.confirmText || 'Confirm' }}</span>
+            }
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+}

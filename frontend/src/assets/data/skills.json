@@ -1,0 +1,37 @@
+[
+  {
+    "id_skill": "SKI-001-001",
+    "name_skill": "Bootstrap",
+    "percent_skill": 80
+  },
+  {
+    "id_skill": "SKI-001-002",
+    "name_skill": "Laravel",
+    "percent_skill": 80
+  },
+  {
+    "id_skill": "SKI-001-003",
+    "name_skill": "MySQL",
+    "percent_skill": 65
+  },
+  {
+    "id_skill": "SKI-001-004",
+    "name_skill": "PhpMyAdmin",
+    "percent_skill": 75
+  },
+  {
+    "id_skill": "SKI-001-005",
+    "name_skill": "PHP",
+    "percent_skill": 70
+  },
+  {
+    "id_skill": "SKI-001-006",
+    "name_skill": "HTML",
+    "percent_skill": 80
+  },
+  {
+    "id_skill": "SKI-001-007",
+    "name_skill": "Angular",
+    "percent_skill": 30
+  }
+]

@@ -1,0 +1,15 @@
+<!-- View Content via Router Outlet -->
+<router-outlet />
+
+<!--
+  Conditionally render the loading indicator based on the signal
+  from our LoadingService. This uses the new @if block.
+-->
+<!-- Loading Indicator -->
+@if (loadingService.isLoading()) {
+  <app-loading-indicator />
+}
+
+<!-- Other's Component -->
+<app-scroll-to-top />
+<app-confirmation-dialog />
