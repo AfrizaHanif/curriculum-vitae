@@ -13,6 +13,16 @@ import { ConfirmationService } from '../../core/services/confirmation';
 import { environment } from '../../../environments/environment';
 import { finalize } from 'rxjs';
 
+/**
+ * Defines the structure for an accordion item in the contact page.
+ */
+interface ContactAccordionItem {
+  id: string;
+  title: string;
+  isOpen: boolean;
+  [key: string]: any; // Allow other properties like name, phone, email, socials
+}
+
 // A simple delay utility function.
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -48,7 +58,7 @@ export class ContactComponent {
   isSubmitting = signal(false); // Track form submission state
 
   // Prepare the contact items for the accordion
-  contactItems = computed(() => {
+  contactItems = computed<ContactAccordionItem[]>(() => {
     const profile = this.profileService.profileData();
     const socials = this.socialService.socials();
     return [
