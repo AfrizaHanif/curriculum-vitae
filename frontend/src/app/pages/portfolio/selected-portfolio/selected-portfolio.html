@@ -24,7 +24,14 @@
     <!--  -->
     <article class="col-md-8">
       <figure class="mb-3 rounded main-portfolio-figure">
-        <img [src]="item.image_portfolio" class="img-fluid img-widescreen-crop" [alt]="item.title_portfolio" [appImageFallback]="'assets/images/placeholder/placeholder-image.png'" />
+        <div class="image-container" #imageContainer>
+          <div class="spinner-border text-light" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <img [src]="item.image_portfolio" class="img-fluid img-widescreen-crop" [alt]="item.title_portfolio"
+               (load)="imageContainer.classList.add('loaded')"
+               [appImageFallback]="'assets/images/placeholder/placeholder-image.png'" />
+        </div>
       </figure>
 
       <!-- Image Gallery -->

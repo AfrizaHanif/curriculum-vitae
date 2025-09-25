@@ -1,3 +1,31 @@
+.image-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bs-tertiary-bg);
+  min-height: 250px; /* Provide a minimum height for the spinner area */
+  border-radius: var(--bs-border-radius);
+}
+
+.image-container img {
+  opacity: 0;
+  /* transition: opacity 0.3s ease-in-out; */
+}
+
+.image-container.loaded .spinner-border {
+  display: none;
+}
+
+.image-container.loaded img {
+  opacity: 1;
+}
+
+.image-container.loaded {
+  background-color: transparent;
+  min-height: 0;
+}
+
 .blog-post {
   font-size: 1.1rem;
   line-height: 1.7;

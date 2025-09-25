@@ -23,7 +23,14 @@
           }
         </header>
         <!-- Preview image figure-->
-        <figure class="mb-4"><img class="img-fluid rounded" [src]="'/' + p.image_blog" [alt]="p.title_blog" appImageFallback /></figure>
+        <figure class="mb-4">
+          <div class="image-container" #imageContainer>
+            <div class="spinner-border text-secondary" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <img class="img-fluid rounded" [src]="'/' + p.image_blog" [alt]="p.title_blog" (load)="imageContainer.classList.add('loaded')" appImageFallback />
+          </div>
+        </figure>
         <!-- Post content-->
         <section class="mb-5 blog-content" [innerHTML]="p.content_blog"></section>
       </article>

@@ -9,7 +9,7 @@ import { ImageFallbackDirective } from "../../../../shared/directives/image-fall
   standalone: true,
   imports: [CommonModule, RouterLink, ImageFallbackDirective],
   templateUrl: './portfolio-card.html',
-  styleUrl: './portfolio-card.css',
+  styleUrl: './portfolio-card.scss',
   host: {
     class: 'col'
   }

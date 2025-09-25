@@ -21,6 +21,23 @@
 }
 
 /*
+ * Styles to manage the loading state of the main portfolio image.
+ */
+.image-container img {
+  opacity: 0;
+  /* transition: opacity 0.3s ease-in-out; */
+}
+
+.image-container.loaded .spinner-border {
+  display: none;
+}
+
+.image-container.loaded img {
+  opacity: 1;
+}
+
+
+/*
  * Styles for external modal carousel controls.
  * These are positioned outside the image area for a cleaner look.
  */

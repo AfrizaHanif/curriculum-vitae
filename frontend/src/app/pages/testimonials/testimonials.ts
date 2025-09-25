@@ -14,7 +14,7 @@ import { ImageFallbackDirective } from '../../shared/directives/image-fallback';
     ImageFallbackDirective
   ],
   templateUrl: './testimonials.html',
-  styleUrls: ['./testimonials.css'],
+  styleUrls: ['./testimonials.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TestimonialsComponent {

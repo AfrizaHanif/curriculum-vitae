@@ -1,4 +1,0 @@
-.portfolio-card-image {
-  height: 200px; /* Or use aspect-ratio for more fluid responsiveness */
-  object-fit: cover; /* Prevents the image from being stretched or squashed */
-}

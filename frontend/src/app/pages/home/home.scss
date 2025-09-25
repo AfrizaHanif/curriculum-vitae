@@ -1,0 +1,30 @@
+.image-container {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bs-secondary-bg); // Placeholder background
+
+  .spinner-border {
+    position: absolute;
+  }
+
+  img {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  &.loaded {
+    background-color: transparent;
+
+    .spinner-border {
+      display: none;
+    }
+
+    img {
+      opacity: 1;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+/* Show spinner when loading */
+.loading-background .spinner-border {
+  display: block;
+}
+
+/* Hide spinner when not loading */
+.spinner-border {
+  display: none;
+}
+
+/* When loading is finished, the directive removes the loading-background class.
+   We also want to hide the spinner when the background image is successfully set. */
+div[style*="background-image"]:not([style*="background-image: none"]) .spinner-border {
+  display: none;
+}

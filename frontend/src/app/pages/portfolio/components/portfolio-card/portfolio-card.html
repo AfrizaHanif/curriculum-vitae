@@ -4,7 +4,14 @@
       {{ item().category_portfolio }} <span class="text-muted small">- {{ item().type_portfolio }}</span>
     </div>
 
-    <img [src]="item().image_portfolio" class="card-img-top rounded-0 portfolio-card-image" [alt]="item().title_portfolio" loading="lazy" appImageFallback>
+    <div class="portfolio-card-image">
+      <div class="image-container" #imageContainer>
+        <div class="spinner-border spinner-border-sm text-secondary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <img [src]="item().image_portfolio" class="card-img-top rounded-0" [alt]="item().title_portfolio" loading="lazy" (load)="imageContainer.classList.add('loaded')" appImageFallback>
+      </div>
+    </div>
 
     <div class="card-body d-flex flex-column">
       <h5 class="card-title">{{ item().title_portfolio }}</h5>

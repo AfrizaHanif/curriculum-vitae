@@ -7,7 +7,7 @@ import { Carousel, Modal } from 'bootstrap';
   standalone: true,
   imports: [CommonModule, ImageFallbackDirective],
   templateUrl: './image-gallery.html',
-  styleUrl: './image-gallery.scss'
+  styleUrl: './image-gallery.css'
 })
 export class ImageGalleryComponent implements AfterViewInit {
   images = input<string[]>([]);

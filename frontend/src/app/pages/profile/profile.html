@@ -10,12 +10,15 @@
     <section id="about" class="row align-items-md-stretch pb-4">
         <div class="col-md-4">
           <div class="h-100 p-0 bg-body-secondary rounded-3">
-            <div class="w-100 h-100 rounded-3"
+            <div class="w-100 h-100 rounded-3 d-flex justify-content-center align-items-center"
                 [appBackgroundImageFallback]="profileData().photo_profile"
                 [fallbackUrl]="'assets/images/placeholder/placeholder-portrait.png'"
                 style="background-size: cover; background-position: center center;"
                 role="img"
                 [attr.aria-label]="'Foto Profil ' + profileData().fullname_profile">
+              <div class="spinner-border text-light" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
             </div>
           </div>
         </div>

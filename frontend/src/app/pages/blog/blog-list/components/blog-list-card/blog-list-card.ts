@@ -10,7 +10,7 @@ import { BlogData } from '../../../../../core/models/blog';
   standalone: true,
   imports: [CommonModule, RouterLink, ImageFallbackDirective],
   templateUrl: './blog-list-card.html',
-  styleUrl: './blog-list-card.css'
+  styleUrl: './blog-list-card.scss'
 })
 export class BlogListCardComponent {
   item = input.required<BlogData>();

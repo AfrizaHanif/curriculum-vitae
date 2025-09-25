@@ -1,8 +1,13 @@
 @if (item()) {
   <div class="card mb-3" style="max-width: 540px;">
     <div class="row g-0">
-      <div class="col-md-4">
-        <img [src]="imageUrl()" class="rounded-start related-post-card-image" [alt]="item().title_blog" appImageFallback>
+      <div class="col-md-4 image-container" #imageContainer>
+        <div class="spinner-border spinner-border-sm text-secondary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <img [src]="imageUrl()" class="rounded-start related-post-card-image" [alt]="item().title_blog"
+             (load)="imageContainer.classList.add('loaded')"
+             appImageFallback>
       </div>
       <div class="col-md-8">
         <div class="card-body">

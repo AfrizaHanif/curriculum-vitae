@@ -17,13 +17,18 @@
               </blockquote>
               <footer class="blockquote-footer mt-4">
                 <div class="d-flex align-items-center">
-                  <img [src]="testimonial.avatar_testimonial"
-                       class="rounded-circle me-3"
-                       width="60"
-                       height="60"
-                       [alt]="testimonial.author_testimonial"
-                       style="object-fit: cover;"
-                       [appImageFallback]="'assets/images/placeholder/placeholder-avatar.png'">
+                  <div class="image-container rounded-circle me-3" #imageContainer>
+                    <div class="spinner-border spinner-border-sm text-light" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <img [src]="testimonial.avatar_testimonial"
+                         class="rounded-circle"
+                         width="60" height="60"
+                         [alt]="testimonial.author_testimonial"
+                         style="object-fit: cover;"
+                         (load)="imageContainer.classList.add('loaded')"
+                         [appImageFallback]="'assets/images/placeholder/placeholder-avatar.png'">
+                  </div>
                   <div>
                     <div class="fw-bold">{{ testimonial.author_testimonial }}</div>
                     <cite title="Source Title">{{ testimonial.role_testimonial }} at {{ testimonial.company_testimonial }}</cite>

@@ -11,7 +11,7 @@ import { ImageFallbackDirective } from '../../shared/directives/image-fallback';
   selector: 'app-home',
   imports: [JumbotronComponent, RouterLink, ImageFallbackDirective],
   templateUrl: './home.html',
-  styleUrl: './home.css'
+  styleUrl: './home.scss'
 })
 export class HomeComponent {
   // Inject Services
