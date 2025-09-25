@@ -31,6 +31,8 @@ export class ContactFormComponent {
   // The site key is now configured in the environment files (e.g., src/environments/environment.ts)
   protected siteKey = environment.recaptcha.siteKey;
 
+  private isBrowser = isPlatformBrowser(this.platformId);
+
   /**
    * A computed signal that determines the reCAPTCHA theme based on the global ThemeService.
    * It resolves the 'auto' theme to 'light' or 'dark' based on the user's OS preference.
@@ -38,7 +40,7 @@ export class ContactFormComponent {
   protected captchaTheme = computed<'light' | 'dark'>(() => {
     const theme = this.themeService.currentTheme();
     if (theme === 'auto') {
-      if (isPlatformBrowser(this.platformId)) {
+      if (this.isBrowser) {
         return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       }
       return 'light'; // Default for server-side rendering
@@ -90,7 +92,7 @@ export class ContactFormComponent {
    * @param controlName The name of the form control.
    */
   isInvalid(controlName: string): boolean {
-    const control = this.contactForm.get(controlName);
-    return !!control && control.invalid && (control.dirty || control.touched);
+    const control = this.contactForm.get(controlName); // e.g., 'name', 'email'
+    return !!(control?.invalid && (control?.dirty || control?.touched));
   }
 }

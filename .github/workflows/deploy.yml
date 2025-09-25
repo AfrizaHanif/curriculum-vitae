@@ -17,6 +17,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
 
       - name: Install dependencies
         run: npm ci
@@ -30,5 +32,6 @@ jobs:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: dist/curriculum-vitae-single/browser/
+          # The local-dir path is relative to the repository root
+          local-dir: ./dist/curriculum-vitae-single/browser/
           server-dir: /domains/afrizahanif.com/public_html/

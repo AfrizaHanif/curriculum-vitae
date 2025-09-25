@@ -13,6 +13,9 @@ import { ConfirmationService } from '../../core/services/confirmation';
 import { environment } from '../../../environments/environment';
 import { finalize } from 'rxjs';
 
+// A simple delay utility function.
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
 @Component({
   selector: 'app-contact',
   standalone: true,
@@ -95,9 +98,14 @@ export class ContactComponent {
           );
           this.contactFormComponent().resetForm();
         },
-        error: (err) => {
-          console.error('Formspree submission error:', err);
-          this.toastService.error('Gagal mengirim pesan. Silakan coba lagi nanti.');
+        error: (error) => {
+          console.error('Formspree submission error:', error);
+          // Check for a network error vs. a server error from Formspree
+          if (error.status === 0 || error.status === -1) {
+            this.toastService.error('Gagal mengirim pesan. Periksa koneksi internet Anda.');
+          } else {
+            this.toastService.error('Gagal mengirim pesan. Silakan coba lagi nanti.');
+          }
         },
       });
   }
@@ -107,8 +115,12 @@ export class ContactComponent {
    * This method is used by the `canDeactivateFormGuard`.
    */
   async canDeactivate(): Promise<boolean> {
+    // Although `viewChild.required` is used, it's safer to check for the component's existence
+    // before accessing its properties, especially in guards or async operations.
+    const formComponent = this.contactFormComponent();
+
     // If the form is not dirty, allow navigation.
-    if (!this.contactFormComponent().isDirty()) {
+    if (!formComponent?.isDirty()) {
       return true;
     }
 
@@ -119,20 +131,15 @@ export class ContactComponent {
       confirmText: 'Ya',
       cancelText: 'Tidak',
       actionType: 'danger',
-      onConfirm: () => {
-        // This is an example of an async action for the "Leave Page" button.
-        // You could use this to auto-save a draft or log an event.
+      onConfirm: async () => {
         if (!environment.production) {
           console.log('Performing a final action before leaving...');
         }
-        return new Promise(resolve => {
-          setTimeout(() => {
-            if (!environment.production) {
-              console.log('Final action complete.');
-            }
-            resolve(true); // Returning true allows navigation to proceed.
-          }, 1500);
-        });
+        await delay(1500); // Simulate async work
+        if (!environment.production) {
+          console.log('Final action complete.');
+        }
+        return true; // Returning true allows navigation to proceed.
       },
     });
 
