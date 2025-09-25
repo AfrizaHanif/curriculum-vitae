@@ -8,16 +8,14 @@ import { PhoneFormat } from '../../shared/pipes/phone-format-pipe';
 import { DescriptionService } from '../../core/services/description';
 import { EducationService } from '../../core/services/education';
 import { environment } from '../../../environments/environment';
-import { DropdownComponent } from "../../shared/components/dropdown/dropdown";
 import { Router } from '@angular/router';
-import { CvViewerModalComponent } from "./components/cv-viewer-modal/cv-viewer-modal";
 import { BackgroundImageFallbackDirective } from "../../shared/directives/background-image-fallback";
 import { BootstrapDirective } from '../../shared/directives/bootstrap';
 import { ScrollSpyDirective } from '../../shared/directives/scrollspy';
 
 @Component({
   selector: 'app-profile',
-  imports: [CommonModule, JumbotronComponent, SkillCardComponent, CardComponent, PhoneFormat, DropdownComponent, CvViewerModalComponent, BackgroundImageFallbackDirective, BootstrapDirective, ScrollSpyDirective],
+  imports: [CommonModule, JumbotronComponent, SkillCardComponent, CardComponent, PhoneFormat, BackgroundImageFallbackDirective, BootstrapDirective, ScrollSpyDirective],
   templateUrl: './profile.html',
   styleUrl: './profile.css'
 })

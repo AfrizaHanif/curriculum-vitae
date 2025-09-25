@@ -1,10 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { Event, NavigationCancel, NavigationError, NavigationEnd, RouteConfigLoadStart, RouteConfigLoadEnd, Router, RouterOutlet } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 import { LoadingIndicatorComponent } from './shared/components/loading-indicator/loading-indicator';
 import { LoadingService } from './core/services/loading';
 import { ScrollToTopComponent } from './shared/components/scroll-to-top/scroll-to-top';
 import { ConfirmationDialogComponent } from "./shared/components/confirmation-dialog/confirmation-dialog";
+import { GoogleAnalyticsService } from './core/services/google-analytics';
 
 @Component({
   selector: 'app-root',
@@ -17,17 +19,19 @@ export class App {
   public loadingService = inject(LoadingService);
   private router = inject(Router); // Make the service public to access it in the template
 
-  constructor() {
-    // Trigger the Loading Spinner
+  constructor(
+    private gaService: GoogleAnalyticsService
+  ) {
+    // Subscribe to router events to manage loading indicators and analytics
     this.router.events.subscribe((event: Event) => {
       this.updateLoadingIndicator(event);
-      if (event instanceof NavigationEnd) {
-        // window.scrollTo(0, 0);
-        window.scrollTo({
-          top: 0,
-          behavior: 'instant'
-        });
-      }
+    });
+
+    this.router.events.pipe(
+      filter((event): event is NavigationEnd => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      this.gaService.trackPageView(event.urlAfterRedirects);
+      window.scrollTo({ top: 0, behavior: 'instant' });
     });
   }
 

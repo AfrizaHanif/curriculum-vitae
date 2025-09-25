@@ -10,10 +10,11 @@ import { BootstrapDirective } from '../../shared/directives/bootstrap';
 import { ScrollSpyDirective } from '../../shared/directives/scrollspy';
 import { DescriptionService } from '../../core/services/description';
 import { environment } from '../../../environments/environment';
+import { CvViewerModalComponent } from "../profile/components/cv-viewer-modal/cv-viewer-modal";
 
 @Component({
   selector: 'app-resume',
-  imports: [JumbotronComponent, FeatureComponent, EducationFeatureComponent, ExperienceFeatureComponent, BootstrapDirective, ScrollSpyDirective],
+  imports: [JumbotronComponent, FeatureComponent, EducationFeatureComponent, ExperienceFeatureComponent, BootstrapDirective, ScrollSpyDirective, CvViewerModalComponent],
   templateUrl: './resume.html',
   styleUrl: './resume.css'
 })
