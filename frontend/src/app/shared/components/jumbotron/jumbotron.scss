@@ -1,1 +1,23 @@
+.jumbotron-container {
+  position: relative;
+  overflow: hidden; // This will clip the pseudo-element to the container's rounded corners.
+  isolation: isolate; // Create a new stacking context
 
+  // This pseudo-element will hold the main background image
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; // Position it behind the content
+
+    // The main image is set here via the CSS variable
+    background-image: var(--jumbotron-main-bg);
+    background-size: cover;
+    background-position: center;
+    opacity: var(--jumbotron-main-opacity, 0); // Controlled by the component
+    transition: opacity 0.5s ease-in-out; // The magic happens here!
+  }
+}
