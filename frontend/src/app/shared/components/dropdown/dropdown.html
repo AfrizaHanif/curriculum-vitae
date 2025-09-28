@@ -1,9 +1,29 @@
-<div class="dropdown">
-  <!-- <button class="btn dropdown-toggle d-flex align-items-center {{ buttonClass() }}" type="button" [id]="dropdownId()" data-bs-toggle="dropdown" aria-expanded="false"> -->
+<!-- <div class="dropdown">
   <button class="btn dropdown-toggle d-flex align-items-center {{ buttonClass() }}" type="button" [id]="dropdownId()" appDropdown [autoClose]="autoClose()" aria-expanded="false">
     <ng-content select="[button-content]"></ng-content>
   </button>
   <ul class="dropdown-menu" [class.dropdown-menu-end]="menuAlign() === 'end'" [attr.aria-labelledby]="dropdownId()">
     <ng-content></ng-content>
   </ul>
-</div>
+</div> -->
+
+<!-- Initialize the button's content first -->
+<ng-template #buttonContent>
+  <ng-content select="[button-content]"></ng-content>
+</ng-template>
+
+<!-- Check if the dropdown's button are button or not -->
+@if (isButton()) {
+  <button class="btn dropdown-toggle d-flex align-items-center {{ buttonClass() }}" type="button" [id]="dropdownId()" appDropdown [autoClose]="autoClose()" aria-expanded="false">
+    <ng-container *ngTemplateOutlet="buttonContent"></ng-container>
+  </button>
+} @else {
+  <div appDropdown [autoClose]="autoClose()">
+    <ng-container *ngTemplateOutlet="buttonContent"></ng-container>
+  </div>
+}
+
+<!-- Dropdown's Items -->
+<ul class="dropdown-menu" [class.dropdown-menu-end]="menuAlign() === 'end'" [attr.aria-labelledby]="dropdownId()">
+  <ng-content select="[button-item]"></ng-content>
+</ul>

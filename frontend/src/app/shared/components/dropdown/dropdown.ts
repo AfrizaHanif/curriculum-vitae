@@ -18,6 +18,7 @@ export class DropdownComponent {
   dropdownId = input<string>('dropdownMenu');
   autoClose = input<boolean | 'inside' | 'outside'>(true);
   menuAlign = input<'start' | 'end'>('start');
+  isButton = input.required<boolean | 'true' | 'false'>();
 
   /** Programmatically shows the dropdown menu. */
   show(): void {
