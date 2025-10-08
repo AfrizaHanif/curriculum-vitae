@@ -8,6 +8,7 @@ import { GlobalWorkerOptions, getDocument } from 'pdfjs-dist';
 export class PdfThumbnailDirective implements OnChanges {
   @Input('appPdfThumbnail') pdfUrl: string | undefined;
   @Output() loadingStateChange = new EventEmitter<boolean>();
+  @Output() loadingError = new EventEmitter<void>();
 
   constructor(private el: ElementRef<HTMLCanvasElement>) {
     // The worker is needed for pdf.js to run in a separate thread.
@@ -61,6 +62,7 @@ export class PdfThumbnailDirective implements OnChanges {
       this.loadingStateChange.emit(false);
     } catch (error) {
       console.error('Error rendering PDF thumbnail:', error);
+      this.loadingError.emit();
       this.loadingStateChange.emit(false);
     }
   }

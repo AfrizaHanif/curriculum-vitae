@@ -26,4 +26,9 @@ export class CertificationCardComponent {
 
   // --- State for PDF loading ---
   readonly isPdfLoading = signal(true);
+  readonly isPdfError = signal(false);
+
+  onPdfError(): void {
+    this.isPdfError.set(true);
+  }
 }

@@ -3,11 +3,14 @@
     {{ issuer() }}
   </div>
   @if (isPdf()) {
-    <div class="card-img-top rounded-0 bg-body-tertiary d-flex align-items-center justify-content-center overflow-hidden img-widescreen-crop">
+    <div class="card-img-top rounded-0 bg-body-tertiary d-flex align-items-center justify-content-center overflow-hidden img-widescreen-crop position-relative">
       @if (isPdfLoading()) {
         <div class="spinner-border text-secondary" role="status"><span class="visually-hidden">Loading...</span></div>
       }
-      <canvas [appPdfThumbnail]="file()" (loadingStateChange)="isPdfLoading.set($event)" class="w-100 h-100" [class.d-none]="isPdfLoading()"></canvas>
+      @if (isPdfError() && !isPdfLoading()) {
+        <i class="bi bi-file-earmark-pdf-fill text-secondary" style="font-size: 4rem;"></i>
+      }
+      <canvas [appPdfThumbnail]="file()" (loadingStateChange)="isPdfLoading.set($event)" (loadingError)="onPdfError()" class="w-100 h-100" [class.d-none]="isPdfLoading() || isPdfError()"></canvas>
     </div>
   } @else {
     <div class="image-container card-img-top rounded-0 d-flex justify-content-center align-items-center" #imageContainer>
