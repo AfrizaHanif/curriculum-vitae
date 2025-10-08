@@ -31,7 +31,7 @@
               {
                 "glob": "pdf.worker.mjs",
                 "input": "node_modules/pdfjs-dist/build/",
-                "output": "/assets/"
+                "output": "assets/"
               },
               "frontend/src/assets"
             ],
@@ -109,6 +109,11 @@
               {
                 "glob": "**/*",
                 "input": "node_modules/leaflet/dist/images/",
+                "output": "assets/"
+              },
+              {
+                "glob": "pdf.worker.mjs",
+                "input": "node_modules/pdfjs-dist/build/",
                 "output": "assets/"
               },
               "frontend/src/assets"

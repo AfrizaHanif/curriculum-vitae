@@ -1,5 +1,7 @@
 import { Directive, ElementRef, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import * as pdfjsLib from 'pdfjs-dist';
+import { PDFDocumentProxy, PDFPageProxy, RenderTask } from 'pdfjs-dist';
+import type { RenderParameters } from 'pdfjs-dist/types/src/display/api';
 
 @Directive({
   selector: '[appPdfThumbnail]',
@@ -10,8 +12,11 @@ export class PdfThumbnailDirective implements OnChanges {
   @Output() loadingStateChange = new EventEmitter<boolean>();
 
   constructor(private el: ElementRef<HTMLCanvasElement>) {
-    // The worker is needed for pdf.js to run in a separate thread.
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'assets/pdf.worker.mjs';
+    // Set the workerSrc only once. The path should be relative to the deployed application's root.
+    // By copying the worker to assets, we ensure it's always available at this path.
+    if (!pdfjsLib.GlobalWorkerOptions.workerSrc) {
+      pdfjsLib.GlobalWorkerOptions.workerSrc = `assets/pdf.worker.mjs`;
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -23,9 +28,9 @@ export class PdfThumbnailDirective implements OnChanges {
   private async loadPdf(url: string): Promise<void> {
     this.loadingStateChange.emit(true);
     try {
-      const loadingTask = pdfjsLib.getDocument(url);
-      const pdf = await loadingTask.promise;
-      const page = await pdf.getPage(1); // Get the first page
+      const loadingTask: pdfjsLib.PDFDocumentLoadingTask = pdfjsLib.getDocument(url);
+      const pdf: PDFDocumentProxy = await loadingTask.promise;
+      const page: PDFPageProxy = await pdf.getPage(1); // Get the first page
 
       const canvas = this.el.nativeElement;
       const context = canvas.getContext('2d');
@@ -57,7 +62,7 @@ export class PdfThumbnailDirective implements OnChanges {
         canvas: canvas,
         viewport: scaledViewport,
       };
-      await page.render(renderContext).promise;
+      await (page.render(renderContext as RenderParameters) as RenderTask).promise;
       this.loadingStateChange.emit(false);
     } catch (error) {
       console.error('Error rendering PDF thumbnail:', error);
