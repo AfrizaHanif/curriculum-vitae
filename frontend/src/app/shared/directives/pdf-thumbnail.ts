@@ -15,7 +15,7 @@ export class PdfThumbnailDirective implements OnChanges {
     // Set the workerSrc only once. The path should be relative to the deployed application's root.
     // By copying the worker to assets, we ensure it's always available at this path.
     if (!pdfjsLib.GlobalWorkerOptions.workerSrc) {
-      pdfjsLib.GlobalWorkerOptions.workerSrc = `assets/pdf.worker.mjs`;
+      pdfjsLib.GlobalWorkerOptions.workerSrc = `assets/pdf.worker.js`;
     }
   }
 
