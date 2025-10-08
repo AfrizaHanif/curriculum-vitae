@@ -3,7 +3,7 @@
     "id_expertise": "EPT-001-001",
     "icon_expertise": "code-slash",
     "title_expertise": "Full-Stack Developer Laravel",
-    "desc_expertise": "Saya berpengalaman dengan keahlian mendalam pada ekosistem Laravel. Menguasai pembangunan aplikasi web yang scalable dari front-end hingga back-end dengan database MySQL. Memiliki rekam jejak yang solid dalam mengelola seluruh siklus pengembangan produk, mulai dari perencanaan, implementasi, hingga deployment. Berdedikasi untuk menulis kode yang bersih, efisien, dan mudah di maintain.",
+    "desc_expertise": "Saya adalah Full-Stack Developer dengan spesialisasi pada framework Laravel, berpengalaman dalam membangun aplikasi web yang scalable, aman, dan user-friendly. Memiliki pemahaman mendalam terhadap arsitektur MVC, RESTful API, dan pengembangan sisi frontend maupun backend.",
     "tags_expertise": ["PHP", "Laravel", "MySQL", "Bootstrap", "HTML"],
     "related_projects": ["POR-001-001", "POR-001-002"]
   }

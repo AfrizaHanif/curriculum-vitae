@@ -16,6 +16,7 @@ export class EducationModalComponent extends BaseModalComponent {
   school = input.required<string>();
   degree = input.required<string>();
   major = input.required<string>();
+  status = input.required<string>();
   s_period = input.required<string>();
   f_period = input<string | null>();
   gpa = input<number | null>();

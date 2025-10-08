@@ -1,0 +1,46 @@
+<div class="card h-100">
+  <div class="card-header">
+    {{ issuer() }}
+  </div>
+  @if (isPdf()) {
+    <div class="card-img-top rounded-0 bg-body-tertiary d-flex align-items-center justify-content-center overflow-hidden img-widescreen-crop">
+      @if (isPdfLoading()) {
+        <div class="spinner-border text-secondary" role="status"><span class="visually-hidden">Loading...</span></div>
+      }
+      <canvas [appPdfThumbnail]="file()" (loadingStateChange)="isPdfLoading.set($event)" class="w-100 h-100" [class.d-none]="isPdfLoading()"></canvas>
+    </div>
+  } @else {
+    <div class="image-container card-img-top rounded-0 d-flex justify-content-center align-items-center" #imageContainer>
+      <div class="spinner-border text-secondary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <img [src]="file()" [appImageFallback]="'assets/images/placeholder/placeholder-image.png'"
+           class="img-fluid rounded-0" [alt]="'File of ' + issuer()"
+           (load)="imageContainer.classList.add('loaded')">
+    </div>
+  }
+  <div class="card-body">
+    <h5 class="card-title">{{ name() }}</h5>
+  </div>
+  <div class="card-footer text-body-secondary">
+    <div class="row align-items-center">
+      <div class="col-9">
+        <small class="text-body-secondary">{{ issueDate() | date: 'dd MMMM yyyy' }}</small>
+      </div>
+      <div class="col-3 d-grid gap-2 d-md-flex justify-content-md-end">
+        <button type="button" class="btn btn-primary btn-sm stre" data-bs-toggle="modal" [attr.data-bs-target]="'#' + modalId()">Detail</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Certification Modal -->
+<app-certification-modal
+  [id]="modalId()"
+  [name]="name()"
+  [issuer]="issuer()"
+  [issueDate]="issueDate()"
+  [credentialId]="credentialId()"
+  [credentialUrl]="credentialUrl()"
+  [file]="file()"
+/>

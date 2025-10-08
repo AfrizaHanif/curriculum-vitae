@@ -12,6 +12,15 @@
 }
 
 /*
+* Custom style to override the default disabled color for dropdown items
+* in the dark header. This provides better visibility and a more integrated look.
+*/
+.text-bg-dark .dropdown-menu .dropdown-item.disabled {
+  color: var(--bs-danger) !important;
+  -webkit-text-fill-color: var(--bs-danger) !important; // For Safari
+}
+
+/*
 * Custom style for the hamburger menu toggler to ensure it's visible
 * on different sub-header backgrounds.
 */

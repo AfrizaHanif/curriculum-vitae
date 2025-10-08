@@ -1,0 +1,11 @@
+<div class="feature col">
+  <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
+    <svg class="bi" width="1em" height="1em" aria-hidden="true"><use [attr.xlink:href]="'#' + service().icon_service"></use></svg>
+  </div>
+  <h3 class="fs-2 text-body-emphasis">{{ service().title_service }}</h3>
+  <p>{{ service().desc_service }}</p>
+  <a [routerLink]="['/contact']" [queryParams]="{ subject: 'Diskusi Mengenai ' + service().title_service }" class="icon-link icon-link-hover">
+    Diskusikan Proyek
+    <svg class="bi" aria-hidden="true"><use xlink:href="#arrow-right"></use></svg>
+  </a>
+</div>

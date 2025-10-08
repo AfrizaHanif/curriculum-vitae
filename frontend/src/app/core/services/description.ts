@@ -1,6 +1,6 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
-import { ProfileService } from './profile';
-import { EducationService } from './education';
+import { ProfileService } from './data/profile';
+import { EducationService } from './data/education';
 
 @Injectable({
   providedIn: 'root'
@@ -55,6 +55,21 @@ export class DescriptionService {
    * Signal for the portfolio page jumbotron subtitle.
    */
   public portfolioJumbotronSubtitle = signal('Kumpulan proyek yang menampilkan keahlian saya dalam pengembangan web dan desain.');
+
+  /**
+   * Signal for the uses page jumbotron subtitle.
+   */
+  public setupJumbotronSubtitle = signal('Sekilas tentang perangkat keras, perangkat lunak, dan alat yang saya gunakan setiap hari.');
+
+  /**
+   * Signal for the services page jumbotron subtitle.
+   */
+  public servicesJumbotronSubtitle = signal('Layanan yang saya tawarkan untuk membantu Anda membangun produk digital yang luar biasa.');
+
+  /**
+   * Signal for the projects/labs page jumbotron subtitle.
+   */
+  public projectsJumbotronSubtitle = signal('Kumpulan eksperimen, tantangan kode, dan proyek sampingan yang menyenangkan.');
 
   /**
    * Signal for the contact page jumbotron subtitle.

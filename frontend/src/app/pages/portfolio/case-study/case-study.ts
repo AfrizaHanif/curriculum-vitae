@@ -1,7 +1,7 @@
 import { Component, computed, inject, input, Signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { PortfolioService } from '../../../core/services/portfolio';
+import { PortfolioService } from '../../../core/services/data/portfolio';
 import { PortfolioData } from '../../../core/models/portfolio';
 import { ScrollSpyDirective } from '../../../shared/directives/scrollspy';
 

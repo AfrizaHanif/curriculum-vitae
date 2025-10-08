@@ -15,6 +15,7 @@ export class ExperienceModalComponent extends BaseModalComponent {
   id = input.required<string>();
   title = input.required<string>();
   company = input.required<string>();
+  status = input.required<string>();
   s_period = input.required<string>();
   f_period = input<string | null>();
   description = input<string | null>();

@@ -11,22 +11,86 @@
         <!-- Desktop Navigation -->
         <div class="d-none d-lg-flex">
           <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
-            @for (link of navLinks(); track link.path) {
-              <li>
-                <!-- Tooltip Wrapper for disabled links -->
-                @if (link.disabled && link.tooltip) {
-                  <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-placement="bottom" [title]="link.tooltip">
-                    <a class="nav-link dynamic-link disabled" style="pointer-events: none;">
+            @for (link of navLinks().slice(0, visibleLinksLimit()); track link.path) {
+              <!-- Regular Link -->
+              @if (!link.children) {
+                <li>
+                  <!-- Tooltip Wrapper for disabled links -->
+                  @if (link.disabled && link.tooltip) {
+                    <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-placement="bottom" [title]="link.tooltip">
+                      <a class="nav-link dynamic-link disabled" style="pointer-events: none;">
+                        <svg class="bi d-block mx-auto mb-1" width="24" height="24" aria-hidden="true"><use [attr.xlink:href]="'#' + link.icon"></use></svg>
+                        {{ link.label }}
+                      </a>
+                    </span>
+                  } @else {
+                    <a [routerLink]="link.path" routerLinkActive="text-secondary" [routerLinkActiveOptions]="{exact: link.exact ?? false}" #rla="routerLinkActive" [class.text-white]="!rla.isActive" class="nav-link dynamic-link">
                       <svg class="bi d-block mx-auto mb-1" width="24" height="24" aria-hidden="true"><use [attr.xlink:href]="'#' + link.icon"></use></svg>
                       {{ link.label }}
                     </a>
-                  </span>
-                } @else {
-                  <a [routerLink]="link.path" routerLinkActive="text-secondary" [routerLinkActiveOptions]="{exact: link.exact ?? false}" #rla="routerLinkActive" [class.text-white]="!rla.isActive" class="nav-link dynamic-link">
+                  }
+                </li>
+              }
+              <!-- Dropdown Link -->
+              @if (link.children) {
+                <li class="nav-item dropdown">
+                  <a class="nav-link dynamic-link dropdown-toggle" href="#" [class.text-secondary]="isDropdownActive(link)" [class.text-white]="!isDropdownActive(link)" data-bs-toggle="dropdown" aria-expanded="false">
                     <svg class="bi d-block mx-auto mb-1" width="24" height="24" aria-hidden="true"><use [attr.xlink:href]="'#' + link.icon"></use></svg>
                     {{ link.label }}
                   </a>
-                }
+                  <ul class="dropdown-menu dropdown-menu-dark">
+                    @for(child of link.children; track child.path) {
+                      <li>
+                        @if (child.disabled && child.tooltip) {
+                          <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-placement="bottom" [title]="child.tooltip">
+                            <a class="dropdown-item disabled" style="pointer-events: none;">
+                              <svg class="bi me-2" width="16" height="16" aria-hidden="true"><use [attr.xlink:href]="'#' + child.icon"></use></svg>
+                              {{ child.label }}
+                            </a>
+                          </span>
+                        } @else {
+                          <a class="dropdown-item" [routerLink]="child.path" routerLinkActive="active" [routerLinkActiveOptions]="{exact: child.exact ?? false}"><svg class="bi me-2" width="16" height="16" aria-hidden="true"><use [attr.xlink:href]="'#' + child.icon"></use></svg>
+                            {{ child.label }}</a>
+                        }
+                      </li>
+                    }
+                  </ul>
+                </li>
+              }
+            }
+            @if (navLinks().length > visibleLinksLimit()) {
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dynamic-link dropdown-toggle"
+                  [class.text-secondary]="isMoreDropdownActive()"
+                  [class.text-white]="!isMoreDropdownActive()"
+                  href="#"
+                  id="moreLinksDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  <svg class="bi d-block mx-auto mb-1" width="24" height="24" aria-hidden="true"><use xlink:href="#three-dots"></use></svg>
+                  Lainnya
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="moreLinksDropdown">
+                  @for (link of navLinks().slice(visibleLinksLimit()); track link.path) {
+                    <li>
+                      @if (link.disabled && link.tooltip) {
+                        <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-placement="bottom" [title]="link.tooltip">
+                          <a class="dropdown-item disabled" style="pointer-events: none;">
+                            <svg class="bi me-2" width="16" height="16" aria-hidden="true"><use [attr.xlink:href]="'#' + link.icon"></use></svg>
+                            {{ link.label }}
+                          </a>
+                        </span>
+                      } @else {
+                        <a class="dropdown-item" [routerLink]="link.path" routerLinkActive="active" [routerLinkActiveOptions]="{exact: link.exact ?? false}">
+                          <svg class="bi me-2" width="16" height="16" aria-hidden="true"><use [attr.xlink:href]="'#' + link.icon"></use></svg>
+                          {{ link.label }}
+                        </a>
+                      }
+                    </li>
+                  }
+                </ul>
               </li>
             }
           </ul>
@@ -83,27 +147,50 @@
     <div class="offcanvas-body">
       <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
         @for (link of navLinks(); track link.path) {
-          <li class="nav-item">
-            @if (link.disabled && link.tooltip) {
-              <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-placement="bottom" [title]="link.tooltip">
-                <a class="nav-link disabled" style="pointer-events: none;">
+          <!-- Regular Link -->
+          @if (!link.children) {
+            <li class="nav-item">
+              @if (link.disabled && link.tooltip) {
+                <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-placement="bottom" [title]="link.tooltip">
+                  <a class="nav-link disabled" style="pointer-events: none;">
+                    <svg class="bi me-2" width="16" height="16" aria-hidden="true"><use [attr.xlink:href]="'#' + link.icon"></use></svg>
+                    {{ link.label }}
+                  </a>
+                </span>
+              } @else {
+                <a class="nav-link" [routerLink]="link.path" routerLinkActive="active" [routerLinkActiveOptions]="{exact: link.exact ?? false}" data-bs-dismiss="offcanvas">
                   <svg class="bi me-2" width="16" height="16" aria-hidden="true"><use [attr.xlink:href]="'#' + link.icon"></use></svg>
                   {{ link.label }}
                 </a>
-              </span>
-            } @else {
-              <a
-                class="nav-link"
-                [routerLink]="link.path"
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{exact: link.exact ?? false}"
-                data-bs-dismiss="offcanvas"
-              >
-                <svg class="bi me-2" width="16" height="16" aria-hidden="true"><use [attr.xlink:href]="'#' + link.icon"></use></svg>
-                {{ link.label }}
+              }
+            </li>
+          }
+          <!-- Dropdown Link -->
+          @if (link.children) {
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                 <svg class="bi me-2" width="16" height="16" aria-hidden="true"><use [attr.xlink:href]="'#' + link.icon"></use></svg>
+                 {{ link.label }}
               </a>
-            }
-          </li>
+              <ul class="dropdown-menu dropdown-menu-dark">
+                @for(child of link.children; track child.path) {
+                  <li>
+                    @if (child.disabled && child.tooltip) {
+                      <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-placement="bottom" [title]="child.tooltip">
+                        <a class="dropdown-item disabled" style="pointer-events: none;">
+                          <svg class="bi me-2" width="16" height="16" aria-hidden="true"><use [attr.xlink:href]="'#' + child.icon"></use></svg>
+                          {{ child.label }}
+                        </a>
+                      </span>
+                    } @else {
+                      <a class="dropdown-item" [routerLink]="child.path" routerLinkActive="active" [routerLinkActiveOptions]="{exact: child.exact ?? false}" data-bs-dismiss="offcanvas"><svg class="bi me-2" width="16" height="16" aria-hidden="true"><use [attr.xlink:href]="'#' + child.icon"></use></svg>
+                        {{ child.label }}</a>
+                    }
+                  </li>
+                }
+              </ul>
+            </li>
+          }
         }
       </ul>
       <hr>

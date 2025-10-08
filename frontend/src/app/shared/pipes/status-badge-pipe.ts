@@ -15,9 +15,9 @@ export class StatusBadgePipe implements PipeTransform {
       case 'Ongoing':
         return 'text-bg-primary';
       case 'Planning':
-        return 'text-bg-info';
-      case 'Stopped':
         return 'text-bg-warning';
+      case 'Stopped':
+        return 'text-bg-danger';
       default:
         return 'text-bg-secondary';
     }

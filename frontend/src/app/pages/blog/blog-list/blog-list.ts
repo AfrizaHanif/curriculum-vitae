@@ -4,7 +4,7 @@ import { RouterLink } from '@angular/router';
 import { Subject } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { JumbotronComponent } from '../../../shared/components/jumbotron/jumbotron';
-import { BlogService } from '../../../core/services/blog';
+import { BlogService } from '../../../core/services/data/blog';
 import { DescriptionService } from '../../../core/services/description';
 import { PaginationComponent } from '../../../shared/components/pagination/pagination';
 import { BlogListCardComponent } from './components/blog-list-card/blog-list-card';

@@ -1,0 +1,21 @@
+<!-- Jumbotron -->
+<app-jumbotron [imageUrl]="'assets/images/jumbotron/services.jpg'"
+  [imageAlt]="'A person working on a laptop with code on the screen'">
+  <div jumbotron-main>
+    <h1 class="display-4 fw-bold">Layanan Saya</h1>
+    <p class="fs-5 fs-md-4">{{ jumbotronSubtitle() }}</p>
+  </div>
+</app-jumbotron>
+
+<!-- Services List -->
+@if (services().length > 0) {
+<app-feature [itemPerRow]="2">
+  @for (service of services(); track service.id_service) {
+    <app-service-feature [service]="service" />
+  }
+</app-feature>
+} @else {
+  <div class="alert alert-info" role="alert">
+    Tidak ada layanan yang ada saat ini
+  </div>
+}

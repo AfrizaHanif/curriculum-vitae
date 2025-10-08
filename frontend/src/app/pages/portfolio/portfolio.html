@@ -76,11 +76,18 @@
       } @else {
         <div class="text-center py-5 my-5">
           @if (searchTerm()) {
-            <h3 class="text-body-secondary">Hasil Tidak Ditemukan</h3>
-            <p class="col-lg-6 col-md-8 mx-auto">Pencarian Anda untuk "{{ searchTerm() }}" tidak cocok dengan item portofolio apa pun. Silakan coba kata kunci pencarian yang berbeda.</p>
+            <!-- <h3 class="text-body-secondary">Hasil Tidak Ditemukan</h3>
+            <p class="col-lg-6 col-md-8 mx-auto">Pencarian Anda untuk "{{ searchTerm() }}" tidak cocok dengan item portofolio apa pun. Silakan coba kata kunci pencarian yang berbeda.</p> -->
+            <div class="alert alert-warning text-center" role="alert">
+              <h4 class="alert-heading">Hasil Tidak Ditemukan</h4>
+              Pencarian Anda untuk "{{ searchTerm() }}" tidak cocok dengan item portofolio apa pun. Silakan coba kata kunci pencarian yang berbeda.
+            </div>
           } @else {
-            <h3 class="text-body-secondary">Tidak Ada Item Portfolio</h3>
-            <p class="col-lg-6 col-md-8 mx-auto">Saat ini tidak ada item portofolio dalam kategori "{{ activeCategory() }}". Silakan periksa kembali nanti atau pilih kategori yang berbeda.</p>
+            <!-- <h3 class="text-body-secondary">Tidak Ada Item Portfolio</h3>
+            <p class="col-lg-6 col-md-8 mx-auto">Saat ini tidak ada item portofolio dalam kategori "{{ activeCategory() }}". Silakan periksa kembali nanti atau pilih kategori yang berbeda.</p> -->
+            <div class="alert alert-info text-center" role="alert">
+              Saat ini tidak ada item portofolio dalam kategori "{{ activeCategory() }}". Silakan periksa kembali nanti atau pilih kategori yang berbeda.
+            </div>
           }
         </div>
       }

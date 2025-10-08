@@ -1,4 +1,12 @@
-<nav id="scrollspy-nav-1" class="nav nav-pills">
-  <a class="nav-link" href="#about">Tentang Saya</a>
-  <a class="nav-link" href="#skills">Keterampilan</a>
-</nav>
+<div class="d-flex justify-content-between align-items-center w-100">
+  <!-- Scrollspy Navigation -->
+  <nav id="scrollspy-nav-1" class="nav nav-pills pe-1">
+    <a class="nav-link" href="#about">Tentang Saya</a>
+    <a class="nav-link" href="#skills">Keterampilan</a>
+    @if (profileData().philosophy_profile) {
+
+    }
+    <a class="nav-link" href="#philosophy">Filosofi</a>
+    <a class="nav-link" href="#hobbies">Hobi</a>
+  </nav>
+</div>

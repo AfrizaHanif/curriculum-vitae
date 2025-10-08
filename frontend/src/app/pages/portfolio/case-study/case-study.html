@@ -1,7 +1,7 @@
 @if (portfolioItem(); as item) {
   <div class="container">
     <div class="d-flex justify-content-start mb-4">
-      <a [routerLink]="['/portfolio', item.id_portfolio]" class="btn btn-outline-secondary d-inline-flex align-items-center">
+      <a [routerLink]="['/portfolio', item.slug_portfolio]" class="btn btn-outline-secondary d-inline-flex align-items-center">
         <svg class="bi me-2" width="16" height="16" aria-hidden="true"><use xlink:href="#arrow-left"></use></svg>
         Back to Project Details
       </a>

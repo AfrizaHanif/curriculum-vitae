@@ -28,3 +28,37 @@
     }
   }
 }
+
+/* Adjust the width of the carousel controls */
+#featuredProjectsCarousel .carousel-control-prev,
+#featuredProjectsCarousel .carousel-control-next {
+  width: 5%; /* Reduce width from default 15% to 5% */
+}
+
+/* Add padding to the carousel content to prevent overlap with controls */
+#featuredProjectsCarousel .carousel-inner {
+  padding-left: 6%;
+  padding-right: 6%;
+}
+
+/* Style for the control icons for better visibility in both themes */
+#featuredProjectsCarousel .carousel-control-prev-icon,
+#featuredProjectsCarousel .carousel-control-next-icon {
+  filter: invert(1) grayscale(100);
+  opacity: 0.7;
+}
+
+#featuredProjectsCarousel .carousel-control-prev:hover,
+#featuredProjectsCarousel .carousel-control-next:hover {
+  background-color: rgba(0, 0, 0, 0.2); // Keep the background color change
+}
+
+/* Style for the carousel indicators for better visibility in both themes */
+#featuredProjectsCarousel .carousel-indicators [data-bs-target] {
+  background-color: #888; /* A mid-gray color */
+  opacity: 0.5; /* Match default Bootstrap opacity for non-active indicators */
+}
+
+#featuredProjectsCarousel .carousel-indicators .active {
+  opacity: 1; /* Full opacity for the active indicator */
+}

@@ -8,15 +8,30 @@
 <div class="py-3">
   <!-- Featured Post Section -->
   @if (featuredPost(); as post) {
-    <article class="featured-post p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary" style="position: relative">
+    <article class="featured-post col-xxl-8 pb-5">
+      <div class="row flex-lg-row-reverse align-items-center g-5">
+        <div class="col-10 col-sm-8 col-lg-6">
+          <img [src]="post.image_blog" class="d-block mx-lg-auto img-fluid img-widescreen-crop rounded" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+        </div>
+        <div class="col-lg-6">
+          <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">{{ post.title_blog }}</h1>
+          <p class="lead">{{ post.summary_blog }}</p>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            <a [routerLink]="['/blog', post.slug_blog]" type="button" class="btn btn-primary btn-lg px-4 me-md-2">Baca lebih lanjut...</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- <article class="featured-post p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary" style="position: relative">
       <div class="col-lg-8 px-0">
         <h1 class="display-4 fst-italic">{{ post.title_blog }}</h1>
         <p class="lead my-3">{{ post.summary_blog }}</p>
         <p class="lead mb-0">
-          <a [routerLink]="['/blog', post.id_blog]" class="text-body-emphasis fw-bold stretched-link">Baca lebih lanjut...</a>
+          <a [routerLink]="['/blog', post.slug_blog]" class="text-body-emphasis fw-bold stretched-link">Baca lebih lanjut...</a>
         </p>
       </div>
-    </article>
+    </article> -->
   }
 
   <!-- Section Header for the main list -->
@@ -56,22 +71,34 @@
     </div>
   </div>
 
-  <div class="text-muted mb-3">
-    Menampilkan {{ posts().length }} of {{ pagination().total }} artikel.
-  </div>
+  @if (blogService.posts().length > 0) {
+    <div class="text-muted mb-3">
+      Menampilkan {{ posts().length }} dari {{ pagination().total }} artikel.
+    </div>
 
-  @if (posts().length > 0) {
-  <app-card [cardPerRow]="3">
-    @for (post of posts(); track post.id_blog) {
-      <app-blog-list-card [item]="post" />
+    @if (posts().length > 0) {
+      <app-card [cardPerRow]="3">
+        @for (post of posts(); track post.id_blog) {
+          <app-blog-list-card [item]="post" />
+        }
+      </app-card>
+    } @else {
+      <div class="text-center py-5">
+        <!-- <p class="lead text-body-secondary">Tidak ada artikel yang sesuai dengan kriteria. Anda dapat mengubah kata-kata dari kriteria atau pilih tag yang tersedia</p> -->
+        <div class="alert alert-info" role="alert">
+          Tidak ada artikel yang sesuai dengan kriteria. Anda dapat mengubah kata-kata dari kriteria atau pilih tag yang tersedia
+        </div>
+      </div>
     }
-  </app-card>
+
+    <!-- Pagination Controls -->
+    <app-pagination [paginationData]="pagination()" (pageChange)="onPageChange($event)" />
   } @else {
-    <div class="text-center py-5">
-      <p class="lead text-body-secondary">Tidak ada artikel yang sesuai dengan kriteria. Anda dapat mengubah kata-kata dari kriteria atau pilih tag yang tersedia.</p>
+    <!-- <div class="text-center py-5">
+      <p class="lead text-body-secondary">Saat ini belum ada artikel yang dipublikasikan. Silakan periksa kembali nanti.</p>
+    </div> -->
+    <div class="alert alert-danger" role="alert">
+      Saat ini belum ada artikel yang dipublikasikan. Silakan periksa kembali nanti
     </div>
   }
-
-  <!-- Pagination Controls -->
-  <app-pagination [paginationData]="pagination()" (pageChange)="onPageChange($event)" />
 </div>

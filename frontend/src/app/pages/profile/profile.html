@@ -8,7 +8,7 @@
 
   <div appScrollSpy data-bs-target="#scrollspy-nav-1" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true">
     <section id="about" class="row align-items-md-stretch pb-4">
-        <div class="col-md-4">
+        <div class="col-lg-4 col-md-12">
           <div class="h-100 p-0 bg-body-secondary rounded-3">
             <div class="w-100 h-100 rounded-3 d-flex justify-content-center align-items-center"
                 [appBackgroundImageFallback]="profileData().photo_profile"
@@ -22,7 +22,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-lg-8 col-md-12">
             <div class="h-100 p-5 bg-body text-body border rounded-3">
                 <h2 class="pb-2 border-bottom">Tentang Saya</h2>
                 <table class="table table-borderless pt-3 fs-5">
@@ -57,14 +57,47 @@
         </div>
     </section>
 
-    <section id="skills">
-      <app-card [title]="'Keterampilan / Skill'" [cardPerRow]="4">
+    <div id="skills" class="mt-4">
+      @if (skills().length > 0) {
+        <app-card title="Keterampilan & Keahlian" [cardPerRow]="4">
         @for (skill of skills(); track skill.id_skill) {
           <app-skill-card [skillName]="skill.name_skill" [skillPercentage]="skill.percent_skill"></app-skill-card>
         }
-      </app-card>
-    </section>
+        </app-card>
+      } @else {
+        <div class="alert alert-info" role="alert">
+          Tidak ada keahlian / skill yang ada
+        </div>
+      }
+    </div>
+
+    <!-- Work Philosophy Section -->
+    @if (profileData().philosophy_profile) {
+    <div id="philosophy" class="mt-2">
+      <div class="h-100 p-5 bg-body-tertiary rounded-3">
+        <h2>Filosofi Kerja Saya</h2>
+        <p class="lead">{{ profileData().philosophy_profile }}</p>
+      </div>
+    </div>
+    }
+
+    <!-- Hobbies & Interests Section -->
+    <div id="hobbies" class="mt-4">
+      @if (hobbies().length > 0) {
+      <app-feature title="Hobi & Minat" [itemPerRow]="4">
+        @for (hobby of hobbies(); track hobby.id_hobby) {
+          <app-hobbies-feature
+          [id]="hobby.id_hobby"
+          [name]="hobby.name_hobby"
+          [icon]="hobby.icon_hobby"
+          />
+        }
+      </app-feature>
+      } @else {
+        <div class="alert alert-info" role="alert">
+          Tidak ada hobi yang ada
+        </div>
+      }
+    </div>
   </div>
-
-
 </div>

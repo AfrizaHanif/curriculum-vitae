@@ -2,6 +2,7 @@
   {
     "id_portfolio": "POR-001-001",
     "title_portfolio": "Rancang Bangun Aplikasi Pelayanan Perpustakaan pada Badan Pusat Statistik Provinsi Jawa Timur",
+    "slug_portfolio": "rancang-bangun-aplikasi-pelayanan-perpustakaan-pada-badan-pusat-statistik-provinsi-jawa-timur",
     "category_portfolio": "Proyek Akademik",
     "subcategory_portfolio": "Full-Stack Development",
     "type_portfolio": "Aplikasi Web",
@@ -28,11 +29,13 @@
     "tech_portfolio": ["Laravel", "PHP"],
     "repository_portfolio": "https://repository.dinamika.ac.id/id/eprint/7167/",
     "rep_type_portfolio": "Document",
-    "related_blogs_portfolio": ["BLG-001-002"]
+    "related_blogs_portfolio": ["BLG-001-002"],
+    "is_featured": true
   },
   {
     "id_portfolio": "POR-001-002",
     "title_portfolio": "Rancang Bangun Aplikasi Penentuan Karyawan Terbaik Berbasis Web menggunakan Metode Simple Additive Weighting (SAW) pada BPS Provinsi Jawa Timur",
+    "slug_portfolio": "rancang-bangun-aplikasi-penentuan-karyawan-terbaik-berbasis-web-menggunakan-metode-simple-additive-weighting-saw-pada-bps-provinsi-jawa-timur",
     "category_portfolio": "Proyek Akademik",
     "subcategory_portfolio": "Full-Stack Development",
     "type_portfolio": "Aplikasi Web",

@@ -3,6 +3,21 @@
     <div jumbotron-main>
       <h1 class="display-4 fw-bold">Resume</h1>
       <p class="fs-5 fs-md-4">{{ jumbotronSubtitle() }}</p>
+      <!-- Convert the button to a split dropdown -->
+      <div class="btn-group mt-3">
+        <a href="assets/documents/cv-afriza-hanif.pdf" download="cv-afriza-hanif.pdf" class="btn btn-primary btn-lg" (click)="trackCvDownload('download')">
+          <i class="bi bi-download me-2"></i> Unduh CV
+        </a>
+        <button type="button" class="btn btn-lg btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+          <span class="visually-hidden">Toggle Dropdown</span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modal-cv-view" (click)="trackCvDownload('view')">
+            <i class="bi bi-filetype-pdf me-2"></i>
+            Lihat PDF
+          </a></li>
+        </ul>
+      </div>
     </div>
   </app-jumbotron>
 
@@ -14,9 +29,27 @@
         </div>
     </div>
 
+    <div id="experience">
+      <app-feature title="Pengalaman" [itemPerRow]="4">
+      @for (exp of sortedExperienceHistory(); track exp.id_experience) {
+        <app-experience-feature
+          [id]="exp.id_experience"
+          [title]="exp.title_experience"
+          [company]="exp.company_experience"
+          [status]="exp.status_experience"
+          [s_period]="exp.s_period_experience"
+          [f_period]="exp.f_period_experience"
+          [description]="exp.desc_experience"
+          [latitude]="exp.latitude_experience"
+          [longitude]="exp.longitude_experience"
+        />
+      }
+      </app-feature>
+    </div>
+
     <div id="education">
-      <app-feature title="Pendidikan">
-      @for (edu of educationHistory(); track edu.id_education) {
+      <app-feature title="Pendidikan" [itemPerRow]="4">
+      @for (edu of sortedEducationHistory(); track edu.id_education) {
         <app-education-feature
           [id]="edu.id_education"
           [school]="edu.school_education"
@@ -24,9 +57,9 @@
           [major]="edu.major_education"
           [status]="edu.status_education"
           [s_period]="edu.s_period_education"
-          [f_period]="edu.f_period_education!"
-          [gpa]="edu.gpa_education!"
-          [description]="edu.desc_education!"
+          [f_period]="edu.f_period_education"
+          [gpa]="edu.gpa_education"
+          [description]="edu.desc_education"
           [latitude]="edu.latitude_education"
           [longitude]="edu.longitude_education"
         />
@@ -34,23 +67,37 @@
       </app-feature>
     </div>
 
-    <div id="experience">
-    <app-feature title="Pengalaman">
-    @for (exp of experienceHistory(); track exp.id_experience) {
-      <app-experience-feature
-        [id]="exp.id_experience"
-        [title]="exp.title_experience"
-        [company]="exp.company_experience"
-        [status]="exp.status_experience"
-        [s_period]="exp.s_period_experience"
-        [f_period]="exp.f_period_experience!"
-        [description]="exp.desc_experience!"
-        [latitude]="exp.latitude_experience"
-        [longitude]="exp.longitude_experience"
-      />
-    }
-    </app-feature>
+    <div id="skills">
+      @if (sortedSkills().length > 0) {
+      <app-card title="Keterampilan & Keahlian" [cardPerRow]="4">
+        @for (skill of sortedSkills(); track skill.id_skill) {
+          <app-skill-card [skillName]="skill.name_skill" [skillPercentage]="skill.percent_skill"></app-skill-card>
+        }
+      </app-card>
+      } @else {
+        <div class="alert alert-info" role="alert">
+          Tidak ada keahlian / skill yang ada
+        </div>
+      }
     </div>
+
+    @if (sortedCertifications().length > 0) {
+    <div id="certifications">
+      <app-card title="Lisensi & Sertifikasi" [cardPerRow]="4">
+        @for (cert of sortedCertifications(); track cert.id_certification) {
+          <app-certification-card
+            [id]="cert.id_certification"
+            [name]="cert.name_certification"
+            [issuer]="cert.issuer_certification"
+            [issueDate]="cert.issue_date_certification"
+            [credentialId]="cert.credential_id_certification"
+            [credentialUrl]="cert.credential_url_certification"
+            [file]="cert.file_certification"
+          />
+        }
+      </app-card>
+    </div>
+    }
   </div>
 
   <app-cv-viewer-modal size="lg" scrollable />

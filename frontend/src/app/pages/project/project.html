@@ -1,0 +1,23 @@
+<!-- Jumbotron -->
+<app-jumbotron [imageUrl]="'assets/images/jumbotron/project.jpg'"
+  [imageAlt]="'A workbench with various tools and electronics'">
+  <div jumbotron-main>
+    <h1 class="display-4 fw-bold">Project Lainnya</h1>
+    <p class="fs-5 fs-md-4">{{ jumbotronSubtitle() }}</p>
+  </div>
+</app-jumbotron>
+
+<!-- Projects Grid -->
+<div class="album py-2">
+  @if (projects().length > 0) {
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    @for (item of projects(); track item.id_project) {
+      <app-project-card [item]="item" />
+    }
+  </div>
+  } @else {
+    <div class="alert alert-info" role="alert">
+      Tidak ada proyek yang sedang dikerjakan
+    </div>
+  }
+</div>

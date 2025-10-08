@@ -3,6 +3,7 @@ export interface PortfolioData {
   id_portfolio: string;
   id_user?: string;
   title_portfolio: string;
+  slug_portfolio: string;
   category_portfolio: string;
   subcategory_portfolio: string;
   type_portfolio: string;
@@ -17,6 +18,8 @@ export interface PortfolioData {
   repository_portfolio?: string; // Optional
   rep_type_portfolio?: 'GitHub' | 'GitLab' | 'Bitbucket' | 'Document' | string; // Optional, but required if repository_portfolio has been filled
   related_blogs_portfolio?: string[]; // Optional
+  // testimonial?: TestimonialData; // Optional: Embed testimonial data directly
+  is_featured: boolean;
 
   // New Case Study Fields
   overview_case_study?: string;

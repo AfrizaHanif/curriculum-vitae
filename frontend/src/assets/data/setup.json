@@ -1,0 +1,79 @@
+[
+  {
+    "name": "Home Workstation",
+    "items": [
+      {
+        "name": "Komputer Utama",
+        "description": "PC Rakitan (AMD Ryzen 5, 16GB RAM)",
+        "whyIUseIt": "Komputer ini digunakan untuk melakukan pemrograman dengan cepat dan stabil tanpa bottleneck"
+      },
+      {
+        "name": "Monitor",
+        "description": "LG 19M38A 19 inch",
+        "whyIUseIt": "Menghasilkan layar yang cukup luas untuk melakukan multitasking saat melakukan pengerjaan"
+      },
+      {
+        "name": "Keyboard",
+        "description": "Logitech Pebble Keys 2 K380s",
+        "whyIUseIt": "Ringkas dan nyaman. Layout keyboard ini beradaptasi dengan keyboard laptop 14 inch"
+      },
+      {
+        "name": "Mouse",
+        "description": "Logitech Pebble M350",
+        "whyIUseIt": "Ringkas dan hening tanpa mengganggu aktivitas"
+      }
+    ]
+  },{
+    "name": "Portable Setup",
+    "items": [
+      {
+        "name": "Laptop",
+        "description": "Lenovo Ideapad 3 (2021)",
+        "whyIUseIt": "Laptop ini digunakan untuk melakukan programming dimana saja saat bepergian"
+      },
+      {
+        "name": "Mouse",
+        "description": "Logitech M240",
+        "whyIUseIt": "Ergonomic dan hening tanpa mengganggu aktivitas orang lain."
+      }
+    ]
+  },
+  {
+    "name": "Gadget Devices",
+    "items": [
+      {
+        "name": "Primary Phone",
+        "description": "Samsung Galaxy A54 5G"
+      },
+      {
+        "name": "Wearable",
+        "description": "Samsung Galaxy Fit3"
+      }
+    ]
+  },
+  {
+    "name": "Shared Development Tools",
+    "items": [
+      {
+        "name": "Code Editor",
+        "description": "Visual Studio Code",
+        "whyIUseIt": "Cepat, dapat disesuaikan dengan ekosistem ekstensi yang luas, dan memiliki dukungan bawaan yang hebat untuk banyak bahasa pemrograman yang saya gunakan"
+      },
+      {
+        "name": "Terminal",
+        "description": "Windows Terminal with PowerShell",
+        "whyIUseIt": "Terminal modern yang mendukung banyak tab, panel, dan profil. PowerShell sangat kuat untuk scripting dan otomatisasi di Windows"
+      },
+      {
+        "name": "Browser",
+        "description": "Google Chrome & Firefox Developer Edition",
+        "whyIUseIt": "Saya menggunakan Google Chrome karena alat pengembangnya yang tangguh dan kompatibilitasnya yang luas, dan Firefox Developer Edition karena inspector CSS grid-nya yang luar biasa dan fitur privasinya"
+      },
+      {
+        "name": "API Client",
+        "description": "Postman",
+        "whyIUseIt": "Sebuah alat yang tak tergantikan untuk menguji dan berinteraksi dengan API. Alat ini dapat menyederhanakan proses pengiriman permintaan dan pemeriksaan respons"
+      }
+    ]
+  }
+]

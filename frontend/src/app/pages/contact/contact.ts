@@ -5,8 +5,8 @@ import { JumbotronComponent } from '../../shared/components/jumbotron/jumbotron'
 import { AccordionComponent } from '../../shared/components/accordion/accordion';
 import { ContactFormComponent } from './components/contact-form/contact-form';
 import { DescriptionService } from '../../core/services/description';
-import { ProfileService } from '../../core/services/profile';
-import { SocialService } from '../../core/services/social';
+import { ProfileService } from '../../core/services/data/profile';
+import { SocialService } from '../../core/services/data/social';
 import { ToastService } from '../../core/services/toast';
 import { ContactData } from '../../core/models/contact';
 import { ConfirmationService } from '../../core/services/confirmation';

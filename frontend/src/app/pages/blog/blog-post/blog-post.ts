@@ -1,7 +1,7 @@
-import { Component, computed, inject, input, Signal } from '@angular/core';
+import { Component, computed, effect, inject, input, Signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
-import { BlogService } from '../../../core/services/blog';
+import { Router, RouterLink } from '@angular/router';
+import { BlogService } from '../../../core/services/data/blog';
 import { BlogData } from '../../../core/models/blog';
 import { ImageFallbackDirective } from '../../../shared/directives/image-fallback';
 import { RelatedPostCard } from "./components/related-post-card/related-post-card";
@@ -14,21 +14,34 @@ import { RelatedPostCard } from "./components/related-post-card/related-post-car
   styleUrls: ['./blog-post.css']
 })
 export class BlogPostComponent {
-  // The router will bind the 'id' from the URL to this input.
-  id_blog = input.required<string>({ alias: 'id_blog' });
+  // The router will bind the 'slug_blog' from the URL to this input.
+  slug_blog = input.required<string>();
 
   private blogService = inject(BlogService);
+  private router = inject(Router);
 
   // A computed signal that finds the blog post based on the ID.
   post: Signal<BlogData | undefined> = computed(() => {
-    return this.blogService.getPostById(this.id_blog());
+    return this.blogService.getPostBySlug(this.slug_blog());
   });
 
   // A computed signal that finds related posts.
   relatedPosts: Signal<BlogData[]> = computed(() => {
-    if (this.post()) {
-      return this.blogService.getRelatedPosts(this.id_blog(), 3);
+    const currentPost = this.post();
+    if (currentPost) {
+      // getRelatedPosts uses the post ID to find related content.
+      return this.blogService.getRelatedPosts(currentPost.id_blog, 3);
     }
     return [];
   });
+
+  constructor() {
+    // This effect will run whenever the post signal changes.
+    // If the post is undefined after the data has loaded, it means the slug is invalid.
+    effect(() => {
+      if (this.post() === undefined) {
+        this.router.navigate(['/not-found']);
+      }
+    });
+  }
 }

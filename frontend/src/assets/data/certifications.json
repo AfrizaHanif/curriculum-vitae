@@ -1,0 +1,128 @@
+[
+  {
+    "id_certification": "CER-001-001",
+    "name_certification": "Konsep Pemrograman (Micro Skill)",
+    "issuer_certification": "Digital Talent Scholarship",
+    "issue_date_certification": "2025-06-15",
+    "credential_id_certification": "2299793850-1837",
+    "credential_url_certification": "https://digitalent.komdigi.go.id/cek-sertifikat/",
+    "file_certification": "assets/documents/certificates/CER-001-001.pdf"
+  },
+  {
+    "id_certification": "CER-001-002",
+    "name_certification": "Pengantar Mindset Digital 1 : Mengubah Masa Depan Anda Dengan Pola Pikir Digital (Micro Skill)",
+    "issuer_certification": "Digital Talent Scholarship",
+    "issue_date_certification": "2025-06-15",
+    "credential_id_certification": "2299815850-3827",
+    "credential_url_certification": "https://digitalent.komdigi.go.id/cek-sertifikat/",
+    "file_certification": "assets/documents/certificates/CER-001-002.pdf"
+  },
+  {
+    "id_certification": "CER-001-003",
+    "name_certification": "Introduction To Cloud Computing (Micro Skill)",
+    "issuer_certification": "Digital Talent Scholarship",
+    "issue_date_certification": "2025-03-25",
+    "credential_id_certification": "2299864850-4265",
+    "credential_url_certification": "https://digitalent.komdigi.go.id/cek-sertifikat/",
+    "file_certification": "assets/documents/certificates/CER-001-003.pdf"
+  },
+  {
+    "id_certification": "CER-001-004",
+    "name_certification": "Pengenalan Internet of Things: Konsep, Teknologi, dan Aplikasinya (Micro Skill)",
+    "issuer_certification": "Digital Talent Scholarship",
+    "issue_date_certification": "2025-03-26",
+    "credential_id_certification": "2299806850-1081",
+    "credential_url_certification": "https://digitalent.komdigi.go.id/cek-sertifikat/",
+    "file_certification": "assets/documents/certificates/CER-001-004.pdf"
+  },
+  {
+    "id_certification": "CER-001-005",
+    "name_certification": "Seberapa Aman Informasi Anda dari Ancaman Digital (Micro Skill)",
+    "issuer_certification": "Digital Talent Scholarship",
+    "issue_date_certification": "2025-03-26",
+    "credential_id_certification": "2299750990-1042",
+    "credential_url_certification": "https://digitalent.komdigi.go.id/cek-sertifikat/",
+    "file_certification": "assets/documents/certificates/CER-001-005.pdf"
+  },
+  {
+    "id_certification": "CER-001-006",
+    "name_certification": "Seberapa Penting Menjaga Data Pribadi dan Pelindungannya (Micro Skill)",
+    "issuer_certification": "Digital Talent Scholarship",
+    "issue_date_certification": "2025-03-26",
+    "credential_id_certification": "2299751990-3857",
+    "credential_url_certification": "https://digitalent.komdigi.go.id/cek-sertifikat/",
+    "file_certification": "assets/documents/certificates/CER-001-006.pdf"
+  },
+  {
+    "id_certification": "CER-001-007",
+    "name_certification": "Wawasan Karir dalam Bidang Data Analytics (Micro Skill)",
+    "issuer_certification": "Digital Talent Scholarship",
+    "issue_date_certification": "2025-05-15",
+    "credential_id_certification": "2299746850-6200",
+    "credential_url_certification": "https://digitalent.komdigi.go.id/cek-sertifikat/",
+    "file_certification": "assets/documents/certificates/CER-001-007.pdf"
+  },
+  {
+    "id_certification": "CER-001-008",
+    "name_certification": "Dasar-dasar Keamanan AI (Micro Skill)",
+    "issuer_certification": "Digital Talent Scholarship",
+    "issue_date_certification": "2025-02-24",
+    "credential_id_certification": "2299752990-5063",
+    "credential_url_certification": "https://digitalent.komdigi.go.id/cek-sertifikat/",
+    "file_certification": "assets/documents/certificates/CER-001-008.pdf"
+  },
+  {
+    "id_certification": "CER-001-009",
+    "name_certification": "Dasar-Dasar Implementasi Kecerdasan Artifisial (Micro Skill)",
+    "issuer_certification": "Digital Talent Scholarship",
+    "issue_date_certification": "2025-02-24",
+    "credential_id_certification": "2299748850-1719",
+    "credential_url_certification": "https://digitalent.komdigi.go.id/cek-sertifikat/",
+    "file_certification": "assets/documents/certificates/CER-001-009.pdf"
+  },
+  {
+    "id_certification": "CER-001-010",
+    "name_certification": "Menskalakan AI di Organisasi Anda (Micro Skill)",
+    "issuer_certification": "Digital Talent Scholarship",
+    "issue_date_certification": "2025-02-24",
+    "credential_id_certification": "2299754990-2369",
+    "credential_url_certification": "https://digitalent.komdigi.go.id/cek-sertifikat/",
+    "file_certification": "assets/documents/certificates/CER-001-010.pdf"
+  },
+  {
+    "id_certification": "CER-001-011",
+    "name_certification": "Pengenalan Data Science dan Pemanfaatannya di Berbagai Sektor (Micro Skill)",
+    "issuer_certification": "Digital Talent Scholarship",
+    "issue_date_certification": "2025-05-15",
+    "credential_id_certification": "2299818850-6055",
+    "credential_url_certification": "https://digitalent.komdigi.go.id/cek-sertifikat/",
+    "file_certification": "assets/documents/certificates/CER-001-011.pdf"
+  },
+  {
+    "id_certification": "CER-001-012",
+    "name_certification": "AI Engineer For Milenial (Micro Skill)",
+    "issuer_certification": "Digital Talent Scholarship",
+    "issue_date_certification": "2025-10-07",
+    "credential_id_certification": "22910029850-10259",
+    "credential_url_certification": "https://digitalent.komdigi.go.id/cek-sertifikat/",
+    "file_certification": "assets/documents/certificates/CER-001-012.pdf"
+  },
+  {
+    "id_certification": "CER-001-013",
+    "name_certification": "Ethical Hacker For Dummies (Micro Skill)",
+    "issuer_certification": "Digital Talent Scholarship",
+    "issue_date_certification": "2025-10-07",
+    "credential_id_certification": "22910030850-7900",
+    "credential_url_certification": "https://digitalent.komdigi.go.id/cek-sertifikat/",
+    "file_certification": "assets/documents/certificates/CER-001-013.pdf"
+  },
+  {
+    "id_certification": "CER-001-014",
+    "name_certification": "Computational Thinking : Cara Berpikir Logis untuk Mengatasi Masalah (Jenjang SMA) (Micro Skill)",
+    "issuer_certification": "Digital Talent Scholarship",
+    "issue_date_certification": "2025-10-06",
+    "credential_id_certification": "22910204850-7122",
+    "credential_url_certification": "https://digitalent.komdigi.go.id/cek-sertifikat/",
+    "file_certification": "assets/documents/certificates/CER-001-014.pdf"
+  }
+]

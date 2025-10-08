@@ -6,16 +6,16 @@
 </app-jumbotron>
 
 <div class="py-2">
-  @if (testimonials().length > 0) {
+  @if (testimonialsWithProjects().length > 0) {
     <div class="row row-cols-1 row-cols-md-2 g-4">
-      @for (testimonial of testimonials(); track testimonial.id_testimonial) {
+      @for (testimonial of testimonialsWithProjects(); track testimonial.id_testimonial) {
         <div class="col">
-          <article class="card h-100">
+          <article class="card h-100 d-flex flex-column">
             <div class="card-body d-flex flex-column">
               <blockquote class="blockquote mb-0 flex-grow-1">
                 <p>“{{ testimonial.quote_testimonial }}”</p>
               </blockquote>
-              <footer class="blockquote-footer mt-4">
+              <footer class="blockquote-footer mt-1">
                 <div class="d-flex align-items-center">
                   <div class="image-container rounded-circle me-3" #imageContainer>
                     <div class="spinner-border spinner-border-sm text-light" role="status">
@@ -36,13 +36,23 @@
                 </div>
               </footer>
             </div>
+            @if (testimonial.projects.length > 0) {
+              <div class="card-footer text-body-secondary">
+                <h6 class="card-subtitle mt-1 mb-2 mx-1 text-muted small">Proyek Terkait:</h6>
+                <div class="list-group list-group-flush">
+                  @for (project of testimonial.projects; track project.id_portfolio) {
+                    <a [routerLink]="['/portfolio', project.slug_portfolio]" class="list-group-item list-group-item-action p-1 small bg-transparent">{{ project.title_portfolio }}</a>
+                  }
+                </div>
+              </div>
+            }
           </article>
         </div>
       }
     </div>
   } @else {
-    <div class="text-center py-5">
-      <p class="lead text-body-secondary">No testimonials available at the moment. Please check back later.</p>
+    <div class="alert alert-info" role="alert">
+      Tidak ada testimonial yang ada
     </div>
   }
 </div>

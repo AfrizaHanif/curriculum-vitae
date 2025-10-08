@@ -33,7 +33,7 @@
           <small class="text-body-secondary">{{ item().s_period_portfolio | date:'MMMM yyyy' }} - {{ item().f_period_portfolio | date:'MMMM yyyy' }}</small>
         </div>
         <div class="col-3 d-grid gap-2 d-md-flex justify-content-md-end">
-          <a [routerLink]="['/portfolio', item().id_portfolio]" class="btn btn-primary btn-sm stretched-link">Detail</a>
+          <a [routerLink]="['/portfolio', item().slug_portfolio]" class="btn btn-primary btn-sm stretched-link">Detail</a>
         </div>
       </div>
     </div>

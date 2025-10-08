@@ -1,11 +1,7 @@
 import { Routes } from '@angular/router';
-import { portfolioTitleResolver } from './core/resolvers/portfolio-title-resolver';
 import { PublicLayoutComponent } from './core/layouts/public-layout/public-layout';
 import { coreDataResolver } from './core/resolvers/core-data-resolver';
-import { portfolioCaseStudyTitleResolver } from './core/resolvers/portfolio-case-study-title-resolver';
-import { portfolioBreadcrumbResolver } from './core/resolvers/portfolio-breadcrumb-resolver';
-import { blogPostTitleResolver } from './core/resolvers/blog-post-title-resolver';
-import { navigationGuard } from './core/guards/navigation.guard';
+import { navigationGuard } from './core/guards/navigation-guard';
 
 export const routes: Routes = [
   {
@@ -26,19 +22,8 @@ export const routes: Routes = [
         // Profile Page (Profile, Skills)
         path: 'profile',
         title: 'Profile',
-        children: [
-          {
-            // Views
-            path: '',
-            loadComponent: () => import('./pages/profile/profile').then(m => m.ProfileComponent),
-          },
-          {
-            // Sub Header
-            path: '',
-            loadComponent: () => import('./pages/profile/components/profile-subheader/profile-subheader').then(m => m.ProfileSubheaderComponent),
-            outlet: 'subheader',
-          },
-        ]
+        // Lazy-load the profile feature's routes
+        loadChildren: () => import('./pages/profile/profile.routes').then(m => m.PROFILE_ROUTES),
       },
       {
         // Resume Page (Overview, Education, Experience)
@@ -66,75 +51,39 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/expertise/expertise').then(m => m.ExpertiseComponent),
       },
       {
-        // Portfolio Page
-        path: 'portfolio',
-        title: 'Portfolio', // This will be the parent breadcrumb
-        children: [
-          {
-            // Main Page of Portfolio (Portfolio Items)
-            path: '',
-            // The list component now lives at the empty path.
-            // No title is needed here, as the parent provides it.
-            loadComponent: () => import('./pages/portfolio/portfolio').then(m => m.PortfolioComponent),
-            pathMatch: 'full',
-          },
-          {
-            // Selected Portfolio Page
-            path: ':id_portfolio', // This becomes a parent route for details and case study.
-            title: portfolioTitleResolver,
-            resolve: {
-              breadcrumb: portfolioBreadcrumbResolver
-            },
-            children: [
-              {
-                // Main Page of Selected Portfolio
-                path: '', // The default view for /portfolio/:id
-                loadComponent: () => import('./pages/portfolio/selected-portfolio/selected-portfolio').then(m => m.SelectedPortfolioComponent),
-              },
-              {
-                // Case Study Page
-                path: 'case-study', // The new case study route
-                title: portfolioCaseStudyTitleResolver, // Use the new resolver for a specific title
-                data: {
-                  breadcrumb: 'Studi Kasus' // Static breadcrumb label for this segment
-                },
-                children: [
-                  {
-                    path: '',
-                    loadComponent: () => import('./pages/portfolio/case-study/case-study').then(m => m.CaseStudyComponent),
-                  },
-                  {
-                    path: '',
-                    loadComponent: () =>
-                      import(
-                        './pages/portfolio/components/portfolio-case-study-subheader/portfolio-case-study-subheader'
-                      ).then(m => m.PortfolioCaseStudySubheaderComponent),
-                    outlet: 'subheader',
-                  },
-                ]
-              }
-            ]
-          },
-        ],
+        // Uses Page
+        path: 'setup',
+        title: 'Setup',
+        // Lazy-load the uses component
+        loadComponent: () => import('./pages/setup/setup').then(m => m.SetupComponent),
       },
       {
-        // Blog Page (Will be removed later if not used)
+        // Services Page
+        path: 'services',
+        title: 'Services',
+        // Lazy-load the services component
+        loadComponent: () => import('./pages/service/service').then(m => m.ServiceComponent),
+      },
+      {
+        // Projects/Labs Page
+        path: 'projects',
+        title: 'Projects',
+        // Lazy-load the projects component
+        loadComponent: () => import('./pages/project/project').then(m => m.ProjectComponent),
+      },
+      {
+        // Portfolio Page
+        path: 'portfolio',
+        title: 'Portfolio',
+        // Lazy-load the portfolio feature's routes
+        loadChildren: () => import('./pages/portfolio/portfolio.routes').then(m => m.PORTFOLIO_ROUTES),
+      },
+      {
+        // Blog Page
         path: 'blog',
         title: 'Blog',
-        children: [
-          {
-            // Main Page of Blog (Blog List)
-            path: '',
-            loadComponent: () => import('./pages/blog/blog-list/blog-list').then(m => m.BlogListComponent),
-            pathMatch: 'full',
-          },
-          {
-            // Selected Blog Page (Blog Post)
-            path: ':id_blog',
-            title: blogPostTitleResolver,
-            loadComponent: () => import('./pages/blog/blog-post/blog-post').then(m => m.BlogPostComponent),
-          }
-        ]
+        // Lazy-load the blog feature's routes
+        loadChildren: () => import('./pages/blog/blog.routes').then(m => m.BLOG_ROUTES),
       },
       {
         // Testimonials Page

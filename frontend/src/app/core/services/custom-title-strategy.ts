@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, TitleStrategy } from '@angular/router';
-import { ProfileService } from './profile';
+import { ProfileService } from './data/profile';
 
 @Injectable({ providedIn: 'root' })
 export class CustomTitleStrategy extends TitleStrategy {

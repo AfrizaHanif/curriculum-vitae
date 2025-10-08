@@ -5,10 +5,16 @@
   </div>
 </app-jumbotron>
 
-<app-feature [itemPerRow]="2">
-  @for (expertise of expertiseWithProjects(); track expertise.id_expertise) {
-    <app-expertise-feature [expertise]="expertise" />
-  } @empty {
-    <p class="text-center col-12">No expertise data available.</p>
-  }
-</app-feature>
+@if (expertiseWithProjects().length > 0) {
+  <app-feature [itemPerRow]="2">
+    @for (expertise of expertiseWithProjects(); track expertise.id_expertise) {
+      <app-expertise-feature [expertise]="expertise" />
+    } @empty {
+      <p class="text-center col-12">No expertise data available.</p>
+    }
+  </app-feature>
+} @else {
+  <div class="alert alert-info" role="alert">
+    Tidak ada data keahlian saat ini
+  </div>
+}

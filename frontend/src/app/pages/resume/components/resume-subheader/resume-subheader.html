@@ -2,27 +2,11 @@
   <!-- Scrollspy Navigation -->
   <nav id="scrollspy-nav-2" class="nav nav-pills pe-1">
     <a class="nav-link" href="#overview">Overview</a>
-    <a class="nav-link" href="#education">Pendidikan</a>
     <a class="nav-link" href="#experience">Pengalaman</a>
+    <a class="nav-link" href="#education">Pendidikan</a>
+    <a class="nav-link" href="#skills">Keterampilan</a>
+    @if (certifications().length > 0) {
+      <a class="nav-link" href="#certifications">Sertifikasi</a>
+    }
   </nav>
-
-  <!-- Download CV Dropdown -->
-  <div class="d-flex justify-content-end align-items-center">
-    <app-dropdown buttonClass="btn-primary" dropdownId="cvDropdown" [isButton]="true">
-      <span button-content>
-        <i class="bi bi-download"></i>
-        Unduh CV
-      </span>
-      <span button-item>
-        <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modal-cv-view" (click)="trackCvDownload('view')">
-          <i class="bi bi-filetype-pdf"></i>
-          Lihat PDF
-        </a></li>
-        <li><a class="dropdown-item" href="assets/documents/cv-afriza-hanif.pdf" target="_blank" download (click)="trackCvDownload('download')">
-          <i class="bi bi-file-earmark-arrow-down"></i>
-          Unduh sebagai PDF
-        </a></li>
-      </span>
-    </app-dropdown>
-  </div>
 </div>

@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { JumbotronComponent } from '../../shared/components/jumbotron/jumbotron';
 import { CardComponent } from '../../shared/components/card/card';
 import { PortfolioCardComponent } from './components/portfolio-card/portfolio-card';
-import { PortfolioService } from '../../core/services/portfolio';
+import { PortfolioService } from '../../core/services/data/portfolio';
 import { PaginationComponent, PaginationData } from '../../shared/components/pagination/pagination';
 import { PortfolioData } from '../../core/models/portfolio';
 import { DescriptionService } from '../../core/services/description';
@@ -35,8 +35,16 @@ export class PortfolioComponent implements OnInit, OnDestroy {
   private allPortfolios = this.portfolioService.portfolios;
   categories = computed(() => {
     const items = this.allPortfolios();
+    // Check if there are any featured items
+    const hasFeatured = items.some(item => item.is_featured);
     const uniqueCategories = [...new Set(items.map(item => item.category_portfolio))];
-    return ['Semua', ...uniqueCategories];
+
+    // Conditionally add 'Unggulan' (Featured) category
+    const categoryList = ['Semua', ...uniqueCategories];
+    if (hasFeatured) {
+      categoryList.splice(1, 0, 'Unggulan'); // Add 'Unggulan' after 'Semua'
+    }
+    return categoryList;
   });
 
   // Signal to track the active category
@@ -64,10 +72,13 @@ export class PortfolioComponent implements OnInit, OnDestroy {
   // 1. A computed signal that holds the full list of items for the currently selected category.
   private categoryFilteredPortfolios = computed<PortfolioData[]>(() => {
     const category = this.activeCategory();
+    const allItems = this.allPortfolios();
     if (category === 'Semua') {
-      return this.allPortfolios();
+      return allItems;
+    } else if (category === 'Unggulan') {
+      return allItems.filter(item => item.is_featured);
     }
-    return this.allPortfolios().filter(item => item.category_portfolio === category);
+    return allItems.filter(item => item.category_portfolio === category);
   });
 
   // 2. A computed signal that filters and sorts the items from the active category.

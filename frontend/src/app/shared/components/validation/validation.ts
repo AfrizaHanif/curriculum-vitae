@@ -23,9 +23,9 @@ export class ValidationComponent {
   private readonly controlErrors = signal<ValidationErrors | null>(null);
 
   private readonly errorMessages: { [key: string]: (params: any) => string } = {
-    required: () => `${this.controlName()} is required.`,
-    requiredtrue: () => `You must check this box to continue.`,
-    email: () => `Please enter a valid email address.`,
+    required: () => `${this.controlName()} dibutuhkan.`,
+    requiredtrue: () => `Anda harus mencentang box ini untuk melanjutkan.`,
+    email: () => `Masukkan e-mail yang sesuai.`,
     min: (params: { min: number }) => `Value must be at least ${params.min}.`,
     max: (params: { max: number }) => `Value cannot be more than ${params.max}.`,
   };

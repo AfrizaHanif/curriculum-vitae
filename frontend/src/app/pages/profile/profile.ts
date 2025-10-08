@@ -3,32 +3,35 @@ import { CommonModule } from '@angular/common';
 import { JumbotronComponent } from "../../shared/components/jumbotron/jumbotron";
 import { SkillCardComponent } from "./components/skill-card/skill-card";
 import { CardComponent } from "../../shared/components/card/card";
-import { ProfileService } from '../../core/services/profile';
+import { ProfileService } from '../../core/services/data/profile';
 import { PhoneFormat } from '../../shared/pipes/phone-format-pipe';
 import { DescriptionService } from '../../core/services/description';
-import { EducationService } from '../../core/services/education';
+import { EducationService } from '../../core/services/data/education';
 import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
 import { BackgroundImageFallbackDirective } from "../../shared/directives/background-image-fallback";
 import { BootstrapDirective } from '../../shared/directives/bootstrap';
 import { ScrollSpyDirective } from '../../shared/directives/scrollspy';
+import { FeatureComponent } from '../../shared/components/feature/feature';
+import { HobbiesFeature } from "./components/hobbies-feature/hobbies-feature";
 
 @Component({
   selector: 'app-profile',
-  imports: [CommonModule, JumbotronComponent, SkillCardComponent, CardComponent, PhoneFormat, BackgroundImageFallbackDirective, BootstrapDirective, ScrollSpyDirective],
+  imports: [CommonModule, JumbotronComponent, SkillCardComponent, CardComponent, PhoneFormat, BackgroundImageFallbackDirective, BootstrapDirective, ScrollSpyDirective, FeatureComponent, HobbiesFeature],
   templateUrl: './profile.html',
-  styleUrl: './profile.css'
+  styleUrl: './profile.css',
 })
 export class ProfileComponent {
   // Inject Services
   private profileService = inject(ProfileService);
   private educationService = inject(EducationService);
   private descriptionService = inject(DescriptionService);
-  private router = inject(Router);
+  // private router = inject(Router);
 
   // Get Profile and Skills Data from Service
   profileData = this.profileService.profileData;
   skills = this.profileService.skills;
+  hobbies = this.profileService.hobbies;
 
   // Create a computed signal for the latest degree
   latestDegree = computed(() => {

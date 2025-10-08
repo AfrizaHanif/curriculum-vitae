@@ -2,6 +2,7 @@
   {
     "id_blog": "BLG-001-001",
     "title_blog": "Selamat Datang di Web Portfolio",
+    "slug_blog": "selamat-datang-di-web-portfolio",
     "author_blog": "Afriza Hanif",
     "pub_date_blog": "2025-09-24",
     "tags_blog": ["Announcement"],
@@ -13,6 +14,7 @@
   {
     "id_blog": "BLG-001-002",
     "title_blog": "Hasil Proyek Kerja Praktik dan Tugas Akhir",
+    "slug_blog": "hasil-proyek-kerja-praktik-dan-tugas-akhir",
     "author_blog": "Afriza Hanif",
     "pub_date_blog": "2025-09-25",
     "tags_blog": ["Announcement"],

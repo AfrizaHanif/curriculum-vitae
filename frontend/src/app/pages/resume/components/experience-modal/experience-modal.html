@@ -1,22 +1,43 @@
 <app-modal [id]="id()" [title]="title()" [subtitle]="company()" [size]="size()" [centered]="centered()" [scrollable]="scrollable()">
   <div modal-body>
-    @if (description()) {
-      <p>{{ description() }}</p>
-    } @else {
-      <p>No description available.</p>
-    }
-
-    @if (latitude() && longitude()) {
-      <div class="location-section mt-4">
-        <h3 class="fs-6 fw-semibold border-bottom pb-2 mb-3">Location</h3>
-        <div class="map-container">
-          <!-- The map will be rendered here -->
-        </div>
-        <a [href]="'https://www.google.com/maps?q=' + latitude() + ',' + longitude()" target="_blank" rel="noopener noreferrer" class="d-block mt-2">
-          View on Google Maps <span class="visually-hidden">(opens in a new tab)</span>
-        </a>
+    <div class="row">
+      <div class="col-6">
+        @if (description()) {
+          <p>{{ description() }}</p>
+        } @else {
+          <p>No description available.</p>
+        }
+        <!-- Table -->
+        <table class="table">
+          <tbody>
+            <tr>
+              <th scope="row">Status</th>
+              <td>{{ status() }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Periode</th>
+              @if (status() === 'Finished' || status() === 'Stopped') {
+                <td>{{ s_period() | date:'MMM yyyy' }} - {{ f_period() | date:'MMM yyyy' }}</td>
+              } @else {
+                <td>{{ s_period() | date:'MMM yyyy' }} - Sekarang</td>
+              }
+            </tr>
+          </tbody>
+        </table>
       </div>
-    }
+      <div class="col-6">
+        @if (latitude() && longitude()) {
+          <div class="location-section">
+            <div class="map-container">
+              <!-- The map will be rendered here -->
+            </div>
+            <a [href]="'https://www.google.com/maps?q=' + latitude() + ',' + longitude()" target="_blank" rel="noopener noreferrer" class="d-block mt-2">
+              View on Google Maps <span class="visually-hidden">(opens in a new tab)</span>
+            </a>
+          </div>
+        }
+      </div>
+    </div>
   </div>
   <div modal-footer class="d-flex gap-2">
     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>

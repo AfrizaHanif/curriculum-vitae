@@ -1,0 +1,28 @@
+@if (item()) {
+  <article class="card h-100">
+    <div class="card-body d-flex flex-column">
+      <h5 class="card-title">{{ item().title_project }}</h5>
+      <p class="card-text">{{ item().desc_project }}</p>
+      <div class="mt-auto pt-2">
+        @for (tag of item().tags_project; track tag) {
+            <span class="badge text-bg-info me-1 mb-1">{{ tag }}</span>
+          }
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="row align-items-center">
+        <div class="col-3">
+        </div>
+        <div class="col-9 d-grid gap-2 d-md-flex justify-content-md-end">
+          @if (item().repoUrl_project) {
+            <a [href]="item().repoUrl_project" target="_blank" class="btn btn-secondary btn-sm">Kode</a>
+          }
+          @if (item().liveUrl_project) {
+            <a [href]="item().liveUrl_project" target="_blank" class="btn btn-primary btn-sm">Demo</a>
+          }
+        </div>
+      </div>
+    </div>
+  </article>
+}

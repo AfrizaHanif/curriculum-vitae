@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule, DOCUMENT } from '@angular/common';
 
-import { ProfileService } from '../../services/profile';
-import { SocialService } from '../../services/social';
+import { ProfileService } from '../../services/data/profile';
+import { SocialService } from '../../services/data/social';
 import { TooltipDirective } from '../../../shared/directives/tooltip';
 
 @Component({

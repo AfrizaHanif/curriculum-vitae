@@ -13,7 +13,7 @@
 
   <div class="mb-3">
     <label for="subject" class="form-label">Subjek</label>
-    <input type="text" id="subject" class="form-control" formControlName="subject" [class.is-invalid]="isInvalid('subject')">
+    <input type="text" id="subject" class="form-control" formControlName="subject" [class.is-invalid]="isInvalid('subject')" placeholder="Contoh: Diskusi Mengenai Proyek Pengembangan Web" [class.is-invalid]="isInvalid('subject')" [readonly]="contactForm.controls.subject.disabled">
     <app-validation [control]="contactForm.controls.subject" controlName="Subjek"></app-validation>
   </div>
 

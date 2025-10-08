@@ -1,0 +1,51 @@
+<app-modal [id]="id()" [title]="name()" [subtitle]="issuer()" size="fullscreen" [centered]="true" [scrollable]="true">
+  <div modal-body>
+    <div class="row">
+      <div class="col-8">
+        @if (isPdf()) {
+          <app-pdf-viewer [pdfSrc]="file()!" class="d-block"></app-pdf-viewer>
+        } @else {
+          <div class="image-container rounded d-flex justify-content-center align-items-center mb-3" #imageContainer>
+            <img [src]="file()" [appImageFallback]="'assets/images/placeholder/placeholder-image.png'" class="img-fluid rounded" [alt]="'File of ' + issuer()" (load)="imageContainer.classList.add('loaded')">
+          </div>
+        }
+      </div>
+      <div class="col-4 align-self-start sticky-top">
+        <dl class="row">
+          <dt class="col-sm-5">Penerbit</dt>
+          <dd class="col-sm-7">{{ issuer() }}</dd>
+
+          <dt class="col-sm-5">Tanggal Terbit</dt>
+          <dd class="col-sm-7">{{ issueDate() | date: 'longDate' }}</dd>
+
+          @if (credentialId(); as credId) {
+          <dt class="col-sm-5">ID Kredensial</dt>
+          <dd class="col-sm-7 d-flex align-items-center">
+            <span class="me-2">{{ credId }}</span>
+            <button type="button" class="btn btn-sm p-0" (click)="copyToClipboard(credId)" [title]="isCopied() ? 'Disalin!' : 'Salin ID'">
+              @if (isCopied()) {
+                <i class="bi bi-check-lg text-success"></i>
+              } @else {
+                <i class="bi bi-clipboard"></i>
+              }
+            </button>
+          </dd>
+          }
+        </dl>
+      </div>
+    </div>
+  </div>
+  <div modal-footer class="d-flex gap-2">
+    <a [href]="credentialUrl()" target="_blank" class="btn btn-primary" [hidden]="!credentialUrl()">
+      <i class="bi bi-box-arrow-up-right"></i>
+      Lihat Kredensial
+    </a>
+    @if (isPdf()) {
+      <a [href]="file()!" [download]="name() + '.pdf'" class="btn btn-secondary">
+        <i class="bi bi-download"></i>
+        Unduh PDF
+      </a>
+    }
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+  </div>
+</app-modal>

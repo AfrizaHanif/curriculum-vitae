@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { ActivatedRouteSnapshot, ResolveFn } from '@angular/router';
 import { map, take } from 'rxjs/operators';
-import { PortfolioService } from '../services/portfolio';
+import { PortfolioService } from '../services/data/portfolio';
 
 /**
  * A functional route resolver that creates a dynamic page title for a portfolio case study.

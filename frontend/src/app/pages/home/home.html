@@ -20,8 +20,53 @@
   </div>
 </app-jumbotron>
 
+<!-- Featured Projects Section -->
+@if (featuredProjects().length > 0) {
+  <!-- Featured Projects Carousel -->
+  <div id="featuredProjectsCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    @if (featuredProjects().length > 1) {
+      <div class="carousel-indicators">
+        @for (item of featuredProjects(); track item.id_portfolio; let i = $index) {
+          <button type="button" data-bs-target="#featuredProjectsCarousel" [attr.data-bs-slide-to]="i" [class.active]="i === 0" [attr.aria-current]="i === 0 ? 'true' : 'false'" [attr.aria-label]="'Slide ' + (i + 1)"></button>
+        }
+      </div>
+    }
+    <div class="carousel-inner">
+      @for (item of featuredProjects(); track item.id_portfolio; let i = $index) {
+        <div class="carousel-item" [class.active]="i === 0">
+          <div class="container">
+            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+              <div class="col-10 col-sm-8 col-lg-6">
+                <img [src]="item.image_portfolio" class="d-block mx-lg-auto img-fluid img-widescreen-crop rounded" [alt]="item.title_portfolio" width="700" height="500" loading="lazy" [appImageFallback]="'assets/images/placeholder/placeholder-image.png'">
+              </div>
+              <div class="col-lg-6">
+                <h2 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Proyek Unggulan</h2>
+                <p class="lead">{{ item.title_portfolio }}</p>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                  <a [routerLink]="['/portfolio', item.slug_portfolio]" class="btn btn-primary btn-lg px-4 me-md-2">Lihat Detail</a>
+                  <a routerLink="/portfolio" class="btn btn-outline-secondary btn-lg px-4">Lihat Semua</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+    @if (featuredProjects().length > 1) {
+      <button class="carousel-control-prev" type="button" data-bs-target="#featuredProjectsCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#featuredProjectsCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    }
+  </div>
+}
+
 <!-- Mini Jumbotron -->
-<div class="row align-items-md-stretch">
+<div class="row align-items-md-stretch pt-4">
   <div class="col-md-6">
     <div class="h-100 p-5 bg-body-tertiary rounded-3">
       <h2>My Portfolio</h2>

@@ -9,8 +9,10 @@ export interface ProfileData {
   email_profile: string;
   tagline_profile: string;
   desc_profile: string;
+  philosophy_profile?: string;
   status_profile: string;
   photo_profile: string;
+  hobbies?: HobbyData[];
 }
 
 export interface SkillData {
@@ -18,4 +20,10 @@ export interface SkillData {
   id_user?: string;
   name_skill: string;
   percent_skill: number;
+}
+
+export interface HobbyData {
+  id_hobby: string;
+  name_hobby: string;
+  icon_hobby: string;
 }

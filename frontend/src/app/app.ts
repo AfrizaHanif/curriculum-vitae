@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Event, NavigationCancel, NavigationError, NavigationEnd, RouteConfigLoadStart, RouteConfigLoadEnd, Router, RouterOutlet } from '@angular/router';
+import { Event, NavigationCancel, NavigationError, NavigationEnd, NavigationStart, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
 import { LoadingIndicatorComponent } from './shared/components/loading-indicator/loading-indicator';
@@ -36,14 +36,13 @@ export class App {
   }
 
   private updateLoadingIndicator(event: Event): void {
-    // Show the indicator when a lazy-load starts
-    if (event instanceof RouteConfigLoadStart) {
+    // Show the indicator at the very start of navigation
+    if (event instanceof NavigationStart) {
       this.loadingService.show();
     }
 
-    // Hide the indicator when the lazy-load ends, or if navigation is cancelled or fails
+    // Hide the indicator when navigation ends, is cancelled, or fails
     if (
-      event instanceof RouteConfigLoadEnd ||
       event instanceof NavigationEnd ||
       event instanceof NavigationCancel ||
       event instanceof NavigationError

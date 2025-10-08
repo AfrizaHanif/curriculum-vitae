@@ -1,0 +1,57 @@
+<div appBootstrap>
+  <!-- Jumbotron -->
+  <app-jumbotron [imageUrl]="'assets/images/jumbotron/setup.jpg'"
+    [imageAlt]="'A clean and modern desk setup with a laptop, monitor, and keyboard'">
+    <div jumbotron-main>
+      <h1 class="display-4 fw-bold">My Setup</h1>
+      <p class="fs-5 fs-md-4">{{ jumbotronSubtitle() }}</p>
+    </div>
+  </app-jumbotron>
+
+  <!-- Setup List -->
+  <div class="row g-3">
+    <div class="col-6">
+      <figure class="h-100 m-0">
+        <div class="image-container h-100 rounded-3 d-flex justify-content-center align-items-center" #imageContainer>
+          <div class="spinner-border text-secondary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <img src="assets/images/workspace.jpg" class="img-fluid rounded-3" alt="My Workspace"
+              (load)="imageContainer.classList.add('loaded')"
+              [appImageFallback]="'assets/images/placeholder/placeholder-image.png'">
+        </div>
+      </figure>
+    </div>
+    <div class="col-6">
+      @if (accordionItems().length > 0) {
+        <app-accordion [id_parent]="'setupAccordion'" [items]="accordionItems()">
+          <ng-template #itemBody let-item>
+            @if (getCategoryItems(item.title).length > 0) {
+              <ul class="list-group list-group-flush">
+                @for (categoryItem of getCategoryItems(item.title); track categoryItem.name) {
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  {{ categoryItem.name }}
+                  <span class="text-body-secondary">
+                    {{ categoryItem.description }}
+                    @if (categoryItem.whyIUseIt) {
+                      <i class="bi bi-info-lg" [appTooltip]="categoryItem.whyIUseIt"></i>
+                    }
+                  </span>
+                </li>
+                }
+              </ul>
+            } @else {
+              <div class="alert alert-info" role="alert">
+                Tidak ada item yang tersedia untuk kategori ini.
+              </div>
+            }
+          </ng-template>
+        </app-accordion>
+      } @else {
+        <div class="alert alert-info" role="alert">
+          Tidak ada data setup yang tersedia saat ini.
+        </div>
+      }
+    </div>
+  </div>
+</div>

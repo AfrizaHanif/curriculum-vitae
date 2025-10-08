@@ -1,14 +1,15 @@
 import { Component, computed, inject, Signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { JumbotronComponent } from '../../shared/components';
+import { FeatureComponent } from '../../shared/components/feature/feature';
+import { ExpertiseFeatureComponent } from './components/expertise-feature/expertise-feature';
 import { DescriptionService } from '../../core/services/description';
-import { ExpertiseService } from '../../core/services/expertise';
-import { PortfolioService } from '../../core/services/portfolio';
+import { ExpertiseService } from '../../core/services/data/expertise';
+import { PortfolioService } from '../../core/services/data/portfolio';
+import { environment } from '../../../environments/environment';
 import { ExpertiseWithProjects } from '../../core/models/expertise';
 import { PortfolioData } from '../../core/models/portfolio';
-import { environment } from '../../../environments/environment';
-import { ExpertiseFeatureComponent } from './components/expertise-feature/expertise-feature';
-import { FeatureComponent } from '../../shared/components/feature/feature';
+
 
 @Component({
   selector: 'app-expertise',
@@ -42,7 +43,7 @@ export class ExpertiseComponent {
     const expertise = this.allExpertise();
     const portfolios = this.allPortfolios();
 
-    // Don't compute until both data sources are loaded
+    // Guard clause: Don't compute until both data sources are loaded.
     if (!expertise.length || !portfolios.length) {
       return [];
     }

@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { ActivatedRouteSnapshot, ResolveFn } from '@angular/router';
 import { map, take } from 'rxjs/operators';
-import { BlogService } from '../services/blog';
+import { BlogService } from '../services/data/blog';
 
 /**
  * A functional route resolver that creates a dynamic page title for a blog post.

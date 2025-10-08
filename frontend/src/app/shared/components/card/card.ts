@@ -8,7 +8,10 @@ export type CardAmount = 1 | 2 | 3 | 4;
   standalone: true,
   imports: [CommonModule],
   templateUrl: './card.html',
-  styleUrl: './card.css'
+  styleUrl: './card.css',
+  host: {
+    '[attr.title]': 'null'
+  }
 })
 export class CardComponent {
   // Input properties for the card component
