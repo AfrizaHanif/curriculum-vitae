@@ -1,4 +1,5 @@
-import { Directive, ElementRef, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Directive, ElementRef, EventEmitter, Inject, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import * as pdfjsLib from 'pdfjs-dist';
 import { PDFDocumentProxy, PDFPageProxy, RenderTask } from 'pdfjs-dist';
 import type { RenderParameters } from 'pdfjs-dist/types/src/display/api';
@@ -11,11 +12,15 @@ export class PdfThumbnailDirective implements OnChanges {
   @Input('appPdfThumbnail') pdfUrl: string | undefined;
   @Output() loadingStateChange = new EventEmitter<boolean>();
 
-  constructor(private el: ElementRef<HTMLCanvasElement>) {
+  constructor(
+    private el: ElementRef<HTMLCanvasElement>,
+    @Inject(DOCUMENT) private document: Document
+  ) {
     // Set the workerSrc only once. The path should be relative to the deployed application's root.
     // By copying the worker to assets, we ensure it's always available at this path.
     if (!pdfjsLib.GlobalWorkerOptions.workerSrc) {
-      pdfjsLib.GlobalWorkerOptions.workerSrc = `assets/pdf.worker.js`;
+      const workerPath = new URL('assets/pdf.worker.js', this.document.baseURI).href;
+      pdfjsLib.GlobalWorkerOptions.workerSrc = workerPath;
     }
   }
 
