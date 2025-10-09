@@ -1,12 +1,12 @@
 <div class="jumbotron-container p-4 p-md-5 mb-4 bg-body-tertiary rounded-3">
   <!-- This new div will be our background layer with the fade-in effect -->
-  <div class="jumbotron-background" [ngStyle]="backgroundStyles()" [attr.role]="imageUrl() ? 'img' : null" [attr.aria-label]="imageUrl() ? imageAlt() : null"></div>
+  <div class="jumbotron-background" [ngStyle]="backgroundStyles()" [class.no-transition]="destroying" [attr.role]="imageUrl() ? 'img' : null" [attr.aria-label]="imageUrl() ? imageAlt() : null"></div>
 
   <!-- The content now sits in a separate layer on top of the background -->
   <div class="jumbotron-content container-fluid">
     <div class="row align-items-center g-4">
       <!-- <div class="text-center text-lg-start order-2 order-lg-1" [class.text-white]="imageUrl()" [ngClass]="{'col-lg-8': jumbotronImage.children.length > 0, 'col-md-8 col-lg-6': jumbotronImage.children.length === 0}"> -->
-      <div class="text-center text-lg-start order-2 order-lg-1" [class.text-white]="imageUrl()" [ngClass]="{'col-lg-8': jumbotronImage.children.length > 0, 'col-lg-12': jumbotronImage.children.length === 0}">
+      <div class="text-center text-lg-start order-2 order-lg-1" [class.text-white]="imageStatus() === 'loaded' || imageStatus() === 'error'" [ngClass]="{'col-lg-8': jumbotronImage.children.length > 0, 'col-lg-12': jumbotronImage.children.length === 0}">
         <ng-content select="[jumbotron-main]"></ng-content>
       </div>
       <!-- The #jumbotronImage template reference variable allows us to check if content is projected -->

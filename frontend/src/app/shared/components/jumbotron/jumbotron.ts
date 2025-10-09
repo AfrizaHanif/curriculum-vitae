@@ -19,7 +19,10 @@ export class JumbotronComponent implements AfterViewInit, OnDestroy {
   private observer?: IntersectionObserver;
 
   /** Signal to track if the image should be loaded. */
-  private imageStatus = signal<'loading' | 'loaded' | 'error'>('loading');
+  protected imageStatus = signal<'loading' | 'loaded' | 'error'>('loading');
+
+  /** Flag to indicate the component is being destroyed, used to disable transitions. */
+  protected destroying = false;
 
 
   ngAfterViewInit(): void {
@@ -54,7 +57,17 @@ export class JumbotronComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    // Set destroying flag to true to disable CSS transitions during destruction.
+    this.destroying = true;
+
     this.observer?.disconnect();
+
+    // If the component is destroyed while the image is still loading,
+    // ensure we hide the global loading indicator to prevent it from getting stuck.
+    if (this.imageStatus() === 'loading' && this.imageUrl()) {
+      this.loadingService.hide();
+    }
+    this.imageStatus.set('loading'); // Reset status for the next instantiation.
   }
 
   /**

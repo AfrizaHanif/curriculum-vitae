@@ -1,6 +1,6 @@
 .jumbotron-container {
   position: relative;
-  overflow: hidden;
+  overflow: hidden; // Ensures the rounded corners clip the background
 }
 
 .jumbotron-background {
@@ -9,15 +9,18 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1;
-
-  // Define the background properties and the opacity transition here.
   background-size: cover;
   background-position: center;
   transition: opacity 0.5s ease-in-out;
+  z-index: 1; // Sit below the content
+}
+
+.jumbotron-background.no-transition {
+  transition: none;
 }
 
 .jumbotron-content {
   position: relative;
-  z-index: 2; // Ensure content is on top of the background
+  z-index: 2; // Sit on top of the background
 }
+
