@@ -69,7 +69,7 @@
 
     <div id="skills">
       @if (sortedSkills().length > 0) {
-      <app-card title="Keterampilan & Keahlian" [cardPerRow]="{ sm: 2, md: 3, lg: 4, xl: 6 }">
+      <app-card title="Keterampilan & Keahlian" [cardPerRow]="{ sm: 2, md: 3, lg: 4, xl: 4 }">
         @for (skill of sortedSkills(); track skill.id_skill) {
           <app-skill-card [skillName]="skill.name_skill" [skillPercentage]="skill.percent_skill"></app-skill-card>
         }
