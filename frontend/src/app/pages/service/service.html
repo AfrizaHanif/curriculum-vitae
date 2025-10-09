@@ -9,7 +9,7 @@
 
 <!-- Services List -->
 @if (services().length > 0) {
-<app-feature [itemPerRow]="2">
+<app-feature [itemPerRow]="{ sm: 1, md: 2, lg: 2 }">
   @for (service of services(); track service.id_service) {
     <app-service-feature [service]="service" />
   }

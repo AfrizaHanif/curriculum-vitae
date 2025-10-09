@@ -1,16 +1,27 @@
 <app-modal [id]="id()" [title]="name()" [subtitle]="issuer()" size="fullscreen" [centered]="true" [scrollable]="true">
   <div modal-body>
     <div class="row">
-      <div class="col-8">
+      <div class="col-lg-8">
         @if (isPdf()) {
-          <app-pdf-viewer [pdfSrc]="file()!" class="d-block"></app-pdf-viewer>
+          <!-- PDF Thumbnail for small screens -->
+          <div class="d-lg-none rounded bg-body-tertiary d-flex align-items-center justify-content-center text-center text-secondary p-4 mb-3" style="min-height: 300px;">
+            <div>
+                <i class="bi bi-file-earmark-pdf-fill" style="font-size: 4rem;"></i>
+              <p class="mt-3 mb-0">Pratinjau tidak tersedia di layar kecil.</p>
+              <p>Silakan unduh untuk melihat PDF.</p>
+            </div>
+          </div>
+          <app-pdf-viewer [pdfSrc]="file()!" class="d-none d-lg-block"></app-pdf-viewer>
         } @else {
-          <div class="image-container rounded d-flex justify-content-center align-items-center mb-3" #imageContainer>
+          <div class="image-container rounded d-flex justify-content-center align-items-center mb-3 mb-lg-0" #imageContainer>
+            <div class="spinner-border text-primary" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
             <img [src]="file()" [appImageFallback]="'assets/images/placeholder/placeholder-image.png'" class="img-fluid rounded" [alt]="'File of ' + issuer()" (load)="imageContainer.classList.add('loaded')">
           </div>
         }
       </div>
-      <div class="col-4 align-self-start sticky-top">
+      <div class="col-lg-4 align-self-start sticky-lg-top">
         <dl class="row">
           <dt class="col-sm-5">Penerbit</dt>
           <dd class="col-sm-7">{{ issuer() }}</dd>
@@ -35,17 +46,18 @@
       </div>
     </div>
   </div>
-  <div modal-footer class="d-flex gap-2">
+  <div modal-footer class="d-flex justify-content-end gap-2">
     <a [href]="credentialUrl()" target="_blank" class="btn btn-primary" [hidden]="!credentialUrl()">
       <i class="bi bi-box-arrow-up-right"></i>
       Lihat Kredensial
     </a>
     @if (isPdf()) {
-      <a [href]="file()!" [download]="name() + '.pdf'" class="btn btn-secondary">
-        <i class="bi bi-download"></i>
-        Unduh PDF
+      <a [href]="file()!" [download]="name() + '.pdf'" class="btn btn-secondary" (click)="trackDownload()">
+        <i class="bi bi-download"></i><span class="d-none d-sm-inline ms-1">Unduh PDF</span>
       </a>
     }
-    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+      <i class="bi bi-x-lg"></i><span class="d-none d-sm-inline ms-1">Tutup</span>
+    </button>
   </div>
 </app-modal>

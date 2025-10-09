@@ -7,6 +7,7 @@ import { GlobalWorkerOptions, getDocument } from 'pdfjs-dist';
 })
 export class PdfThumbnailDirective implements OnChanges {
   @Input('appPdfThumbnail') pdfUrl: string | undefined;
+  @Output() loadingStarted = new EventEmitter<void>();
   @Output() loadingStateChange = new EventEmitter<boolean>();
   @Output() loadingError = new EventEmitter<void>();
 
@@ -22,6 +23,7 @@ export class PdfThumbnailDirective implements OnChanges {
   }
 
   private async loadPdf(url: string): Promise<void> {
+    this.loadingStarted.emit();
     this.loadingStateChange.emit(true);
     try {
       const loadingTask = getDocument(url);

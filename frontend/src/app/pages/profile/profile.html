@@ -16,7 +16,7 @@
                 style="background-size: cover; background-position: center center;"
                 role="img"
                 [attr.aria-label]="'Foto Profil ' + profileData().fullname_profile">
-              <div class="spinner-border text-light" role="status">
+              <div class="spinner-border text-primary" role="status">
                 <span class="visually-hidden">Loading...</span>
               </div>
             </div>
@@ -59,7 +59,7 @@
 
     <div id="skills" class="mt-4">
       @if (skills().length > 0) {
-        <app-card title="Keterampilan & Keahlian" [cardPerRow]="4">
+        <app-card title="Keterampilan & Keahlian" [cardPerRow]="{ sm: 2, md: 3, lg: 4}">
         @for (skill of skills(); track skill.id_skill) {
           <app-skill-card [skillName]="skill.name_skill" [skillPercentage]="skill.percent_skill"></app-skill-card>
         }
@@ -84,7 +84,7 @@
     <!-- Hobbies & Interests Section -->
     <div id="hobbies" class="mt-4">
       @if (hobbies().length > 0) {
-      <app-feature title="Hobi & Minat" [itemPerRow]="4">
+      <app-feature title="Hobi & Minat" [itemPerRow]="{ sm: 2, md: 3, lg: 4 }">
         @for (hobby of hobbies(); track hobby.id_hobby) {
           <app-hobbies-feature
           [id]="hobby.id_hobby"

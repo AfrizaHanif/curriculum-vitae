@@ -4,17 +4,17 @@ import { DropdownComponent } from "../../../shared/components/dropdown/dropdown"
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ThemeService } from '../../services/theme';
 import { NavigationService } from '../../services/navigation';
-import { Tooltip } from 'bootstrap';
 import { NavLink } from '../../config/navigation.config';
+import { TooltipDirective } from "../../../shared/directives/tooltip";
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterModule, CommonModule, DropdownComponent],
+  imports: [RouterModule, CommonModule, DropdownComponent, TooltipDirective],
   templateUrl: './header.html',
   styleUrl: './header.scss',
 })
-export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
+export class HeaderComponent implements OnInit, OnDestroy {
   // Inject services
   protected themeService = inject(ThemeService);
   private elementRef = inject(ElementRef);
@@ -22,7 +22,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   private navigationService = inject(NavigationService);
   private router = inject(Router);
 
-  private tooltipInstances: Tooltip[] = [];
   // To hold the timeout ID for debouncing resize events
   private resizeDebounceTimeout: any;
 
@@ -49,19 +48,8 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     this.resizeDebounceTimeout = setTimeout(() => this.updateVisibleLinksLimit(), 150);
   }
 
-  ngAfterViewInit(): void {
-    // Find all elements with the tooltip toggle and initialize them
-    const tooltipTriggerList = [].slice.call(
-      this.elementRef.nativeElement.querySelectorAll('[data-bs-toggle="tooltip"]')
-    );
-    this.tooltipInstances = tooltipTriggerList.map(tooltipTriggerEl => {
-      return new Tooltip(tooltipTriggerEl);
-    });
-  }
-
   ngOnDestroy(): void {
-    // Dispose of all tooltips when the component is destroyed
-    this.tooltipInstances.forEach(tooltip => tooltip.dispose());
+    // Clear the resize timeout when the component is destroyed
     clearTimeout(this.resizeDebounceTimeout);
   }
 

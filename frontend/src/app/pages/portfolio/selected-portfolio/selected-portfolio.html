@@ -7,25 +7,41 @@
   </app-jumbotron>
 
   <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center mb-4">
-    <a routerLink="/portfolio" class="btn btn-outline-secondary d-inline-flex align-items-center">
+    <a routerLink="/portfolio" class="btn btn-outline-secondary d-flex justify-content-center justify-content-sm-start align-items-center">
       <svg class="bi me-2" width="16" height="16" aria-hidden="true"><use xlink:href="#arrow-left"></use></svg>
       Back to Portfolio
     </a>
     <div class="btn-group mt-2 mt-sm-0" role="group" aria-label="Project navigation">
-      @if (previousItem(); as prev) {
-        <a [routerLink]="['/portfolio', prev.slug_portfolio]" class="btn btn-outline-secondary d-inline-flex align-items-center">‹<span class="d-none d-sm-inline ms-1">Previous</span></a>
-      }
-      @if (nextItem(); as next) {
-        <a [routerLink]="['/portfolio', next.slug_portfolio]" class="btn btn-outline-secondary">Next ›</a>
-      }
+      <a
+        [routerLink]="previousItem() ? ['/portfolio', previousItem()!.slug_portfolio] : null"
+        [class.disabled]="!previousItem()"
+        [attr.aria-disabled]="!previousItem()"
+        tabindex="{{!previousItem() ? -1 : null}}"
+        class="btn btn-outline-secondary d-inline-flex align-items-center">
+        <i class="bi bi-arrow-left"></i>
+        <span class="d-none d-sm-inline ms-2">Previous</span>
+        <span class="d-inline d-sm-none ms-2">Prev</span>
+      </a>
+
+      <a
+        [routerLink]="nextItem() ? ['/portfolio', nextItem()!.slug_portfolio] : null"
+        [class.disabled]="!nextItem()"
+        [attr.aria-disabled]="!nextItem()"
+        tabindex="{{!nextItem() ? -1 : null}}"
+        class="btn btn-outline-secondary d-inline-flex align-items-center justify-content-end">
+        <span class="d-none d-sm-inline me-2">Next</span>
+        <span class="d-inline d-sm-none me-2">Next</span>
+        <i class="bi bi-arrow-right"></i>
+      </a>
     </div>
+
   </div>
   <div class="row">
     <!--  -->
     <article class="col-md-8">
       <figure class="mb-3 rounded main-portfolio-figure">
         <div class="image-container" #imageContainer>
-          <div class="spinner-border text-light" role="status">
+          <div class="spinner-border text-primary" role="status">
             <span class="visually-hidden">Loading...</span>
           </div>
           <img [src]="item.image_portfolio" class="img-fluid img-widescreen-crop" [alt]="item.title_portfolio"
@@ -190,7 +206,7 @@
   <div class="mt-5">
     <h2 class="pb-2 border-bottom">Proyek Terkait</h2>
     @if (relatedProjects().length > 0) {
-      <app-card [cardPerRow]="3">
+      <app-card [cardPerRow]="{ sm: 2, md: 3, lg: 3}">
         @for (relatedItem of relatedProjects(); track relatedItem.id_portfolio) {
           <app-portfolio-card [item]="relatedItem" />
         }

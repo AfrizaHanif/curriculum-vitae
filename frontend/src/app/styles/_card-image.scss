@@ -1,0 +1,15 @@
+/*
+ * Reusable styles for a fixed-height image container within a card.
+ * This is commonly used for blog or portfolio list items.
+ */
+.card-image-wrapper {
+  height: 200px;
+  overflow: hidden;
+
+  // Ensure the image inside the loader fills the wrapper
+  .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}

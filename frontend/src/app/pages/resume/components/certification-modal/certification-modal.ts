@@ -1,13 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, input, signal } from '@angular/core';
+import { Component, computed, inject, input, signal } from '@angular/core';
 import { ModalComponent } from "../../../../shared/components/modal/modal";
 import { ImageFallbackDirective } from '../../../../shared/directives/image-fallback';
 import { PdfViewerComponent } from "../../../../shared/components/pdf-viewer/pdf-viewer";
+import { GoogleAnalyticsService } from '../../../../core/services/google-analytics';
 
 @Component({
   selector: 'app-certification-modal',
   standalone: true,
-  imports: [CommonModule, ModalComponent, ImageFallbackDirective, PdfViewerComponent],
+  imports: [CommonModule, ModalComponent, ImageFallbackDirective, PdfViewerComponent,
+  ],
   templateUrl: './certification-modal.html',
   styleUrl: './certification-modal.css'
 })
@@ -21,14 +23,14 @@ export class CertificationModal {
   credentialUrl = input<string>();
   file = input<string>();
 
+  // --- Injected Services ---
+  private analyticsService = inject(GoogleAnalyticsService);
+
   // Computed property
   readonly isPdf = computed(() => this.file()?.toLowerCase().endsWith('.pdf'));
 
   // --- State for copy to clipboard ---
   readonly isCopied = signal(false);
-
-  // --- State for PDF loading ---
-  readonly isPdfLoading = signal(true);
 
   // --- Methods ---
   copyToClipboard(text: string) {
@@ -39,6 +41,13 @@ export class CertificationModal {
       }, 2000); // Reset after 2 seconds
     }).catch(err => {
       console.error('Failed to copy text: ', err);
+    });
+  }
+
+  trackDownload(): void {
+    this.analyticsService.trackEvent('certification_download', {
+      category: 'Certification',
+      label: this.name(),
     });
   }
 }

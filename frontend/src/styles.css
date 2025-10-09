@@ -1,5 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import "app/styles/utilities.css";
+@import 'app/styles/_image-loader.scss';
+@import 'app/styles/_card-image.scss';
+@import 'app/styles/_content.scss';
+@import 'app/styles/_utilities.scss';
+@import 'app/styles/_theme-variables.scss';
 
 /* Bootstrap CSS */
 .bd-placeholder-img {

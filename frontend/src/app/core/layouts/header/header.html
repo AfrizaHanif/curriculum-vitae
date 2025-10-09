@@ -17,7 +17,7 @@
                 <li>
                   <!-- Tooltip Wrapper for disabled links -->
                   @if (link.disabled && link.tooltip) {
-                    <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-placement="bottom" [title]="link.tooltip">
+                    <span class="d-inline-block" tabindex="0" [appTooltip]="link.tooltip" placement="bottom">
                       <a class="nav-link dynamic-link disabled" style="pointer-events: none;">
                         <svg class="bi d-block mx-auto mb-1" width="24" height="24" aria-hidden="true"><use [attr.xlink:href]="'#' + link.icon"></use></svg>
                         {{ link.label }}
@@ -42,7 +42,7 @@
                     @for(child of link.children; track child.path) {
                       <li>
                         @if (child.disabled && child.tooltip) {
-                          <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-placement="bottom" [title]="child.tooltip">
+                          <span class="d-inline-block" tabindex="0" [appTooltip]="child.tooltip" placement="bottom">
                             <a class="dropdown-item disabled" style="pointer-events: none;">
                               <svg class="bi me-2" width="16" height="16" aria-hidden="true"><use [attr.xlink:href]="'#' + child.icon"></use></svg>
                               {{ child.label }}
@@ -76,7 +76,7 @@
                   @for (link of navLinks().slice(visibleLinksLimit()); track link.path) {
                     <li>
                       @if (link.disabled && link.tooltip) {
-                        <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-placement="bottom" [title]="link.tooltip">
+                        <span class="d-inline-block" tabindex="0" [appTooltip]="link.tooltip" placement="bottom">
                           <a class="dropdown-item disabled" style="pointer-events: none;">
                             <svg class="bi me-2" width="16" height="16" aria-hidden="true"><use [attr.xlink:href]="'#' + link.icon"></use></svg>
                             {{ link.label }}
@@ -151,7 +151,7 @@
           @if (!link.children) {
             <li class="nav-item">
               @if (link.disabled && link.tooltip) {
-                <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-placement="bottom" [title]="link.tooltip">
+                <span class="d-inline-block" tabindex="0" [appTooltip]="link.tooltip" placement="bottom">
                   <a class="nav-link disabled" style="pointer-events: none;">
                     <svg class="bi me-2" width="16" height="16" aria-hidden="true"><use [attr.xlink:href]="'#' + link.icon"></use></svg>
                     {{ link.label }}
@@ -176,7 +176,7 @@
                 @for(child of link.children; track child.path) {
                   <li>
                     @if (child.disabled && child.tooltip) {
-                      <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-placement="bottom" [title]="child.tooltip">
+                      <span class="d-inline-block" tabindex="0" [appTooltip]="child.tooltip" placement="bottom">
                         <a class="dropdown-item disabled" style="pointer-events: none;">
                           <svg class="bi me-2" width="16" height="16" aria-hidden="true"><use [attr.xlink:href]="'#' + child.icon"></use></svg>
                           {{ child.label }}

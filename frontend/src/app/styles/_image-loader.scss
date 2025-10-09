@@ -1,0 +1,45 @@
+/*
+ * Reusable styles for an image container that displays a loading spinner
+ * until the image is loaded, at which point it fades in.
+ */
+.image-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 150px; // Ensure a minimum height for the spinner to be visible
+  background-color: var(--bs-tertiary-bg); // Placeholder background
+  overflow: hidden; // Ensures spinner/content doesn't leak outside rounded corners.
+
+  /*
+   * The spinner is absolutely positioned to center it within the container.
+   * The parent's flex properties handle the centering.
+   */
+  .spinner-border {
+    position: absolute;
+  }
+
+  /*
+   * The image is initially transparent and fades in.
+   */
+  img {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  /*
+   * When the 'loaded' class is added, hide the spinner and show the image.
+   */
+  &.loaded {
+    background-color: transparent;
+    min-height: 0;
+
+    .spinner-border {
+      display: none;
+    }
+
+    img {
+      opacity: 1;
+    }
+  }
+}

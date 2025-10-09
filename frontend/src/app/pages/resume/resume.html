@@ -30,7 +30,7 @@
     </div>
 
     <div id="experience">
-      <app-feature title="Pengalaman" [itemPerRow]="4">
+      <app-feature title="Pengalaman" [itemPerRow]="{ sm: 1, md: 2, lg: 4 }">
       @for (exp of sortedExperienceHistory(); track exp.id_experience) {
         <app-experience-feature
           [id]="exp.id_experience"
@@ -48,7 +48,7 @@
     </div>
 
     <div id="education">
-      <app-feature title="Pendidikan" [itemPerRow]="4">
+      <app-feature title="Pendidikan" [itemPerRow]="{ sm: 1, md: 2, lg: 4 }">
       @for (edu of sortedEducationHistory(); track edu.id_education) {
         <app-education-feature
           [id]="edu.id_education"
@@ -69,7 +69,7 @@
 
     <div id="skills">
       @if (sortedSkills().length > 0) {
-      <app-card title="Keterampilan & Keahlian" [cardPerRow]="4">
+      <app-card title="Keterampilan & Keahlian" [cardPerRow]="{ sm: 2, md: 3, lg: 4, xl: 6 }">
         @for (skill of sortedSkills(); track skill.id_skill) {
           <app-skill-card [skillName]="skill.name_skill" [skillPercentage]="skill.percent_skill"></app-skill-card>
         }
@@ -83,7 +83,7 @@
 
     @if (sortedCertifications().length > 0) {
     <div id="certifications">
-      <app-card title="Lisensi & Sertifikasi" [cardPerRow]="4">
+      <app-card title="Lisensi & Sertifikasi" [cardPerRow]="{ sm: 2, md: 3, lg: 4 }">
         @for (cert of sortedCertifications(); track cert.id_certification) {
           <app-certification-card
             [id]="cert.id_certification"

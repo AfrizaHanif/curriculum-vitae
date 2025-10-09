@@ -45,7 +45,7 @@
   <div class="tab-content">
     <div class="tab-pane fade show active" role="tabpanel">
       @if (totalItems() > 0) {
-        <app-card [cardPerRow]="3">
+        <app-card [cardPerRow]="{ sm: 2, md: 3, lg: 3}">
           @for (item of filteredPortfolios(); track item.id_portfolio) {
             <app-portfolio-card [item]="item" />
           }

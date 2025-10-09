@@ -6,7 +6,7 @@
 </app-jumbotron>
 
 @if (expertiseWithProjects().length > 0) {
-  <app-feature [itemPerRow]="2">
+  <app-feature [itemPerRow]="{ sm: 1, md: 2, lg: 2 }">
     @for (expertise of expertiseWithProjects(); track expertise.id_expertise) {
       <app-expertise-feature [expertise]="expertise" />
     } @empty {

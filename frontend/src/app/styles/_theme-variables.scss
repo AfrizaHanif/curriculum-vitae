@@ -1,0 +1,34 @@
+/*
+ * ==========================================================================
+ *  Theme Variables
+ * ==========================================================================
+ *
+ * Centralized CSS custom properties for theming content typography,
+ * spacing, and other design tokens.
+ */
+
+:root {
+  // -- Base Typography
+  --content-font-size: 1.1rem;
+  --content-line-height: 1.7;
+
+  // -- Spacing
+  --content-spacing-unit: 1.25rem;
+  --content-spacing-lg: calc(var(--content-spacing-unit) * 2);
+
+  // -- Headings
+  --h2-font-size: 1.75rem;
+  --h3-font-size: 1.5rem;
+  --h4-font-size: 1.25rem;
+
+  // -- Blockquote
+  --blockquote-font-size: 1.1rem;
+  --blockquote-padding: 1rem 1.5rem;
+  --blockquote-border-width: 0.25rem;
+
+  // -- Code
+  --code-font-size: 0.875em;
+  --code-padding: 0.2em 0.4em;
+  --pre-padding: 1rem;
+}
+
