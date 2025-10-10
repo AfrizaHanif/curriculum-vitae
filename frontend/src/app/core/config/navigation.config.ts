@@ -11,48 +11,48 @@ export interface NavLink {
 export const navLinks: NavLink[] = [
   {
     path: '/',
-    icon: 'house-fill',
+    icon: 'home',
     label: 'Home',
     exact: true
   },
   {
     path: '/profile',
-    icon: 'person-vcard',
+    icon: 'profile',
     label: 'Profil',
     children: [
       {
         path: '/profile',
-        icon: 'person-vcard',
+        icon: 'profile',
         label: 'Tentang Saya',
         exact: true
       },
       {
         path: '/setup',
-        icon: 'gear-wide-connected',
+        icon: 'setup',
         label: 'My Setup'
       },
     ],
   },
   {
     path: '/resume',
-    icon: 'file-earmark-text',
+    icon: 'resume',
     label: 'Resume'
   },
   {
     path: '/expertise', // The parent link can default to the main expertise page
     label: 'Keahlian',
-    icon: 'person-workspace',
+    icon: 'expertise',
     children: [
       {
         path: '/expertise',
         label: 'Ringkasan Keahlian',
-        icon: 'person-workspace',
+        icon: 'expertise',
         exact: true
       },
       {
         path: '/services',
         label: 'Layanan',
-        icon: 'briefcase-fill',
+        icon: 'main-project',
         disabled: true,
         tooltip: 'Saat ini layanan belum tersedia',
       }
@@ -60,17 +60,17 @@ export const navLinks: NavLink[] = [
   },
   {
     path: '/portfolio',
-    icon: 'collection-fill',
+    icon: 'portfolio',
     label: 'Portfolio',
     children: [
       {
         path: '/portfolio',
-        icon: 'briefcase-fill',
+        icon: 'main-project',
         label: 'Portfolio Utama',
         exact: true },
       {
         path: '/projects',
-        icon: 'joystick',
+        icon: 'other-project',
         label: 'Proyek Lainnya',
         disabled: true,
         tooltip: 'Tidak ada proyek yang sedang dikerjakan',
@@ -79,19 +79,19 @@ export const navLinks: NavLink[] = [
   },
   {
     path: '/blog',
-    icon: 'journal-text',
+    icon: 'blog',
     label: 'Blog'
   },
   {
     path: '/testimonials',
-    icon: 'chat-square-quote',
+    icon: 'testimonial',
     label: 'Testimoni',
     disabled: true,
     tooltip: 'Tidak ada testimoni saat ini',
   },
   {
     path: '/contact',
-    icon: 'envelope',
+    icon: 'contact',
     label: 'Kontak'
   },
 ];

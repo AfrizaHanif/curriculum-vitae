@@ -8,8 +8,8 @@
 
   <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center mb-4">
     <a routerLink="/portfolio" class="btn btn-outline-secondary d-flex justify-content-center justify-content-sm-start align-items-center">
-      <svg class="bi me-2" width="16" height="16" aria-hidden="true"><use xlink:href="#arrow-left"></use></svg>
-      Back to Portfolio
+      <i class="bi bi-arrow-left me-2"></i>
+      Kembali ke Portfolio
     </a>
     <div class="btn-group mt-2 mt-sm-0" role="group" aria-label="Project navigation">
       <a
@@ -18,7 +18,7 @@
         [attr.aria-disabled]="!previousItem()"
         tabindex="{{!previousItem() ? -1 : null}}"
         class="btn btn-outline-secondary d-inline-flex align-items-center">
-        <i class="bi bi-arrow-left"></i>
+        <i class="bi bi-arrow-left me-2"></i>
         <span class="d-none d-sm-inline ms-2">Previous</span>
         <span class="d-inline d-sm-none ms-2">Prev</span>
       </a>
@@ -90,7 +90,7 @@
             <div class="list-group">
               @for (blog of relatedBlogs(); track blog.id_blog) {
                 <a [routerLink]="['/blog', blog.slug_blog]" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-                  <svg class="bi flex-shrink-0" width="24" height="24"><use xlink:href="#journal-text"></use></svg>
+                  <i class="bi bi-file-earmark-text-fill"></i>
                   <div class="d-flex gap-2 w-100 justify-content-between align-items-center">
                     <h6 class="mb-0">{{ blog.title_blog }}</h6>
                   </div>
@@ -141,14 +141,14 @@
             <div class="card-footer bg-transparent border-top-0">
               @if (item.overview_case_study || item.goal_case_study || item.problem_case_study) {
                 <a [routerLink]="['/portfolio', item.slug_portfolio, 'case-study']" class="btn btn-success d-flex align-items-center justify-content-center mb-2">
-                  <svg class="bi me-2" width="16" height="16"><use xlink:href="#book-half"></use></svg>
+                  <i class="bi bi-book-half"></i>
                   Lihat Studi Kasus
                 </a>
               }
               <div class="d-grid gap-2">
                 @if (item.url_portfolio) {
                   <a [href]="item.url_portfolio" target="_blank" rel="noopener noreferrer" class="btn btn-primary d-flex align-items-center justify-content-center">
-                    <svg class="bi me-2" width="16" height="16"><use xlink:href="#box-arrow-up-right"></use></svg>
+                    <i class="bi bi-box-arrow-up-right me-2"></i>
                     Kunjungi Project
                   </a>
                 }
@@ -157,19 +157,19 @@
                     <a [href]="item.repository_portfolio" target="_blank" rel="noopener noreferrer" class="btn btn-outline-secondary d-flex align-items-center justify-content-center w-75">
                       @switch (item.rep_type_portfolio) {
                         @case ('GitHub') {
-                          <svg class="bi me-2" width="16" height="16"><use xlink:href="#github"></use></svg>
+                          <i class="bi bi-github me-2"></i>
                         }
                         @case ('GitLab') {
-                          <svg class="bi me-2" width="16" height="16"><use xlink:href="#gitlab"></use></svg>
+                          <i class="bi bi-gitlab me-2"></i>
                         }
                         @case ('Bitbucket') {
-                          <svg class="bi me-2" width="16" height="16"><use xlink:href="#bitbucket"></use></svg>
+                          <i class="bi bi-bitbucket me-2"></i>
                         }
                         @case ('Document') {
-                          <svg class="bi me-2" width="16" height="16"><use xlink:href="#file-earmark-text"></use></svg>
+                          <i class="bi bi-file-earmark-text me-2"></i>
                         }
                         @default {
-                          <svg class="bi me-2" width="16" height="16"><use xlink:href="#code-square"></use></svg>
+                          <i class="bi bi-code-square me-2"></i>
                         }
                       }
                       Lihat Repositori
@@ -184,7 +184,7 @@
                   </div>
                 }
                 <button type="button" class="btn btn-secondary d-flex align-items-center justify-content-center" (click)="share(item)">
-                  <svg class="bi me-2" width="16" height="16"><use xlink:href="#share-fill"></use></svg>
+                  <i class="bi bi-share-fill me-2"></i>
                   Bagikan
                 </button>
               </div>
@@ -219,8 +219,8 @@
   <div class="container">
     <div class="mb-4">
       <a routerLink="/portfolio" class="btn btn-outline-secondary d-inline-flex align-items-center">
-        <svg class="bi me-2" width="16" height="16" aria-hidden="true"><use xlink:href="#arrow-left"></use></svg>
-        Back to Portfolio
+        <i class="bi bi-arrow-left me-2"></i>
+        Kembali ke Portfolio
       </a>
     </div>
   <p class="text-center">Proyek tidak ditemukan.</p>

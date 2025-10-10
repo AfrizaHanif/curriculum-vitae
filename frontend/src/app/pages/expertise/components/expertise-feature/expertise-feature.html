@@ -18,7 +18,8 @@
 
 <div class="feature col">
   <div class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
-    <svg class="bi" width="1em" height="1em" aria-hidden="true"><use [attr.xlink:href]="'#' + expertise().icon_expertise"></use></svg>
+    <!-- <svg class="bi" width="1em" height="1em" aria-hidden="true"><use [attr.xlink:href]="'#' + expertise().icon_expertise"></use></svg> -->
+    <i [class]="'bi bi-' + expertise().icon_expertise"></i>
   </div>
   <h3 class="fs-2 text-body-emphasis">{{ expertise().title_expertise }}</h3>
   <p>{{ expertise().desc_expertise }}</p>
@@ -29,7 +30,7 @@
   </div>
   <a href="#" class="icon-link" data-bs-toggle="modal" [attr.data-bs-target]="'#expertiseModal-' + expertise().id_expertise">
     Dibuktikan dalam {{ expertise().related_projects.length }} proyek
-    <svg class="bi" aria-hidden="true"><use xlink:href="#chevron-right"></use></svg>
+    <i class="bi bi-chevron-right"></i>
   </a>
 </div>
 
