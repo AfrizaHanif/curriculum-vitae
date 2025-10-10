@@ -1,6 +1,6 @@
 @if (loadingService.isLoading()) {
   <div class="loading-indicator-container" [class.fade-out]="loadingService.isFadingOutSignal()">
     <div class="spinner"></div>
+    <p class="mt-3 fs-5 loading-text">Loading content...</p>
   </div>
 }
-

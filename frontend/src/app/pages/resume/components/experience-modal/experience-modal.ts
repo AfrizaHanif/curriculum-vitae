@@ -2,11 +2,12 @@ import { Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BaseModalComponent } from '../base-modal/base-modal';
 import { ModalComponent } from '../../../../shared/components/modal/modal';
+import { LeafletMapComponent } from "../../../../shared/components/leaflet-map/leaflet-map";
 
 @Component({
   selector: 'app-experience-modal',
   standalone: true,
-  imports: [CommonModule, ModalComponent],
+  imports: [CommonModule, ModalComponent, LeafletMapComponent],
   templateUrl: './experience-modal.html',
   styleUrl: './experience-modal.css',
 })

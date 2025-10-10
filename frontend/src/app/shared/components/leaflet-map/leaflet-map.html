@@ -1,0 +1,19 @@
+<!-- This div is the target for Leaflet map initialization. -->
+<!-- It must have a defined height for the map to be visible. -->
+<!-- <div class="map-container">
+  <div class="map-placeholder d-flex justify-content-center align-items-center h-100">
+    <div class="spinner-border text-secondary" role="status">
+      <span class="visually-hidden">Loading map...</span>
+    </div>
+  </div>
+</div> -->
+
+<!-- The map container is always present for Leaflet to initialize into. -->
+<div class="map-container">
+  <!-- The placeholder is shown or hidden based on the map's visibility state. -->
+  <div class="map-placeholder d-flex justify-content-center align-items-center h-100" [hidden]="isMapVisible()">
+    <div class="spinner-border text-secondary" role="status">
+      <span class="visually-hidden">Loading map...</span>
+    </div>
+  </div>
+</div>

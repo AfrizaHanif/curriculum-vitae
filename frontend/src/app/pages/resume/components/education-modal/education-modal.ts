@@ -1,12 +1,13 @@
 import { Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BaseModalComponent } from '../base-modal/base-modal';
+import { LeafletMapComponent } from '../../../../shared/components/leaflet-map/leaflet-map';
 import { ModalComponent } from '../../../../shared/components/modal/modal';
 
 @Component({
   selector: 'app-education-modal',
   standalone: true,
-  imports: [CommonModule, ModalComponent],
+  imports: [CommonModule, ModalComponent, LeafletMapComponent],
   templateUrl: './education-modal.html',
   styleUrl: './education-modal.css',
 })

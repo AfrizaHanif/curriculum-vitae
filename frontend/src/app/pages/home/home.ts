@@ -36,7 +36,7 @@ export class HomeComponent {
 
   constructor() {
     if (!environment.production) {
-      console.log('Home component initialized.');
+      // console.log('Home component initialized.');
     }
   }
 }

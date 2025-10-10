@@ -13,8 +13,8 @@ export abstract class BaseFeatureComponent {
   s_period = input.required<string>();
   f_period = input<string | null>();
   description = input<string | null>();
-  latitude = input<string | null>();
-  longitude = input<string | null>();
+  latitude = input<number | null>();
+  longitude = input<number | null>();
 
   abstract readonly modalIdPrefix: string; // Prefix for modal IDs, to be defined in subclasses
 

@@ -34,7 +34,7 @@ export class ExpertiseComponent {
   constructor() {
     // In development, log when expertise data is loaded.
     if (!environment.production) {
-      this.expertiseService.dataLoaded().subscribe(data => console.log('Expertise data loaded:', data));
+      // this.expertiseService.dataLoaded().subscribe(data => console.log('Expertise data loaded:', data));
     }
   }
 

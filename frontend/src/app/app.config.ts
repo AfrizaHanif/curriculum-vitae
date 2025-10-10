@@ -17,7 +17,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideAnimations(),
-    provideRouter(routes, withComponentInputBinding(), withInMemoryScrolling({ scrollPositionRestoration: 'disabled' })),
+    provideRouter(routes, withComponentInputBinding()),
     provideHttpClient(withFetch(), withInterceptors([ loadingInterceptor])),
     { provide: LOCALE_ID, useValue: 'id' },
     { provide: TitleStrategy, useClass: CustomTitleStrategy },

@@ -47,7 +47,7 @@ export class ProfileComponent {
 
   constructor() {
     if (!environment.production) {
-      console.log('Profile component initialized.');
+      // console.log('Profile component initialized.');
     }
   }
 

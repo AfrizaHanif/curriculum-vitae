@@ -1,0 +1,15 @@
+.map-container {
+  /* A defined height is required for the map to be visible. */
+  position: relative; /* This makes it the positioning context for its absolute children. */
+  height: 300px;
+  width: 100%;
+  background-color: var(--bs-tertiary-bg);
+  border-radius: var(--bs-border-radius);
+  z-index: 0; /* Ensures map tiles are rendered correctly within modals */
+}
+
+.map-placeholder {
+  /* The placeholder is absolutely positioned to overlay the map container. */
+  position: absolute;
+  inset: 0;
+}

@@ -88,7 +88,7 @@ export class ResumeComponent {
 
   constructor() {
     if (!environment.production) {
-      console.log('Resume component initialized.');
+      // console.log('Resume component initialized.');
     }
   }
 

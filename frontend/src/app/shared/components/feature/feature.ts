@@ -16,7 +16,10 @@ export interface ResponsiveItemAmount {
   standalone: true,
   imports: [CommonModule],
   templateUrl: './feature.html',
-  styleUrl: './feature.css'
+  styleUrl: './feature.css',
+  host: {
+    '[attr.title]': 'null'
+  }
 })
 export class FeatureComponent {
   title = input<string>();

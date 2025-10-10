@@ -28,9 +28,7 @@
       <div class="col-6">
         @if (latitude() && longitude()) {
           <div class="location-section">
-            <div class="map-container">
-              <!-- The map will be rendered here -->
-            </div>
+            <app-leaflet-map [latitude]="latitude()!" [longitude]="longitude()!" [popupText]="getPopupText()" />
             <a [href]="'https://www.google.com/maps?q=' + latitude() + ',' + longitude()" target="_blank" rel="noopener noreferrer" class="d-block mt-2">
               View on Google Maps <span class="visually-hidden">(opens in a new tab)</span>
             </a>

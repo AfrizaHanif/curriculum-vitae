@@ -1,6 +1,5 @@
 import { NgClass, NgStyle } from '@angular/common';
 import { AfterViewInit, Component, computed, ElementRef, inject, input, OnDestroy, signal } from '@angular/core';
-import { LoadingService } from '../../../core/services/loading';
 
 @Component({
   selector: 'app-jumbotron',
@@ -15,7 +14,6 @@ export class JumbotronComponent implements AfterViewInit, OnDestroy {
 
   private readonly fallbackImageUrl = 'assets/images/placeholder/placeholder-image.png'; // Local fallback image path
   private elementRef = inject(ElementRef);
-  private loadingService = inject(LoadingService);
   private observer?: IntersectionObserver;
 
   /** Signal to track if the image should be loaded. */
@@ -32,21 +30,17 @@ export class JumbotronComponent implements AfterViewInit, OnDestroy {
       this.observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            this.loadingService.show(); // Signal that image loading has started
-
             // Preload the image in memory before showing it.
             const img = new Image();
             img.src = mainImageUrl;
             img.onload = () => {
               // Once the image is loaded, update the status to trigger the fade-in.
               this.imageStatus.set('loaded');
-              this.loadingService.hide(); // Signal that image loading has finished
             };
             img.onerror = () => {
               // If the main image fails, update the status to show the fallback.
               console.error('Jumbotron background image failed to load:', mainImageUrl);
               this.imageStatus.set('error');
-              this.loadingService.hide(); // Also hide loader on error
             };
             this.observer?.disconnect(); // Clean up the observer once the image is visible.
           }
@@ -61,12 +55,6 @@ export class JumbotronComponent implements AfterViewInit, OnDestroy {
     this.destroying = true;
 
     this.observer?.disconnect();
-
-    // If the component is destroyed while the image is still loading,
-    // ensure we hide the global loading indicator to prevent it from getting stuck.
-    if (this.imageStatus() === 'loading' && this.imageUrl()) {
-      this.loadingService.hide();
-    }
     this.imageStatus.set('loading'); // Reset status for the next instantiation.
   }
 

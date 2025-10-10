@@ -69,7 +69,7 @@ export class ProfileService {
   // Observable stream for skills data
   private skills$: Observable<SkillData[]> = this.http.get<SkillData[]>(`/assets/data/skills.json`).pipe(
     tap(data => {
-      console.log('Skills data fetched from API:', data);
+      // console.log('Skills data fetched from API:', data);
       this._skills.set(data ?? []); // Ensure we set an array, even if API returns null
     }),
     shareReplay(1),
