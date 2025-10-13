@@ -1,3 +1,4 @@
+// Model of NavLink
 export interface NavLink {
   path: string;
   icon: string;
@@ -8,6 +9,7 @@ export interface NavLink {
   children?: NavLink[];
 }
 
+// All Navigation Data
 export const navLinks: NavLink[] = [
   {
     path: '/',

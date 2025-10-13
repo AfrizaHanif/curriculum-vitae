@@ -11,14 +11,12 @@ export class BreadcrumbService {
   readonly breadcrumbs$ = this._breadcrumbs$.asObservable();
 
   constructor(private router: Router) {
-    this.router.events
-      .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
-      .subscribe(() => {
-        const root = this.router.routerState.snapshot.root;
-        const breadcrumbs: Breadcrumb[] = [];
-        this.addBreadcrumb(root, [], breadcrumbs);
-        this._breadcrumbs$.next(breadcrumbs);
-      });
+    this.router.events.pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd)).subscribe(() => {
+      const root = this.router.routerState.snapshot.root;
+      const breadcrumbs: Breadcrumb[] = [];
+      this.addBreadcrumb(root, [], breadcrumbs);
+      this._breadcrumbs$.next(breadcrumbs);
+    });
   }
 
   private addBreadcrumb(route: ActivatedRouteSnapshot | null, parentUrl: string[], breadcrumbs: Breadcrumb[]): void {

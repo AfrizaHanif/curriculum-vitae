@@ -13,15 +13,15 @@ import { TooltipDirective } from '../../../shared/directives/tooltip';
   styleUrls: ['./footer.css']
 })
 export class FooterComponent {
-  // Inject services to access profile and social data
+  // Inject services
   private profileService = inject(ProfileService);
   private socialService = inject(SocialService);
-  private document = inject(DOCUMENT);
+  // private document = inject(DOCUMENT);
 
-  // Get the current year for display in the footer
-  public currentYear = new Date().getFullYear();
-
-  // Access profile and social data from the services
+  // Get Data
   public profile = this.profileService.profileData;
   public socials = this.socialService.socials;
+
+  // Get the current year
+  public currentYear = new Date().getFullYear();
 }
