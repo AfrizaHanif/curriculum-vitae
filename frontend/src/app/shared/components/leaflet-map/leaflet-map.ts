@@ -112,7 +112,11 @@ export class LeafletMapComponent implements AfterViewInit, OnDestroy {
         this.map.fitBounds(markerGroup.getBounds().pad(0.1));
       } else {
         // Fallback to single marker if no markers are provided
-        L.marker([this.latitude(), this.longitude()]).addTo(this.map).bindPopup(this.popupText()).openPopup();
+        const marker = L.marker([this.latitude(), this.longitude()]).addTo(this.map);
+        const popupTxt = this.popupText();
+        if (popupTxt) {
+          marker.bindPopup(popupTxt).openPopup();
+        }
       }
 
       // Show the map only after it's fully initialized
