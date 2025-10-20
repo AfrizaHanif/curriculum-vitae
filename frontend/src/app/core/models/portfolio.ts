@@ -14,7 +14,7 @@ export interface PortfolioData {
   desc_portfolio?: string; // Optional
   tags_portfolio?: string[]; // Optional
   tech_portfolio?: string[]; // Optional
-  url_portfolio: string | null; // Optional (This is second method of '?')
+  url_portfolio?: string | null; // Optional (This is second method of '?')
   repository_portfolio?: string; // Optional
   rep_type_portfolio?: 'GitHub' | 'GitLab' | 'Bitbucket' | 'Document' | string; // Optional, but required if repository_portfolio has been filled
   related_blogs_portfolio?: string[]; // Optional

@@ -1,7 +1,7 @@
 export interface SetupItem {
   name: string;
   description: string;
-  whyIUseIt: string | null;
+  whyIUseIt?: string | null;
   link?: string;
 }
 

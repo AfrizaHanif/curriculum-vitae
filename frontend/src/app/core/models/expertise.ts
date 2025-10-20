@@ -5,7 +5,7 @@ export interface ExpertiseData {
   icon_expertise: string;
   title_expertise: string;
   desc_expertise: string;
-  tags_expertise: string[];
+  tags_expertise?: string[];
   related_projects: string[];
 }
 
