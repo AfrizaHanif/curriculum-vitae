@@ -8,6 +8,7 @@ import { ExperienceFeatureComponent } from "./components/experience-feature/expe
 import { EducationService } from '../../core/services/data/education';
 import { ExperienceService } from '../../core/services/data/experience';
 import { ProfileService } from '../../core/services/data/profile';
+import { SkillService } from '../../core/services/data/skill';
 import { BootstrapDirective } from '../../shared/directives/bootstrap';
 import { ScrollSpyDirective } from '../../shared/directives/scrollspy';
 import { DescriptionService } from '../../core/services/description';
@@ -28,6 +29,7 @@ export class ResumeComponent {
   private educationService = inject(EducationService);
   private experienceService = inject(ExperienceService);
   private profileService = inject(ProfileService);
+  private skillService = inject(SkillService);
   private descriptionService = inject(DescriptionService);
   private certificationService = inject(CertificationService);
   private gaService = inject(GoogleAnalyticsService);
@@ -36,7 +38,7 @@ export class ResumeComponent {
   educationHistory = this.educationService.educationHistory;
   experienceHistory = this.experienceService.experienceHistory;
   certifications = this.certificationService.certifications;
-  skills = this.profileService.skills;
+  skills = this.skillService.skills;
   profileData = this.profileService.profileData;
   jumbotronSubtitle = this.descriptionService.resumeJumbotronSubtitle;
 

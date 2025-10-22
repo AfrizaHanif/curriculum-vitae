@@ -1,7 +1,7 @@
 import { Injectable, signal, computed, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { HobbyData, ProfileData, SkillData } from '../../models/profile';
-import { Observable, forkJoin, of, throwError } from 'rxjs';
+import { HobbyData, ProfileData } from '../../models/profile';
+import { Observable, of } from 'rxjs';
 import { tap, shareReplay, map, catchError, first } from 'rxjs/operators';
 
 @Injectable({
@@ -37,7 +37,6 @@ export class ProfileService {
     desc_profile: '',
     status_profile: ''
   });
-  private _skills = signal<SkillData[]>([]);
   private _hobbies = signal<HobbyData[]>([]);
 
   // Computed signal that combines profile data with calculated age
@@ -47,7 +46,6 @@ export class ProfileService {
     hobbies: this._hobbies(),
   }));
 
-  public readonly skills = this._skills.asReadonly();
   public readonly hobbies = this._hobbies.asReadonly();
 
   // Observable stream for profile data
@@ -66,76 +64,16 @@ export class ProfileService {
     })
   );
 
-  // Observable stream for skills data
-  private skills$: Observable<SkillData[]> = this.http.get<SkillData[]>(`/assets/data/skills.json`).pipe(
-    tap(data => {
-      // console.log('Skills data fetched from API:', data);
-      this._skills.set(data ?? []); // Ensure we set an array, even if API returns null
-    }),
-    shareReplay(1),
-    catchError(err => {
-      console.error('Failed to load skills data', err);
-      return of([]); // On error, return an empty array
-    })
-  );
-
-  // constructor() {
-  //   // Eagerly load profile data. Skills data will be loaded lazily by a resolver.
-  //   console.log('ProfileService constructed. Fetching data...');
-  //   this.profile$.subscribe();
-  // }
-
   /**
    * Returns an observable that emits when all profile-related data has been loaded.
    * This is the primary method to ensure data is fetched and available.
    * It's ideal for use in a route resolver.
    */
   public dataLoaded(): Observable<boolean> {
-    return forkJoin([this.profile$, this.skills$]).pipe(
+    return this.profile$.pipe(
       // Use first() to ensure the observable completes for the resolver.
       first(),
       map(() => true) // Always return true after both streams have emitted.
     );
-  }
-
-  /**
-   * Updates the profile data.
-   * This now sends an HTTP PUT request to the backend API.
-   * @param updatedProfile The profile data to save.
-   */
-  public updateProfile(updatedProfile: Omit<ProfileData, 'age'>): Observable<ProfileData> {
-    // This operation is not supported with static JSON files.
-    console.warn('Update profile operation is not supported with static data.');
-    return throwError(() => new Error('Update operation not supported.'));
-  }
-
-  /**
-   * Updates the skills data.
-   * @param updatedSkills The skills array to save.
-   */
-  public updateSkills(updatedSkills: SkillData[]): Observable<SkillData[]> {
-    // This operation is not supported with static JSON files.
-    console.warn('Update skills operation is not supported with static data.');
-    return throwError(() => new Error('Update operation not supported.'));
-  }
-
-  /**
-   * Creates new skills.
-   * @param newSkills The skills array to create.
-   */
-  public createSkills(newSkills: SkillData[]): Observable<SkillData[]> {
-    // This operation is not supported with static JSON files.
-    console.warn('Create skills operation is not supported with static data.');
-    return throwError(() => new Error('Create operation not supported.'));
-  }
-
-  /**
-   * Deletes a skill by its ID.
-   * @param skillId The ID of the skill to delete.
-   */
-  public deleteSkill(skillId: string): Observable<void> {
-    // This operation is not supported with static JSON files.
-    console.warn(`Delete skill operation for ID ${skillId} is not supported with static data.`);
-    return throwError(() => new Error('Delete operation not supported.'));
   }
 }

@@ -5,6 +5,7 @@ import { SkillCardComponent } from "./components/skill-card/skill-card";
 import { CardComponent } from "../../shared/components/card/card";
 import { ProfileService } from '../../core/services/data/profile';
 import { PhoneFormat } from '../../shared/pipes/phone-format-pipe';
+import { SkillService } from '../../core/services/data/skill';
 import { DescriptionService } from '../../core/services/description';
 import { EducationService } from '../../core/services/data/education';
 import { environment } from '../../../environments/environment';
@@ -24,13 +25,14 @@ import { HobbiesFeature } from "./components/hobbies-feature/hobbies-feature";
 export class ProfileComponent {
   // Inject Services
   private profileService = inject(ProfileService);
+  private skillService = inject(SkillService);
   private educationService = inject(EducationService);
   private descriptionService = inject(DescriptionService);
   // private router = inject(Router);
 
   // Get Profile and Skills Data from Service
   profileData = this.profileService.profileData;
-  skills = this.profileService.skills;
+  skills = this.skillService.skills;
   hobbies = this.profileService.hobbies;
 
   // Create a computed signal for the latest degree

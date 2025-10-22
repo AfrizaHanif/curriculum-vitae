@@ -14,6 +14,7 @@ import { ExpertiseService } from '../services/data/expertise';
 import { SetupService } from '../services/data/setup';
 import { ProjectService } from '../services/data/project';
 import { ServiceDataService } from '../services/data/service';
+import { SkillService } from '../services/data/skill';
 
 /**
  * A route resolver that ensures all core application data is loaded before any
@@ -21,6 +22,7 @@ import { ServiceDataService } from '../services/data/service';
  */
 export const coreDataResolver: ResolveFn<boolean> = (): Observable<boolean> => {
   const profileService = inject(ProfileService);
+  const skillService = inject(SkillService);
   const setupService = inject(SetupService);
   const educationService = inject(EducationService);
   const experienceService = inject(ExperienceService);
@@ -36,6 +38,7 @@ export const coreDataResolver: ResolveFn<boolean> = (): Observable<boolean> => {
   // forkJoin waits for all observables to complete and emits their last values as an array.
   return forkJoin([
     profileService.dataLoaded(),
+    skillService.dataLoaded(),
     setupService.dataLoaded(),
     educationService.dataLoaded(),
     experienceService.dataLoaded(),
