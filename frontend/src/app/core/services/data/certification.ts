@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { CertificationData } from '../models/certification';
-import { BaseDataService } from './data/base-data';
+import { CertificationData } from '../../models/certification';
+import { BaseDataService } from './base-data';
 
 @Injectable({
   providedIn: 'root'

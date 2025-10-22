@@ -14,7 +14,7 @@ import { DescriptionService } from '../../core/services/description';
 import { environment } from '../../../environments/environment';
 import { CvViewerModalComponent } from "./components/cv-viewer-modal/cv-viewer-modal";
 import { GoogleAnalyticsService } from '../../core/services/google-analytics';
-import { CertificationService } from '../../core/services/certification';
+import { CertificationService } from '../../core/services/data/certification';
 import { CertificationCardComponent } from './components/certification-card/certification-card';
 
 @Component({

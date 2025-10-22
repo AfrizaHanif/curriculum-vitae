@@ -5,7 +5,7 @@ import { forkJoin, Observable } from 'rxjs';
 import { ProfileService } from '../services/data/profile';
 import { EducationService } from '../services/data/education';
 import { ExperienceService } from '../services/data/experience';
-import { CertificationService } from '../services/certification';
+import { CertificationService } from '../services/data/certification';
 import { PortfolioService } from '../services/data/portfolio';
 import { BlogService } from '../services/data/blog';
 import { TestimonialService } from '../services/data/testimonial';

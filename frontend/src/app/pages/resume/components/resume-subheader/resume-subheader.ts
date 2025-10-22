@@ -3,7 +3,7 @@ import {
   inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CertificationService } from '../../../../core/services/certification';
+import { CertificationService } from '../../../../core/services/data/certification';
 
 @Component({
   selector: 'app-resume-subheader',
