@@ -25,7 +25,7 @@ export class ProfileService {
   }
 
   // Signals to hold profile and skills data
-  private _profile = signal<Omit<ProfileData, 'age' | 'hobbies'>>({
+  private _profile = signal<Omit<ProfileData, 'age' | 'hobbies' | 'philosophy_profile'>>({
     fullname_profile: '',
     photo_profile: '',
     phone_profile: '',
@@ -37,24 +37,20 @@ export class ProfileService {
     desc_profile: '',
     status_profile: ''
   });
-  private _hobbies = signal<HobbyData[]>([]);
 
   // Computed signal that combines profile data with calculated age
   public readonly profileData = computed<ProfileData>(() => ({
     ...this._profile(),
     age: this.getAge(this._profile().birthday_profile),
-    hobbies: this._hobbies(),
   }));
-
-  public readonly hobbies = this._hobbies.asReadonly();
 
   // Observable stream for profile data
   private profile$: Observable<ProfileData> = this.http.get<ProfileData>(`/assets/data/profile.json`).pipe(
     tap(data => { // Only update the signal if the API returns valid data
       if (data) {
-        const { hobbies, ...profile } = data;
+        // The 'hobbies' property is no longer part of this data structure.
+        const { age, hobbies, ...profile } = data;
         this._profile.set(profile);
-        this._hobbies.set(hobbies ?? []);
       }
     }),
     shareReplay(1),

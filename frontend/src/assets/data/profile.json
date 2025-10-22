@@ -9,18 +9,6 @@
   "tagline_profile": "Bersemangat untuk Berkontribusi pada Web Developer",
   "desc_profile": "Lulusan S1 Sistem Informasi dari Universitas Dinamika dengan IPK 3.2. Memiliki pengalaman magang di BPS Jawa Timur (Jan–Mar 2023) sebagai intern Kerja Praktik, terlibat dalam pengelolaan data dan sistem informasi. Berpengalaman dalam pengembangan aplikasi web menggunakan Laravel, serta aktif mempelajari Python, Artificial Intelligence (AI), desain grafis, CSS, dan JavaScript. Tertarik pada posisi Web Developer dan antusias untuk terus berkembang di lingkungan kerja yang dinamis dan kolaboratif.",
   "philosophy_profile": "Sebagai web programmer, saya meyakini bahwa teknologi harus memberikan solusi yang efisien, aman, dan berkelanjutan. Saya berkomitmen untuk menulis kode yang terstruktur dan mudah dipelihara, mengikuti standar industri, serta beradaptasi dengan perkembangan teknologi dan kebutuhan bisnis. Dalam setiap proyek, saya menjunjung tinggi profesionalisme, komunikasi yang jelas, dan integritas kerja untuk menghasilkan sistem yang fungsional dan berdampak.",
-  "hobbies": [
-    {
-      "id_hobby": "HOB-001-001",
-      "name_hobby": "Foto-Foto",
-      "icon_hobby": "camera"
-    },
-    {
-      "id_hobby": "HOB-001-002",
-      "name_hobby": "Mendengarkan Musik",
-      "icon_hobby": "music-note"
-    }
-  ],
   "status_profile": "Fresh Graduate",
   "photo_profile": "assets/images/profile.jpg"
 }

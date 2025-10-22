@@ -1,19 +1,13 @@
 [
   {
     "id_hobby": "HOB-001-001",
-    "name_hobby": "Fotografi",
+    "name_hobby": "Foto-Foto",
     "icon_hobby": "camera"
-  },{
+  },
+  {
     "id_hobby": "HOB-001-002",
-    "name_hobby": "Bermain Gitar",
-    "icon_hobby": "music-note-beamed"
-  },{
-    "id_hobby": "HOB-001-003",
-    "name_hobby": "Membaca",
-    "icon_hobby": "book"
-  },{
-    "id_hobby": "HOB-001-004",
-    "name_hobby": "Traveling",
-    "icon_hobby": "compass"
+    "name_hobby": "Mendengarkan Musik",
+    "icon_hobby": "music-note"
   }
 ]
+
