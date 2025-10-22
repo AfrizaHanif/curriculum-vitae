@@ -1,6 +1,6 @@
 import { Injectable, signal, computed, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { HobbyData, ProfileData } from '../../models/profile';
+import { ProfileData } from '../../models/profile';
 import { Observable, of } from 'rxjs';
 import { tap, shareReplay, map, catchError, first } from 'rxjs/operators';
 
@@ -48,15 +48,15 @@ export class ProfileService {
   private profile$: Observable<ProfileData> = this.http.get<ProfileData>(`/assets/data/profile.json`).pipe(
     tap(data => { // Only update the signal if the API returns valid data
       if (data) {
-        // The 'hobbies' property is no longer part of this data structure.
-        const { age, hobbies, ...profile } = data;
-        this._profile.set(profile);
+        // Since `profile.json` now directly matches the structure needed (minus computed fields),
+        // we can set the data directly.
+        this._profile.set(data);
       }
     }),
     shareReplay(1),
     catchError(err => {
       console.error('Failed to load profile data', err);
-      return of(this.profileData()); // On error, return the current (initial) value from the computed signal
+      return of({} as ProfileData); // On error, return an observable of an empty ProfileData object.
     })
   );
 
